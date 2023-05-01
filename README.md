@@ -1,1 +1,1 @@
-# GensokyoJourney_MC
+# OtoMAD-Creator
