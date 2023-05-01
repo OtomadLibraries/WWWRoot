@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Launcher</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+	<style>
+		body {
+			background-image: url("背景图片链接");
+			background-size: cover;
+			background-position: center;
+			margin: 0;
+			padding: 0;
+		}
+		#dialog-box {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 400px;
+			height: auto;
+			padding: 20px;
+			background-color: white;
+			border-radius: 20px;
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+		}
+		.dialog-label {
+			display: block;
+			font-size: 16px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+		.dialog-select {
+			display: block;
+			margin-bottom: 20px;
+			width: 100%;
+			padding: 5px;
+			border: none;
+			border-radius: 5px;
+			background-color: #f5f5f5;
+		}
+		.dialog-button {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			border: none;
+			border-radius: 5px;
+			background-color: #4CAF50;
+			color: white;
+			font-size: 16px;
+			font-weight: bold;
+			cursor: pointer;
+			transition: background-color 0.3s ease-in-out;
+		}
+		.dialog-button:hover {
+			background-color: #3e8e41;
+		}
+		.dialog-button:active {
+			background-color: #27632a;
+		}
+	</style>
+</head>
+<body>
+	<div id="dialog-box">
+		<span class="dialog-label">请选择：</span>
+		<select class="dialog-select" id="dialog-select">
+			<option value="Minecraft 1.8.8">A</option>
+			<option value="b">More</option>
+			<option value="c">More</option>
+		</select>
+		<button class="dialog-button" id="dialog-button">D</button>
+	</div>
+	<script>
+		const select = document.getElementById("dialog-select");
+		const button = document.getElementById("dialog-button");
+
+		button.addEventListener("click", () => {
+			const value = select.value;
+			switch(value) {
+				case "a":
+					window.location.href = "A链接";
+					break;
+				case "b":
+					window.location.href = "B链接";
+					break;
+				case "c":
+					window.location.href = "C链接";
+					break;
+			}
+		});
+	</script>
+</body>
+</html>
