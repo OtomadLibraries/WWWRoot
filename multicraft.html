@@ -4,6 +4,7 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
+      margin: 0;
     }
 
     .container {
@@ -20,13 +21,14 @@
     .title {
       font-size: 32px;
       font-weight: bold;
-      color: black;
+      color: white;
       margin-bottom: 20px;
     }
 
     .buttons {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap; /* 允许按钮换行 */
     }
 
     .button {
@@ -41,16 +43,24 @@
       font-size: 20px;
       border-radius: 5px;
     }
+
+    /* 在屏幕宽度小于600px时，设置按钮宽度为自适应 */
+    @media screen and (max-width: 600px) {
+      .button {
+        width: auto;
+        flex: 1;
+      }
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <div class="title">Multicraft管理系统.超玩世界</div>
+    <div class="title">超玩世界Minecraft管理面板</div>
     <div class="buttons">
-      <a class="button" <a="" href="http://103.91.209.238:9090/">定胜云</a>
-            <a href="http://xd.chaowan.me:9090/" class="button">52MC超玩世界</a>
-            <a href="http://www.multicraft.org/" class="button">关于</a>
+      <a class="button" href="http://103.91.209.238:9090/" target="_blank">定胜云</a>
+      <a class="button" href="http://xd.chaowan.me:9090/" target="_blank">52MC超玩世界</a>
+      <a class="button" href="http://www.multicraft.org/" target="_blank">关于</a>
     </div>
   </div>
 
