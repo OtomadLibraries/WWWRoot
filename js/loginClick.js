@@ -17,7 +17,7 @@ function loginClick() {
             } else {
                 setTimeout(function() {
                     window.location.assign("/");
-                }, 2500);
+                }, 2000);
             }
         }}, 1000);
 }

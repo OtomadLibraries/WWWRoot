@@ -11,5 +11,5 @@ function getInfo() {
 
             clearInterval(checkInterval); // 停止检测
         }
-    }, 1000); // 每秒检测一次
+    }, 100); // 每秒检测一次
 }
