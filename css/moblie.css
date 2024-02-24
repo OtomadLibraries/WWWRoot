@@ -1,0 +1,64 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;color: #637d9e;
+}
+
+#main_box {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #f7f9ff;
+}
+
+#mobile_top_bar {
+    height: 110px;
+    background-color: #d9ebff;
+
+    display: flex;
+    justify-content: center; /* 居中 */
+    align-items: center; /* 垂直居中 */
+}
+#mobile_top_bar_select {
+
+}
+
+.svg_button {
+    display: flex;
+    flex-direction: column; /* 将元素垂直排列 */
+    align-items: center; /* 在交叉轴上居中对齐 */
+    cursor: pointer; /* 将鼠标光标设置为手型 */
+    padding: 10px; /* 按钮的内边距 */
+    border-radius: 8px; /* 设置按钮的边框半径 */
+    transition: background-color 0.3s ease; /* 添加背景颜色变化的过渡效果 */
+}
+
+.svg_button:hover {
+    background-color: #c8d9eb; /* 鼠标悬停时的背景颜色 */
+}
+
+.svg_button img {
+    width: auto; /* 设置图像的宽度 */
+    height: auto; /* 设置图像的高度 */
+    /* 其他图像样式设置 */
+}
+
+.svg_button span {
+    width: auto;
+    height: auto;
+    margin-top: 8px; /* 设置文字与图像之间的间距 */
+    /* 其他文字样式设置 */
+}
+
+#mobile_content {
+    flex: 1;
+    padding: 10px;
+    background-color: #f7f9ff;
+    overflow-y: auto;
+}
+
+#mobile_bottom_bar {
+    height: 128px;
+    background-color: #d9ebff;
+    margin-top: auto; /* 将其推到页面底部 */
+}
