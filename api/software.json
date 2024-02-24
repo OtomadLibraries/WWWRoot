@@ -1,0 +1,17 @@
+{
+  "prefix": "Software",
+  "list": [
+    {
+      "sf0": {
+        "uploader": "USERNAME",
+        "uploader_header": "images/default_user.gif",
+        "title": "TEST",
+        "img": "/images/Unknown.png",
+        "url": "/404.html",
+        "time": "2024/2/23",
+        "introduction": "",
+        "tag": ""
+      }
+    }
+  ]
+}

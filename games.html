@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh_cn">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script type="text/javascript" src="./js/bundle-playback.js" charset="utf-8"></script>
+	<script>
+		window.RufflePlayer = window.RufflePlayer || {};
+		window.RufflePlayer.config = {
+			"autoplay": "on",
+			"unmuteOverlay": "hidden"
+		};
+	</script>
+	<script type="text/javascript" src="./js/ruffle.js">
+	</script>
+	<link rel="stylesheet" type="text/css" href="./css/banner-styles.css">
+	<link rel="stylesheet" type="text/css" href="./css/iconochive.css">
+	<title class="next-head">
+		OtoMAD Libraries - 游戏专区
+	</title>
+	<meta name="keywords" content="音MAD,音系MAD,音声MAD,otomad,otomads,オトマッド,鬼畜,MAD movie,remix" class="next-head">
+	<link rel="stylesheet" href="./css/commons.css">
+	<link rel="stylesheet" href="./css/styles.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+	<meta name="apple-mobile-web-app-title" content="OtoMAD Libraries">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="theme-color" content="#d3e8ff">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="icon" type="image/png" href="./images/favicon.png">
+	<script>
+		"".startsWith || document.write('<script src="/_next/static/scripts/babel-polyfill@7.0.0.min.js"></s' + 'cript>')
+	</script>
+	<script>
+		if (window.performance) {
+			window.startTime = performance.now()
+		}
+	</script>
+	<meta itemprop="description" name="description" content="音乐源于万物之声——otomads，一个专注于音MAD的网站。在这里，分享音mad，分享喜悦。" class="next-head">
+	<meta charset="utf-8" class="next-head">
+	<!--压缩优化后-->
+	<link rel="stylesheet" type="text/css" href="./css/swal.css">
+	<link rel="stylesheet" type="text/css" href="./css/MuiButton.css">
+	<link rel="stylesheet" type="text/css" href="./css/MuiButtonBase.css">
+	<link rel="stylesheet" type="text/css" href="./css/MuiSvgIcon.css">
+	<link rel="stylesheet" type="text/css" href="./css/MuiTouchRipple.css">
+</head>
+<body>
+<div id="__next">
+	<div class="loading-bar">
+		<div class="loading-bar-inner">
+		</div>
+	</div>
+	<div class="_9a2327" id="topbar">
+		<div>
+			<a href="/">
+				<img class="_287d54" alt="otomads" src="./images/logo_blue.svg">
+			</a>
+		</div>
+		<div class="_235a4d">
+		</div>
+	</div>
+	<div class="component">
+		<div class="_9c0f96">
+			<div class="_642e3f">
+				<div style="transform: translateY(0px);">
+					<div id="sidebar">
+
+					</div>
+				</div>
+				<div id="bottom_sidebar">
+
+				</div>
+			</div>
+		</div>
+		<div class="container sidebar-width-1">
+			<div class="_22e432" style="margin-bottom:3em">
+				<img class="d16850" src="./images/page_logo.png" alt="otomads">
+				<div class="c75a25 _73a022">
+					<input placeholder="Search" value="">
+					<div class="dc35d8">
+					</div>
+				</div>
+			</div>
+			<div id = "index_info">
+			</div>
+			<div class="_570ddd" id = "gameList_tag">
+
+			</div>
+		</div>
+	</div>
+	<div class="_076e19" id="bottombar">
+	</div>
+</div>
+<div id="modal">
+</div>
+<script src="./js/commons.js" async=""></script>
+<script src="./js/styles.js" async=""></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="./js/loadModule.js"></script>
+<script src="/js/token.js"></script>
+<script src="/js/gitalk_loginout.js"></script>
+<script src="/js/listModule.js"></script>
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		loadModule('/page/index_info.html', '#index_info');
+		loadModule('/page/game_infos.html', '#gameList_tag');
+		loadModule('/page/sidebar.html', '#sidebar');
+		loadModule('/page/bottombar.html', '#bottombar');
+		loadModule('/page/bottom_sidebar.html', '#bottom_sidebar');
+		accountCheck();
+		readJsonModule('/api/games.json', 'game_list_div');
+	});
+</script>
+<style>
+	#game_list_div {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 自动填充，每列最小宽度为 300px */
+		gap: 20px; /* 设置元素之间的间距 */
+		justify-items: center; /* 在行上居中排列 */
+	}
+
+	.card {
+		width: 100%; /* 卡片宽度为父容器宽度 */
+	}
+
+	@media screen and (max-width: 600px) {
+		#game_list_div {
+			grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* 在小屏幕下每行只显示一个 */
+		}
+	}
+</style>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网站标题</title>
+</head>
+<body>
+
+<div class="aa3be6">
+    <div class="_74ee1f">
+        <div class="_551b1b">
+            <h4>
+                <a target="_blank" href="./">
+                    欢迎来到留言板！
+                </a>
+            </h4>
+        </div>
+        <p id="gitalk_notice">
+        </p>
+
+        <div id="gitalk-container">
+            <script>
+                var gitalk = new Gitalk({
+                    clientID: '4c2ae1c3c9a84b017189',
+                    clientSecret: 'b346f8276b0df4c81fef2a257bd69380500f6fa4',
+                    repo: 'web-comments',
+                    owner: 'SAGUMEDREAM',
+                    admin: ['SAGUMEDREAM'],
+                    title: 'issue',
+                    id: location.pathname,      // Ensure uniqueness and length less than 50
+                    distractionFreeMode: false,  // Facebook-like distraction free mode
+                    createIssueManually: true
+                })
+
+                gitalk.render('gitalk-container')
+            </script>
+        </div>
+    </div>
+</div>
+<script src="/js/loadModule.js"></script>
+<script src="/js/gitalk.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "prefix": "Collaboration",
+  "list": [
+    {
+      "cl0": {
+        "host": "神秘主催",
+        "title": "什么合作测试标题",
+        "img": "/images/Unknown.png",
+        "join_url": "/join_url.html",
+        "video_url": "/video_url.html",
+        "progress": "",
+        "introduction": "没有",
+        "tag": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投稿管理器</title>
+    <style>
+        #manager_box {
+            display: flex;
+        }
+
+        #upload_left_box {
+            flex: 1;
+            margin-right: -290px;
+        }
+
+        #upload_right_box {
+            flex: 1;
+        }
+    </style>
+    <style>
+        label {
+            display: inline-block;
+            padding: 15px 20px; /* 调整按钮的垂直内边距 */
+            margin-right: 1px;
+            margin-bottom: 10px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            cursor: pointer;
+            user-select: none;
+            text-decoration: none;
+            color: black;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            height: 4px; /* 调整按钮的高度 */
+            line-height: 2px; /* 使按钮中的文字垂直居中 */
+        }
+
+        /* 鼠标悬停样式 */
+        label:hover {
+            color: white;
+            background-color: #007bff;
+        }
+
+        /* 自定义样式的单选按钮标签（选中时） */
+        input[type="radio"]:checked + label,
+        input[type="radio"]:checked + label:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* 隐藏原始的单选按钮 */
+        input[type="radio"] {
+            display: none;
+        }
+    </style>
+    <style>
+        /* 按钮样式 */
+        #upload_button {
+            background-color: #00b3ff;
+            border-radius: 20px;
+            padding: 4px 18px;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            margin-top: 0px;
+            margin-left: 0px;
+            margin-right: 18px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* 鼠标悬停时改变按钮颜色 */
+        #upload_button:hover {
+            background-color: #007acc;
+        }
+    </style>
+    <style>
+        #manager_box {
+            display: flex;
+            overflow: visible;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+    </style>
+    <style>
+        #title_box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            min-width: 100px;
+            width: 100%;
+            box-sizing: border-box; /* 让宽度包括填充和边框 */
+        }
+        #poster_url_box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            min-width: 100px;
+            width: 100%; /* 设置输入框宽度为父容器宽度的80% */
+        }
+        #url_box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            min-width: 100px;
+            width: 100%; /* 设置输入框宽度为父容器宽度的80% */
+        }
+        #host_box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            min-width: 100px;
+            width: 100%; /* 设置输入框宽度为父容器宽度的80% */
+        }
+        #join_url_box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            min-width: 100px;
+            width: 100%; /* 设置输入框宽度为父容器宽度的80% */
+        }
+        #video_url_box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            min-width: 100px;
+            width: 100%; /* 设置输入框宽度为父容器宽度的80% */
+        }
+        #progress {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            min-width: 300px;
+            max-width: 560px;
+            width: 100px;
+            box-sizing: border-box; /* 让宽度包括填充和边框 */
+        }
+        #tag {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            min-width: 300px;
+            max-width: 560px;
+            width: 100px;
+            box-sizing: border-box; /* 让宽度包括填充和边框 */
+        }
+    </style>
+</head>
+<body>
+<div id= "manager_box">
+    <!-- <div id="upload_left_box"></div> -->
+    <!-- <div id="upload_right_box"></div> -->
+    <div id="upload_box">
+        <p class="username-paragraph"><big>您的用户名：</big><big><a class="username" href="https://github.com/"></a></big></p>
+        <div id="info_box">
+            <p><big>投稿标题</big><input type="text" id="title_box" placeholder="点击输入"><br></p>
+            <p><big>封面链接</big><input type="text" id="poster_url_box" placeholder="点击输入"><br></p>
+            <p><big id="url_box_text" style="display: none">内容链接</big><input type="text" id="url_box" placeholder="点击输入" style="display: none"></p>
+            <p><big id="host_box_text" style="display: none">主催</big><input type="text" id="host_box" placeholder="点击输入" style="display: none"></p>
+            <p><big id="join_url_box_text" style="display: none">加入方式</big><input type="text" id="join_url_box" placeholder="点击输入" style="display: none"></p>
+            <p><big id="video_url_box_text" style="display: none">发布地址</big><input type="text" id="video_url_box" placeholder="点击输入" style="display: none"></p>
+            <p><big id="progress_text" style="display: none">合作进度</big><input type="text" id="progress" placeholder="点击输入" style="display: none"></p>
+        </div>
+        <div id="type_box">
+            <big>投稿分区</big>
+            <br>
+            <label><input type="radio" name="upload_type" value="collaboration" onclick="toggleUrlBox(this)">合作推广</label>
+            <label><input type="radio" name="upload_type" value="video" onclick="toggleUrlBox(this)">视频</label>
+            <label><input type="radio" name="upload_type" value="game" onclick="toggleUrlBox(this)">游戏</label>
+            <label><input type="radio" name="upload_type" value="software" onclick="toggleUrlBox(this)">软件</label>
+            <label><input type="radio" name="upload_type" value="assets" onclick="toggleUrlBox(this)">素材</label>
+            <label><input type="radio" name="upload_type" value="project" onclick="toggleUrlBox(this)">工程</label>
+            <label><input type="radio" name="upload_type" value="read" onclick="toggleUrlBox(this)">专栏</label>
+        </div>
+        <div id="tag_box">
+            <big>标签</big><br>
+            <input type="text" id="tag" placeholder="点击输入(不同标签用#隔开)"><br>
+        </div>
+        <div id="input_box">
+            <p><big id="introduce_text">简介</big></p>
+            <p><big id="the_text" style="display: none">正文(支持HTML和JS)</big></p>
+            <textarea id="input" placeholder="点击输入" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; width: 558px; height: 150px; resize: none;"></textarea>
+        </div>
+        <div id="output_box">
+            <textarea id="output" placeholder="输出" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; width: 558px; height: 224px; resize: none;"></textarea>
+        </div>
+        <button id="upload_button" class="button" onclick="generate()">投稿</button>
+    </div>
+</div>
+<script src="/js/crypto-js.min.js"></script>
+<script>
+    function toggleUrlBox(radioButton) {
+        var urlBoxText = document.getElementById("url_box_text");
+        var urlBoxInput = document.getElementById("url_box");
+        var host_box_text = document.getElementById("host_box_text");
+        var host_box = document.getElementById("host_box");
+        var join_url_box_text = document.getElementById("join_url_box_text");
+        var join_url_box = document.getElementById("join_url_box");
+        var video_url_box_text = document.getElementById("video_url_box_text");
+        var video_url_box = document.getElementById("video_url_box");
+        var progress_text = document.getElementById("progress_text");
+        var progress = document.getElementById("progress");
+        var introduce_text = document.getElementById("introduce_text");
+        var the_text = document.getElementById("the_text");
+
+        if (radioButton.checked && (radioButton.value === "collaboration" || radioButton.value === "game" || radioButton.value === "software" || radioButton.value === "assets" || radioButton.value === "project" || radioButton.value === "read")) {
+            urlBoxText.style.display = "none";
+            urlBoxInput.style.display = "none";
+        } else {
+            urlBoxText.style.display = "inline";
+            urlBoxInput.style.display = "inline";
+        }
+
+        if(radioButton.checked && (radioButton.value === "collaboration" || radioButton.value === "read")) {
+            introduce_text.style.display = "none";
+            the_text.style.display = "inline";
+        } else {
+            introduce_text.style.display = "inline";
+            the_text.style.display = "none";
+        }
+
+        if(radioButton.checked && radioButton.value !== "collaboration") {
+            host_box_text.style.display = "none";
+            host_box.style.display = "none";
+            join_url_box_text.style.display = "none";
+            join_url_box.style.display = "none";
+            video_url_box_text.style.display = "none";
+            video_url_box.style.display = "none";
+            progress_text.style.display = "none";
+            progress.style.display = "none";
+
+        } else {
+            host_box_text.style.display = "inline";
+            host_box.style.display = "inline";
+            join_url_box_text.style.display = "inline";
+            join_url_box.style.display = "inline";
+            video_url_box_text.style.display = "inline";
+            video_url_box.style.display = "inline";
+            progress_text.style.display = "inline";
+            progress.style.display = "inline";
+        }
+
+    }
+</script>
+<script>
+    var tagInput = document.getElementById("tag");
+    var initialWidth = tagInput.offsetWidth;
+    tagInput.addEventListener("input", function() {
+        var inputValue = this.value;
+        this.style.width = initialWidth + "px";
+
+        if (this.scrollWidth > this.clientWidth) {
+            this.style.width = this.scrollWidth + "px";
+        }
+    });
+</script>
+<script>
+    var username = localStorage.getItem('USERNAME');
+    var usernameText = document.createTextNode(username);
+    var pElement = document.querySelector('.username');
+    pElement.appendChild(usernameText);
+    var usernameLink = document.querySelector('.username');
+    usernameLink.href += username;
+</script>
+<script>
+    var radioButtons = document.querySelectorAll('input[type="radio"]');
+
+    radioButtons.forEach(function(radioButton) {
+        radioButton.addEventListener('click', function() {
+            radioButtons.forEach(function(btn) {
+                btn.parentNode.style.backgroundColor = "#f0f0f0";
+                btn.parentNode.style.color = "black";
+            });
+
+            if (this.checked) {
+                this.parentNode.style.backgroundColor = "#007bff";
+                this.parentNode.style.color = "white";
+            }
+        });
+    });
+</script>
+<script>
+    function getSelectedValue() {
+        var radioButtons = document.getElementsByName('upload_type');
+        for (var i = 0; i < radioButtons.length; i++) {
+            if (radioButtons[i].checked) {
+                return radioButtons[i].value;
+            }
+        }
+        return 'null';
+    }
+    function getInputContent() {
+        var textarea = document.getElementById("input");
+        var inputContent = textarea.value;
+        return inputContent;
+    }
+    function getInputBox(type) {
+        try {
+            var inputElement = document.getElementById(type);
+            var inputValue = inputElement.value;
+            if(inputValue!==null) {
+                return inputValue;
+            } else {
+                return 'null';
+            }
+        } catch (error) {
+            console.error(type)
+            console.error(inputValue)
+            console.error(error)
+        }
+    }
+    function getTime() {
+        var now = new Date();
+
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var day = now.getDate();
+
+        year = year.toString();
+        month = month < 10 ? '0' + month.toString() : month.toString();
+        day = day < 10 ? '0' + day.toString() : day.toString();
+
+        var formattedDate = year + '/' + month + '/' + day;
+
+        return formattedDate;
+    }
+    function getIntroduction() {
+        var inputTextarea = document.getElementById("input");
+        var inputValue = inputTextarea.value;
+        return inputValue;
+    }
+    function getTag() {
+        var inputTextarea = document.getElementById("tag");
+        var inputValue = inputTextarea.value;
+        return inputValue;
+    }
+    function getToken() {
+        var user = localStorage.getItem('USERNAME');
+        var token = localStorage.getItem('GT_ACCESS_TOKEN');
+        var base = user + "_" + token;
+        var b64String = btoa(base);
+        return b64String;
+    }
+
+</script>
+<script>
+    function generate() {
+        var value = getSelectedValue();
+        var export_content = getCommon(value);
+        if(value!=='null') {
+            var outputTextarea = document.getElementById("output");
+            outputTextarea.value = "";
+            outputTextarea.value = export_content;
+            alert("生成成功，请把json文本和具体投稿内容发给网站负责人/管理员/审核人员");
+        } else {
+            alert("请选择分区！");
+        }
+    }
+    function getCommon(value) {
+        var username = localStorage.getItem('USERNAME');
+        var header_avatar = localStorage.getItem('HEADER-AVATAR');
+        var inputContent = getInputContent();
+        var title = getInputBox("title_box");
+        var img = getInputBox("poster_url_box");
+        var poster = getInputBox("poster_url_box");
+        var url = getInputBox("url_box");
+        var time = getTime();
+        var introduction = getIntroduction();
+        var token = getToken();
+        var tag = getTag();
+        if(header_avatar==null) header_avatar = 'images/default_user.gif';
+        if(poster==null) poster = '/images/Unknown.png'
+        var prefix = null;
+        if(value === 'collaboration') prefix = 'Collaboration';
+        if(value === 'video') prefix = 'Videos';
+        if(value === 'game') prefix = 'Games';
+        if(value === 'software') prefix = 'Software';
+        if(value === 'assets') prefix = 'Assets';
+        if(value === 'project') prefix = 'Projects';
+        if(value === 'read') prefix = 'Read';
+
+        if(value === 'collaboration') {
+            var host = getInputBox("host_box");
+            var join_url = getInputBox("join_url_box");
+            var video_url = getInputBox("video_url_box");
+            var progress = getInputBox("progress");
+            return '{\n' +
+                `  "prefix": "${prefix}",\n` +
+                '  "list": [\n' +
+                '    {\n' +
+                '      "identifier_number": {\n' +
+                `        "host": "${host}",\n` +
+                `        "title": "${title}",\n` +
+                `        "img": "${img}",\n` +
+                `        "join_url": "${join_url}",\n` +
+                `        "video_url": "${video_url}",\n` +
+                `        "progress": "${progress}",\n` +
+                `        "introduction": "${inputContent}",\n` +
+                `        "tag": "${tag}",\n` +
+                `        "token": "${token}"\n` +
+                '      }\n' +
+                '    }\n' +
+                '  ]\n' +
+                '}\n'
+        } else {
+            return '{\n' +
+                `  "prefix": "${prefix}",\n` +
+                '  "list": [\n' +
+                '    {\n' +
+                '      "identifier_number": {\n' +
+                `        "uploader": "${username}",\n` +
+                `        "uploader_header": "${header_avatar}",\n` +
+                `        "title": "${title}",\n` +
+                `        "img": "${poster}",\n` +
+                `        "url": "${url}",\n` +
+                `        "time": "${time}",\n` +
+                `        "introduction": "${introduction}",\n` +
+                `        "tag": "${tag}",\n` +
+                `        "token": "${token}"\n` +
+                '      }\n' +
+                '    }\n' +
+                '  ]\n' +
+                '}\n'
+        }
+
+    }
+</script>
+
+</body>
+</html>

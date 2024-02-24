@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90">
+<defs>
+    <style>
+      .cls-1 {
+        fill-opacity: 0;
+        stroke: #39424d;
+        stroke-linejoin: round;
+        stroke-width: 14px;
+      }
+    </style>
+  </defs>
+  <circle class="cls-1" cx="45" cy="45" r="38"/>
+</svg>

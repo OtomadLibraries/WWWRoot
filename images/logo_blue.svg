@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55">
+  <defs>
+    <style>
+      .cls-1 {
+        fill-opacity: 0;
+        stroke: #4d94ff; /* 将描边颜色改为蓝色 */
+        stroke-linejoin: round;
+        stroke-width: 10px;
+      }
+    </style>
+  </defs>
+  <circle class="cls-1" cx="27.5" cy="27.5" r="22.5"/>
+</svg>
