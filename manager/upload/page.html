@@ -8,15 +8,6 @@
         #manager_box {
             display: flex;
         }
-
-        #upload_left_box {
-            flex: 1;
-            margin-right: -290px;
-        }
-
-        #upload_right_box {
-            flex: 1;
-        }
     </style>
     <style>
         label {
@@ -80,19 +71,23 @@
         #manager_box {
             display: flex;
             overflow: visible;
-            align-items: center;
+            /*align-items: center;*/
             height: 100vh;
             flex-direction: column;
         }
 
     </style>
     <style>
+
+        body {
+            overflow-x: hidden;
+        }
+
         #title_box {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
-            min-width: 100px;
             width: 100%;
             box-sizing: border-box; /* 让宽度包括填充和边框 */
         }
@@ -101,16 +96,16 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
-            min-width: 100px;
             width: 100%; /* 设置输入框宽度为父容器宽度的80% */
+            box-sizing: border-box;
         }
         #url_box {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
-            min-width: 100px;
             width: 100%; /* 设置输入框宽度为父容器宽度的80% */
+            box-sizing: border-box;
         }
         #host_box {
             padding: 10px;
@@ -119,6 +114,7 @@
             font-size: 16px;
             min-width: 100px;
             width: 100%; /* 设置输入框宽度为父容器宽度的80% */
+            box-sizing: border-box;
         }
         #join_url_box {
             padding: 10px;
@@ -127,6 +123,7 @@
             font-size: 16px;
             min-width: 100px;
             width: 100%; /* 设置输入框宽度为父容器宽度的80% */
+            box-sizing: border-box;
         }
         #video_url_box {
             padding: 10px;
@@ -135,6 +132,7 @@
             font-size: 16px;
             min-width: 100px;
             width: 100%; /* 设置输入框宽度为父容器宽度的80% */
+            box-sizing: border-box;
         }
         #progress {
             padding: 10px;
@@ -160,8 +158,6 @@
 </head>
 <body>
 <div id= "manager_box">
-    <!-- <div id="upload_left_box"></div> -->
-    <!-- <div id="upload_right_box"></div> -->
     <div id="upload_box">
         <p class="username-paragraph"><big>您的用户名：</big><big><a class="username" href="https://github.com/"></a></big></p>
         <div id="info_box">
@@ -190,11 +186,11 @@
         </div>
         <div id="input_box">
             <p><big id="introduce_text">简介</big></p>
-            <p><big id="the_text" style="display: none">正文(支持HTML和JS)</big></p>
-            <textarea id="input" placeholder="点击输入" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; width: 558px; height: 150px; resize: none;"></textarea>
+            <p><big id="the_text" style="display: none;">正文(支持HTML和JS)</big></p>
+            <textarea id="input" placeholder="点击输入" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; width: 100%; height: 150px; resize: none; box-sizing: border-box;"></textarea>
         </div>
         <div id="output_box">
-            <textarea id="output" placeholder="输出" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; width: 558px; height: 224px; resize: none;"></textarea>
+            <textarea id="output" placeholder="输出" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; width: 100%; height: 224px; resize: none; box-sizing: border-box;"></textarea>
         </div>
         <button id="upload_button" class="button" onclick="generate()">投稿</button>
     </div>
@@ -424,7 +420,9 @@
                 `        "uploader_header": "${header_avatar}",\n` +
                 `        "title": "${title}",\n` +
                 `        "img": "${poster}",\n` +
-                `        "url": "${url}",\n` +
+                `        "content": "${url}",\n` +
+                `        "url": "null",\n` +
+                `        "mobile_url": "auto",\n` +
                 `        "time": "${time}",\n` +
                 `        "introduction": "${introduction}",\n` +
                 `        "tag": "${tag}",\n` +

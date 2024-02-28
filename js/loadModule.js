@@ -23,12 +23,14 @@ function loadModule(filePath, parentSelector) {
                 });
 
                 // 执行页面中的 CSS 代码
+                /*
                 var styles = parentElement.querySelectorAll('style');
                 styles.forEach(style => {
                     var newStyle = document.createElement('style');
                     newStyle.textContent = style.textContent;
                     document.head.appendChild(newStyle);
                 });
+                 */
             } else {
                 console.error('Parent element not found.');
             }
@@ -63,12 +65,13 @@ function post(filePath, parentSelector, videoParam) {
                 });
 
                 // 执行页面中的 CSS 代码
+                /*
                 var styles = parentElement.querySelectorAll('style');
                 styles.forEach(style => {
                     var newStyle = document.createElement('style');
                     newStyle.textContent = style.textContent;
                     document.head.appendChild(newStyle);
-                });
+                });*/
 
                 // 使用 URL 参数设置视频和海报
                 if (videoParam) {

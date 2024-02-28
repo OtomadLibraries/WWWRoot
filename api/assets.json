@@ -4,7 +4,7 @@
     {
       "as0": {
         "uploader": "USERNAME",
-        "uploader_header": "images/default_user.gif",
+        "uploader_header": "/images/default_user.gif",
         "title": "TEST",
         "img": "/images/Unknown.png",
         "url": "/404.html",

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no">
+    <title>OtoMAD Libraries - 首页</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+</head>
+<link rel="stylesheet" href="/mobile/css/mobile.css">
+<body>
+<div id="main_box">
+    <div id="mobile_top_bar" class="top-bar">
+        <img src="/images/logo_blue.svg" alt="WebSite Icon" class="website-icon" onclick="">
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-input" style="border-radius: 54px; border: none;">
+            <img src="/images/search-outlines.svg" alt="Search Icon" class="search-icon" onclick="">
+        </div>
+        <div class="search-icon-container">
+        </div>
+    </div>
+    <div id="mobile_top_bar_select" class="scrollable-menu">
+        <input type="radio" id="index_button" name="option" value="index" onClick="changeContent()"><label for="index_button" class="custom-radio">首页</label>
+        <input type="radio" id="video_button" name="option" value="video" onClick="changeContent()"><label for="video_button" class="custom-radio">视频</label>
+        <input type="radio" id="resource_button" name="option" value="resource" onClick="changeContent()"><label for="resource_button" class="custom-radio">资源</label>
+        <input type="radio" id="about_button" name="option" value="about" onClick="changeContent()"><label for="about_button" class="custom-radio">关于</label>
+    </div>
+    <div id="mobile_content" style="block-size: auto;">
+    </div>
+    <div id="mobile_bottom_bar">
+        <div class="svg_button">
+            <img src="/images/sidebar/home-outline.svg" alt="index">
+            <span>首页</span>
+        </div>
+        <div class="svg_button">
+            <img src="/images/cloud-upload-outline.svg" alt="upload">
+            <span>投稿</span>
+        </div>
+        <div class="svg_button">
+            <img src="/images/person-circle-outline.svg" alt="account">
+            <span>我的</span>
+        </div>
+    </div>
+</div>
+<script>
+    var mobileContent = document.getElementById('mobile_content');
+    mobileContent.innerHTML = '';
+    document.addEventListener('DOMContentLoaded', function() {
+        loadModule('/mobile/index.html', '#mobile_content');
+        loadModule('/read/cv0/text.html', '#index_box');
+    });
+    function changeContent() {
+        var mobileContent = document.getElementById('mobile_content');
+        mobileContent.innerHTML = '';
+        var urlAPI = '/404.html';
+        var radioButtons = document.getElementsByName('option'); // 获取所有单选按钮
+        var selectedOption;
+        for (var i = 0; i < radioButtons.length; i++) {
+            if (radioButtons[i].checked) {
+                selectedOption = radioButtons[i].value; // 获取被选中的选项的值
+                break;
+            }
+        }
+        if (selectedOption === 'index') {
+            urlAPI = '/mobile/index.html';
+            document.title = "OtoMAD Libraries - 主页";
+            replaceContent(urlAPI)
+            loadModule('/read/cv0/text.html', '#index_box');
+            console.log('index')
+        } else if (selectedOption === 'video') {
+            urlAPI = '/mobile/videos.html';
+            document.title = "OtoMAD Libraries - 视频";
+            replaceContent(urlAPI)
+            readVideoJsonMobileModule('/api/videos.json', '#video-cards-container');
+            console.log('video')
+        } else if (selectedOption === 'resource') {
+            replaceContent(urlAPI)
+            console.log('resource')
+        } else if (selectedOption === 'about') {
+            replaceContent(urlAPI)
+            console.log('about')
+        }
+    }
+    function replaceContent(url) {
+        var mobileContent = document.getElementById('mobile_content');
+        var newContent = document.createElement('div');
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                newContent.innerHTML = data;
+                mobileContent.appendChild(newContent);
+            });
+    }
+</script>
+<script>
+    window.onload = function() {
+        var buttons = document.querySelectorAll('.svg_button');
+        var maxLength = 0;
+        buttons.forEach(function(button) {
+            var span = button.querySelector('span');
+            var textLength = span.textContent.length;
+            maxLength = Math.max(maxLength, textLength);
+        });
+        buttons.forEach(function(button) {
+            var span = button.querySelector('span');
+            var paddingLength = maxLength - span.textContent.length;
+            if (paddingLength > 0) {
+                span.textContent += ' '.repeat(paddingLength);
+            }
+        });
+    };
+</script>
+<script src="/js/loadModule.js"></script>
+<script src="/js/listModule.js"></script>
+</body>
+</html>

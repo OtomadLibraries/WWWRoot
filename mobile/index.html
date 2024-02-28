@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no">
+    <title>OtoMAD Libraries - 首页</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <style>
+        .web_title {
+            display: block;
+            margin: auto ; /* 设置顶部外边距为10%，左右外边距自动，实现水平居中 */
+        }
+
+        #index_box {
+            width: 95%;
+            height: 50%;
+            position: fixed;
+            top: 45%; /* 将顶部位置设置为50% */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f0f0f0;
+            border-radius: 42px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #index_box .content {
+            /* 你的内容样式 */
+        }
+    </style>
+</head>
+<link rel="stylesheet" href="/mobile/css/mobile.css">
+<body>
+<div id="main_box">
+    <div id="mobile_top_bar" class="top-bar">
+        <img src="/images/logo_blue.svg" alt="WebSite Icon" class="website-icon" onclick="">
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-input" style="border-radius: 54px; border: none;">
+            <img src="/images/search-outlines.svg" alt="Search Icon" class="search-icon" onclick="">
+        </div>
+        <div class="search-icon-container">
+        </div>
+    </div>
+    <div id="mobile_top_bar_select" class="scrollable-menu">
+        <input type="radio" id="index_button" name="option" value="index" onClick="changeContent()"><label for="index_button" class="custom-radio">首页</label>
+        <input type="radio" id="video_button" name="option" value="video" onClick="changeContent()"><label for="video_button" class="custom-radio">视频</label>
+        <input type="radio" id="comment_button" name="option" value="comment" onClick="changeContent()"><label for="comment_button" class="custom-radio">留言板</label>
+        <input type="radio" id="resource_button" name="option" value="resource" onClick="changeContent()"><label for="resource_button" class="custom-radio">资源</label>
+        <input type="radio" id="about_button" name="option" value="about" onClick="changeContent()"><label for="about_button" class="custom-radio">关于</label>
+    </div>
+    <div id="mobile_content" style="block-size: auto;">
+        <div id="page_main_box">
+            <div style="top: 10%">
+                <img class="web_title" src="/images/page_logo.png" alt="otomads">
+            </div>
+            <div id="index_box">
+            </div>
+        </div>
+    </div>
+    <div id="mobile_bottom_bar">
+        <div class="svg_button" onclick="pageJump('/mobile/index.html',null)">
+            <img src="/images/sidebar/home-outline.svg" alt="index">
+            <span>首页</span>
+        </div>
+        <div class="svg_button" onclick="pageJump('/mobile/upload.html',null)">
+            <img src="/images/cloud-upload-outline.svg" alt="upload">
+            <span>投稿</span>
+        </div>
+        <div class="svg_button" onclick="pageJump('/mobile/account.html',null)">
+            <img src="/images/person-circle-outline.svg" alt="account">
+            <span>我的</span>
+        </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        loadModule('/read/cv0/text.html', '#index_box');
+    });
+</script>
+<script>
+    window.onload = function() {
+        var buttons = document.querySelectorAll('.svg_button');
+        var maxLength = 0;
+        buttons.forEach(function(button) {
+            var span = button.querySelector('span');
+            var textLength = span.textContent.length;
+            maxLength = Math.max(maxLength, textLength);
+        });
+        buttons.forEach(function(button) {
+            var span = button.querySelector('span');
+            var paddingLength = maxLength - span.textContent.length;
+            if (paddingLength > 0) {
+                span.textContent += ' '.repeat(paddingLength);
+            }
+        });
+    };
+</script>
+<script src="/mobile/js/page.js"></script>
+<script src="/js/loadModule.js"></script>
+<script src="/js/listModule.js"></script>
+</body>
+</html>

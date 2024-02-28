@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Transition</title>
+    <style>
+        /* 样式用于过渡效果 */
+        .transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff; /* 背景色可以根据需要自定义 */
+            opacity: 0; /* 初始状态下不可见 */
+            transition: opacity 0.5s ease; /* 过渡效果 */
+            z-index: 9999; /* 确保在最顶层 */
+        }
+
+        .transition-overlay.show {
+            opacity: 1; /* 显示过渡效果 */
+        }
+
+        .transition-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* 样式用于加载提示 */
+        .loading-text {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+<!-- 页面过渡效果 -->
+<div class="transition-overlay">
+    <div class="transition-content">
+        <div class="loading-text">页面加载中...</div>
+    </div>
+</div>
+
+<!-- 超链接 -->
+<a href="/index.html" class="page-link">点击跳转到目标页面</a>
+
+<script>
+    // 获取超链接元素
+    var pageLink = document.querySelector('.page-link');
+
+    // 添加点击事件监听器
+    pageLink.addEventListener('click', function(event) {
+        // 阻止默认的页面跳转行为
+        event.preventDefault();
+
+        // 显示页面过渡效果
+        var transitionOverlay = document.querySelector('.transition-overlay');
+        transitionOverlay.classList.add('show');
+
+        // 模拟页面加载，这里可以替换成实际的加载过程
+        setTimeout(function() {
+            // 页面过渡完成后，执行页面跳转
+            window.location.href = pageLink.getAttribute('href');
+        }, 2000); // 这里的 2000ms 是模拟的加载时间，可以根据实际情况调整
+    });
+</script>
+</body>
+</html>

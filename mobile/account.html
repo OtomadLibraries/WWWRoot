@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no">
+    <title>OtoMAD Libraries - 我的账号</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <style>
+        #mobile_content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%; /* 让容器宽度充满屏幕 */
+        }
+
+        .div_userPage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%; /* 设置账户信息部分的宽度 */
+            margin-top: 20px; /* 上方留出一些间距 */
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px; /* 用户信息底部留出间距 */
+        }
+
+        .avatar {
+            width: 200px; /* 圆头像的宽度 */
+            height: 200px; /* 圆头像的高度 */
+            border-radius: 50%; /* 将头像变成圆形 */
+        }
+
+        .user-id {
+            margin-left: 20px; /* 用户ID与头像之间的间距 */
+            font-size: 50px; /* 用户ID字体大小 */
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px; /* 按钮部分上方留出一些间距 */
+        }
+
+        .home-button,
+        .logout-button,
+        .login-button,
+        .register-button,
+        .account-setting-button,
+        .upload-button {
+            color: #637d9e;
+            border-radius: 20px; /* 添加圆角 */
+            margin-top: 10px; /* 按钮之间的垂直间距 */
+            padding: 15px 0; /* 设置按钮的垂直内边距，水平内边距为0 */
+            width: 95%; /* 固定按钮的宽度 */
+            font-size: 45px; /* 增加按钮的字体大小 */
+            display: block; /* 让按钮成为块级元素，以便设置宽度生效 */
+            margin-left: auto; /* 让按钮居中 */
+            margin-right: auto; /* 让按钮居中 */
+            text-align: center; /* 文本居中 */
+            background-color: #d9ebff; /* 设置按钮的背景色为淡蓝色 */
+            border: none; /* 移除按钮的边框 */
+            cursor: pointer; /* 将鼠标光标设置为手型 */
+            transition: background-color 0.3s; /* 添加颜色变化的过渡效果 */
+        }
+
+        /* 鼠标悬停时按钮的样式 */
+        .home-button:hover,
+        .logout-button:hover,
+        .login-button:hover,
+        .register-button:hover,
+        .account-setting-button:hover,
+        .upload-button:hover {
+            background-color: #c1d1e3; /* 设置鼠标悬停时的背景色 */
+        }
+
+
+
+    </style>
+</head>
+<link rel="stylesheet" href="/mobile/css/mobile.css">
+<body>
+<div id="main_box">
+    <div id="mobile_top_bar" class="top-bar">
+        <img src="/images/logo_blue.svg" alt="WebSite Icon" class="website-icon" onclick="">
+        <div class="search-container">
+            <input type="text" id="search-input" class="search-input" style="border-radius: 54px; border: none;">
+            <img src="/images/search-outlines.svg" alt="Search Icon" class="search-icon" onclick="">
+        </div>
+        <div class="search-icon-container">
+        </div>
+    </div>
+    <div id="mobile_top_bar_select" class="scrollable-menu">
+        <input type="radio" id="index_button" name="option" value="index" onClick="changeContent()"><label for="index_button" class="custom-radio">首页</label>
+        <input type="radio" id="video_button" name="option" value="video" onClick="changeContent()"><label for="video_button" class="custom-radio">视频</label>
+        <input type="radio" id="comment_button" name="option" value="comment" onClick="changeContent()"><label for="comment_button" class="custom-radio">留言板</label>
+        <input type="radio" id="resource_button" name="option" value="resource" onClick="changeContent()"><label for="resource_button" class="custom-radio">资源</label>
+        <input type="radio" id="about_button" name="option" value="about" onClick="changeContent()"><label for="about_button" class="custom-radio">关于</label>
+    </div>
+    <div id="mobile_content" style="display: flex; flex-direction: column; align-items: center;">
+        <div class="div_userPage">
+            <div id="mode_0">
+                <div class="user-info">
+                    <img src="/images/default_user.gif" alt="Avatar" class="avatar">
+                    <div class="user-id">User ID</div>
+                </div>
+                <div class="buttons">
+                    个人服务
+                    <button class="home-button">主页</button>
+                    <button class="account-setting-button">账户资料设置</button>
+                    <button class="upload-button">投稿</button>
+                    <button class="logout-button">注销</button>
+                </div>
+            </div>
+            <div id="mode_1">
+                <div class="user-info">
+                    <img src="/images/default_user.gif" alt="Avatar" class="avatar">
+                    <div class="user-id">请登录</div>
+                </div>
+                <div class="buttons">
+                    <button class="login-button">登录</button>
+                    <button class="register-button">注册</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="mobile_bottom_bar">
+        <div class="svg_button" onclick="pageJump('/mobile/index.html',null)">
+            <img src="/images/sidebar/home-outline.svg" alt="index">
+            <span>首页</span>
+        </div>
+        <div class="svg_button" onclick="pageJump('/mobile/upload.html',null)">
+            <img src="/images/cloud-upload-outline.svg" alt="upload">
+            <span>投稿</span>
+        </div>
+        <div class="svg_button" onclick="pageJump('/mobile/account.html',null)">
+            <img src="/images/person-circle-outline.svg" alt="account">
+            <span>我的</span>
+        </div>
+</div>
+<script>
+    var m0 = document.getElementById('mode_0');
+    var m1 = document.getElementById('mode_1');
+    var default_avatar = '/images/default_user.gif';
+    var GT_ACCESS_TOKEN = localStorage.getItem('GT_ACCESS_TOKEN')
+    var HEADER_AVATAR = localStorage.getItem('HEADER-AVATAR')
+    var USERNAME = localStorage.getItem('USERNAME')
+    var avatar = document.querySelector('.avatar');
+    var userId = document.querySelector('.user-id');
+    if(GT_ACCESS_TOKEN) {
+        m1.style.display = 'none';
+        const newAvatarUrl = HEADER_AVATAR;
+        const newUserId = USERNAME;
+        avatar.setAttribute('src', newAvatarUrl);
+        userId.innerHTML = newUserId;
+    } else {
+        m0.style.display = 'none';
+        const newAvatarUrl = default_avatar;
+        const newUserId = '请登录';
+        avatar.setAttribute('src', newAvatarUrl);
+        userId.innerHTML = newUserId;
+    }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var account_settingButton = document.querySelector('.account-setting-button');
+        var uploadButton = document.querySelector('.upload-button');
+        var homeButton = document.querySelector('.home-button');
+        var logoutButton = document.querySelector('.logout-button');
+        var loginButton = document.querySelector('.login-button');
+        var registerButton = document.querySelector('.register-button');
+        loginButton.addEventListener('click', function() {
+            window.location.href = "/api/account.html";
+        });
+        registerButton.addEventListener('click', function() {
+            window.location.href = "https://github.com/signup";
+        });
+        homeButton.addEventListener('click', function() {
+            var USERNAME = localStorage.getItem('USERNAME')
+            window.location.href = ("https://github.com/"+USERNAME);
+        });
+        logoutButton.addEventListener('click', function() {
+            window.location.href = "/api/logout.html";
+        });
+        account_settingButton.addEventListener('click', function() {
+            window.location.href = "https://github.com/settings/profile";
+        });
+        uploadButton.addEventListener('click', function() {
+            window.location.href = "/mobile/upload.html";
+        });
+    });
+</script>
+<script>
+    window.onload = function() {
+        var buttons = document.querySelectorAll('.svg_button');
+        var maxLength = 0;
+        buttons.forEach(function(button) {
+            var span = button.querySelector('span');
+            var textLength = span.textContent.length;
+            maxLength = Math.max(maxLength, textLength);
+        });
+        buttons.forEach(function(button) {
+            var span = button.querySelector('span');
+            var paddingLength = maxLength - span.textContent.length;
+            if (paddingLength > 0) {
+                span.textContent += ' '.repeat(paddingLength);
+            }
+        });
+    };
+</script>
+<script src="/mobile/js/page.js"></script>
+<script src="/js/loadModule.js"></script>
+<script src="/js/listModule.js"></script>
+</body>
+</html>
