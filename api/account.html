@@ -20,11 +20,9 @@
 <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
 <script src="/js/gitalk.js"></script>
 <script>
-    var isLogin = localStorage.getItem('GT_ACCESS_TOKEN');
-    if(!isLogin) {
-        document.addEventListener('DOMContentLoaded', function() {
-            var gtContainer = document.querySelector('.gt-container');
-
+    document.addEventListener('DOMContentLoaded', function() {
+        var gtContainer = document.querySelector('.gt-container');
+        if(!window.localStorage.getItem('GT_ACCESS_TOKEN')) {
             if (gtContainer) {
                 var observer = new MutationObserver(function(mutations) {
                     mutations.forEach(function(mutation) {
@@ -37,40 +35,43 @@
                 });
                 observer.observe(gtContainer, { childList: true });
             }
-        });
-    } else {
-        document.addEventListener('DOMContentLoaded', function() {
-            var gtContainer = document.querySelector('.gt-container');
-            if (gtContainer) {
-                var observer = new MutationObserver(function(mutations) {
-                    mutations.forEach(function(mutation) {
-                        if (mutation.type === 'childList') {
-                            var avatarDiv = document.querySelector('.gt-avatar.gt-header-avatar');
-                            if (avatarDiv) {
-                                var imgElement = avatarDiv.querySelector('img');
-                                if (imgElement) {
-                                    var imgSrc = imgElement.getAttribute('src');
-                                    localStorage.setItem('HEADER-AVATAR', imgSrc);
-                                } else {
-                                    localStorage.setItem('HEADER-AVATAR', '/images/default_user.gif');
-                                }
-                                var userNameSpan = document.querySelector('.gt-user-name');
-                                if (userNameSpan) {
-                                    var userName = userNameSpan.textContent.trim();
-                                    localStorage.setItem('USERNAME', userName);
-                                } else {
-                                    localStorage.setItem('USERNAME', 'USERNAME');
-                                }
-                                goIndex()
+        }
+        if (gtContainer) {
+            var observer2 = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList') {
+                        var avatarDiv = document.querySelector('.gt-avatar.gt-header-avatar');
+                        if (avatarDiv) {
+                            var imgElement = avatarDiv.querySelector('img');
+                            if (imgElement) {
+                                var imgSrc = imgElement.getAttribute('src');
+                                localStorage.setItem('HEADER-AVATAR', imgSrc);
+                            } else {
+                                localStorage.setItem('HEADER-AVATAR', '/images/default_user.gif');
                             }
-                            observer.disconnect();
+                            var userNameSpan = document.querySelector('.gt-user-name');
+                            if (userNameSpan) {
+                                var userName = userNameSpan.textContent.trim();
+                                localStorage.setItem('USERNAME', userName);
+                            } else {
+                                localStorage.setItem('USERNAME', 'USERNAME');
+                            }
+                            goIndex()
                         }
-                    });
+                        observer2.disconnect();
+                    }
                 });
-                observer.observe(gtContainer, { childList: true });
+            });
+            observer2.observe(gtContainer, { childList: true });
+        }
+    });
+    window.addEventListener('storage', function(event) {
+        if (event.key === 'GT_ACCESS_TOKEN') {
+            if (event.newValue) {
+                window.location.href = "/api/account.html";
             }
-        });
-    }
+        }
+    });
     function goIndex() {
         var userAgent = navigator.userAgent;
 
@@ -78,12 +79,9 @@
 
         if (isMobile) {
             window.location.href = "/mobile/index.html";
-            //console.log('这是在移动设备上浏览');
         } else {
             window.location.href = "/index.html";
-            //console.log('这是在电脑上浏览');
         }
-
     }
 </script>
 </body>

@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6%;
+    background-color: #d9ebff;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2%;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+}
+#backButton {
+    border-radius: 150px; /* 添加圆角 */
+    border: none;
+    width: auto;
+    height: auto;
+    background-color: #fff;
+    color: #fff;
+}
+.title_box {
+    display: flex;
+    align-items: center;
+}
+.title_box .video-title {
+    flex: 1;
+}
+#expandButton {
+    margin-left: 85%; /* 设置按钮与标题之间的间距 */
+    border-radius: 15px; /* 添加圆角 */
+    background-color: #637d9e;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+}
+.title_box button:hover {
+    background-color: #c1d1e3; /* 设置鼠标悬停时的背景色 */
+}
+.video-container {
+    margin-top: 13%; /* 顶栏的高度 */
+    text-align: center;
+    padding-top: 0; /* 添加额外上边距 */
+}
+video {
+    width: 100%; /* 宽度为容器宽度 */
+    height: auto; /* 高度自适应 */
+    display: block; /* 使其表现为块级元素 */
+}
+.description,
+#video-box {
+    padding: 4px;
+    box-sizing: border-box;
+    display: none; /* 默认隐藏简介 */
+}
+.comment-section {
+    padding: 0px;
+    box-sizing: border-box;
+}
+.info_box {
+    display: flex;
+    align-items: center; /* 垂直居中对齐 */
+}
+
+.avatar {
+    margin-right: 10px; /* 可以根据需要调整头像与用户名之间的间距 */
+}
+
+.username {
+    font-size: 16px; /* 根据需要设置用户名的字体大小 */
+}
+#comment_box {
+    display: block;
+    margin: 0 auto; /* 居中 */
+    width: 100%; /* 宽度自适应 */
+    height: 100vh; /* 高度填充整个视口 */
+    border: none;
+}
+
+a {
+    text-decoration: none;
+}

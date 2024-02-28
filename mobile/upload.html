@@ -8,6 +8,7 @@
     <style>
         #manager_box {
             display: flex;
+            background: #fff;
         }
         </style>
         <style>
@@ -65,8 +66,6 @@
                  display: block; /* 使按钮成为块级元素 */
                  font-size: 40px;
              }
-
-
              /* 鼠标悬停时改变按钮颜色 */
         #upload_button:hover {
             background-color: #007acc;
@@ -235,6 +234,7 @@
             <img src="/images/person-circle-outline.svg" alt="account">
             <span>我的</span>
         </div>
+    </div>
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -488,10 +488,10 @@
                 `        "title": "${title}",\n` +
                 `        "img": "${poster}",\n` +
                 `        "content": "${url}",\n` +
-                `        "url": "null",\n` +
+                `        "url": "auto",\n` +
                 `        "mobile_url": "auto",\n` +
                 `        "time": "${time}",\n` +
-                `        "introduction": "${introduction}",\n` +
+                `        "description": "${introduction}",\n` +
                 `        "tag": "${tag}",\n` +
                 `        "token": "${token}"\n` +
                 '      }\n' +
