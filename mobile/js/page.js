@@ -13,27 +13,32 @@ function changeContent() {
         url = '/mobile/index.html';
         document.title = "OtoMAD Libraries - 主页";
         pageJump(url,nUrl)
-        console.log('index')
     } else if (selectedOption === 'video') {
         url = '/mobile/video.html';
         document.title = "OtoMAD Libraries - 视频";
         pageJump(url,nUrl)
-        console.log('video')
     } else if (selectedOption === 'comment') {
         url = '/mobile/comment.html';
         document.title = "OtoMAD Libraries - 视频";
         pageJump(url,nUrl)
-        console.log('video')
+    } else if (selectedOption === 'collaboration') {
+        url = '/mobile/collaboration.html';
+        document.title = "OtoMAD Libraries - 合作推广";
+        pageJump(url,nUrl)
+    } else if (selectedOption === 'read') {
+        url = '/mobile/read.html';
+        document.title = "OtoMAD Libraries - 专栏";
+        pageJump(url,nUrl)
     } else if (selectedOption === 'resource') {
         url = '/mobile/resource.html';
         pageJump(url,nUrl)
-        console.log('resource')
     } else if (selectedOption === 'about') {
         url = '/mobile/about.html';
         document.title = "OtoMAD Libraries - 关于";
         pageJump(url,nUrl)
-        console.log('about')
     }
+
+    console.log(selectedOption)
 }
 function replaceContent(url) {
     var mobileContent = document.getElementById('mobile_content');

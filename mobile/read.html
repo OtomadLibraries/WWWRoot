@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="user-scalable=no">
-    <title>OtoMAD Libraries - 视频</title>
+    <title>OtoMAD Libraries - 专栏</title>
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <style>
-        .video-cards-container {
+        .read-cards-container {
             display: flex;
             flex-wrap: wrap; /* 设置弹性容器换行 */
             justify-content: space-between; /* 在弹性容器内左右分配项目 */
             margin: 0 -0px; /* 去除两侧的默认间距 */
         }
 
-        .video-cover {
+        .read-cover {
             width: 100%;
             height: auto;
             display: block;
             aspect-ratio: 16 / 9; /* 强制视频封面保持16:9的纵横比 */
         }
 
-        .video-card {
+        .read-card {
             width: 50%; /* 设置视频卡片宽度为父容器宽度的一半减去间距 */
             margin-bottom: 20px; /* 设置视频卡片之间的垂直间距 */
             border: 1px solid #ccc;
@@ -31,7 +31,7 @@
         }
 
 
-        .video-info {
+        .read-info {
             padding: 10px;
         }
 
@@ -53,7 +53,7 @@
             color: #666;
         }
 
-        .video-title {
+        .read-title {
             margin: 10px 0 0; /* 设置标题与上传者信息的间距 */
             font-size: 30px;
             color: #333;
@@ -82,8 +82,8 @@
         <input type="radio" id="about_button" name="option" value="about" onClick="changeContent()"><label for="about_button" class="custom-radio">关于</label>
     </div>
     <div id="mobile_content" style="block-size: auto;">
-        <div id="video_index_box">
-            <div class="video-cards-container" id="video-cards-container">
+        <div id="read_index_box">
+            <div class="read-cards-container" id="read-cards-container">
             </div>
         </div>
     </div>
@@ -92,7 +92,7 @@
             <img src="/images/sidebar/home-outline.svg" alt="index">
             <span>首页</span>
         </div>
-        <div class="svg_button" onclick="pageJump('/mobile/upload.html',null)">
+        <div class="svg_button" onclick="pageJump('/manager/upload/page.html',null)">
             <img src="/images/cloud-upload-outline.svg" alt="upload">
             <span>投稿</span>
         </div>
@@ -102,9 +102,10 @@
         </div>
     </div>
 </div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        readVideoJsonMobileModule('/api/videos.json', '#video-cards-container');
+        readReadingJsonMobileModule('/api/read.json', '#read-cards-container');
     });
 </script>
 <script>

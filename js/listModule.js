@@ -99,6 +99,52 @@ function readVideoJsonMobileModule(string, div) {
             console.error('There was a problem fetching the JSON file:', error);
         });
 }
+function readReadingJsonMobileModule(string, div) {
+    fetch(string)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const prefix = data.prefix;
+            const listData = data.list;
+            listData.forEach(item => {
+                const key = Object.keys(item)[0];
+                const innerObject = item[key];
+                const uploader = innerObject.uploader;
+                const uploader_header = innerObject.uploader_header;
+                const title = innerObject.title;
+                const img = innerObject.img;
+                const url = innerObject.url;
+                const mobile_url = innerObject.mobile_url;
+                const time = innerObject.time;
+                const htmlContent = `
+                    <div class="read-card">
+                    <a href="${mobile_url}">
+                        <img src="${img}" alt="Reading Cover" class="read-cover" ></a>
+                        <div class="read-info">
+                            <div class="uploader-info">
+                                <a href="https://github.com/${uploader}"><img src="${uploader_header}" alt="Uploader Avatar" class="uploader-avatar"></a>
+                                <a href="https://github.com/${uploader}"><p class="uploader-name">${uploader}</p></a>
+                            </div>
+                            <a href="${mobile_url}"><h4 class="read-title">${title}</h4></a>
+                        </div>
+                    </div>
+                `;
+                const targetDiv = document.querySelector(div); // 使用正确的选择器
+                if (targetDiv) {
+                    targetDiv.innerHTML += htmlContent;
+                } else {
+                    console.error('Target element not found:', div);
+                }
+            });
+        })
+        .catch(error => {
+            console.error('There was a problem fetching the JSON file:', error);
+        });
+}
 function readCommonJsonMobileModule(string, div) {
     fetch(string)
         .then(response => {

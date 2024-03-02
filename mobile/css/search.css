@@ -1,0 +1,99 @@
+body {
+    margin: auto;
+    font-family: Arial, sans-serif;
+    font-size: large;
+    background: #f7f9ff;
+}
+
+.top-bar {
+    background-color: #d9ebff;
+    color: #fff;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.content-block {
+    padding: 2%;
+    margin-top: 5%; /* 让内容块下移，避免与顶栏重叠 */
+}
+
+.comment-section {
+    bottom: 0;
+    width: 100%;
+    border: none;
+    height: 1000px !important;
+}
+
+.square-box {
+    width: 100%; /* 设置框的宽度 */
+    height: auto; /* 设置框的高度 */
+    background-color: white; /* 设置框的背景颜色 */
+    border-radius: 20px; /* 设置圆角，值可以根据需要调整 */
+    display: flex; /* 使用 flex 布局 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 设置阴影 */
+}
+#search_content {
+    margin-top: 20px; /* 设置上边距为 20 像素 */
+    margin-bottom: 20px; /* 设置下边距为 20 像素 */
+}
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.square-box {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px; /* 设置上下间距 */
+}
+
+.top-section {
+    display: flex;
+    align-items: center;
+}
+
+.bottom-section {
+    display: flex;
+    align-items: center;
+    align-self: flex-start; /* 将 .bottom-section 靠左对齐 */
+}
+
+.image {
+    width: 38%; /* 图片宽度 */
+    height: 20%; /* 图片高度 */
+    margin-right: 10px; /* 图片与标题之间的间距 */
+}
+
+.title {
+    margin: 0; /* 清除标题的默认边距 */
+    word-wrap: break-word; /* 长标题自动换行 */
+}
+
+.uploader-info {
+    display: flex;
+    align-items: center;
+}
+
+.uploader-image {
+    width: 30px; /* 上传者头像宽度 */
+    height: 30px; /* 上传者头像高度 */
+    border-radius: 50%; /* 上传者头像圆角 */
+    margin-right: 10px; /* 上传者头像与名称之间的间距 */
+}
+
+
+a {
+    text-decoration: none;
+    color: black;
+}

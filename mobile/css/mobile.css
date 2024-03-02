@@ -33,15 +33,22 @@ a {
 
 #mobile_top_bar_select {
     height: 85px;
+    /*font-size: 41px;*/
     background-color: #d9ebff;
-    display: flex;
+    /*display: flex;*/
     justify-content: center;
     align-items: center;
     position: fixed; /* 固定选择栏 */
     top: 180px; /* 位于顶部栏下方 */
     width: 100%; /* 宽度占满整个屏幕 */
+    overflow-x: auto; /* 水平方向滚动 */
+    white-space: nowrap; /* 防止按钮被压缩到一行 */
+    scroll-snap-type: x mandatory; /* 横向滚动时，强制对齐到每个子元素的开始位置 */
 }
 
+#comment_box {
+    border: none;
+}
 
 .svg_button {
     display: flex;
@@ -108,7 +115,6 @@ a {
 }
 
 .top-bar {
-    display: flex;
     align-items: center;
 }
 

@@ -6,11 +6,14 @@
         "uploader": "SAGUMEDREAM",
         "uploader_header": "https://avatars.githubusercontent.com/u/93448930?v=4",
         "title": "公告",
-        "img": "/images/1.jpg",
-        "url": "/read/cv0",
-        "time": "2024/2/23",
-        "introduction": "",
-        "tag": ""
+        "img": "/read/cv0/poster.jpg",
+        "content": "",
+        "url": "/read/cv0/",
+        "mobile_url": "/read/cv0/mobile.html",
+        "time": "2024/02/28",
+        "description": "",
+        "tag": "#OtoMAD Libraries #公告",
+        "token": "null"
       }
     }
   ]

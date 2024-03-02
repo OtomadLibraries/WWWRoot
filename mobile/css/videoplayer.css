@@ -14,7 +14,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2%;
+    padding: 10px;
     box-sizing: border-box;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
 }
@@ -23,8 +23,8 @@ body {
     border: none;
     width: auto;
     height: auto;
-    background-color: #fff;
-    color: #fff;
+    /*background-color: #fff;*/
+    /*color: #fff;*/
 }
 .title_box {
     display: flex;
@@ -46,7 +46,7 @@ body {
     background-color: #c1d1e3; /* 设置鼠标悬停时的背景色 */
 }
 .video-container {
-    margin-top: 13%; /* 顶栏的高度 */
+    margin-top: 10%; /* 顶栏的高度 */
     text-align: center;
     padding-top: 0; /* 添加额外上边距 */
 }

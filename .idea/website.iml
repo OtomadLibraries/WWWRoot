@@ -7,5 +7,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="plyr" level="application" />
+    <orderEntry type="library" name="gitalk" level="application" />
+    <orderEntry type="library" name="plyr.polyfilled" level="application" />
   </component>
 </module>

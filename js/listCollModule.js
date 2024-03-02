@@ -36,7 +36,7 @@ function readCollJsonModule(string, div) {
         <p>
             <a href="${img}" class="image">
                 <img alt="${img}" src="${img}" decoding="async" loading="lazy" width="173"
-                     height="1080" class="pic" data-file-width="173" data-file-height="108">
+                     height="108" class="pic" data-file-width="173" data-file-height="108">
             </a>
         </p>
     </div>
@@ -90,7 +90,7 @@ function readCollJsonModule(string, div) {
         <br>
     </p>
     <div style="white-space: nowrap;display:flex;align-items:baseline;">
-        <div style="margin-right:10px;font-size:15px;font-weight:600;">
+        <div style="margin-right:10px;font-weight:600;">
             目前进度
         </div>
         <div style="width:100%;height:10px;background-color: #b3e6ff;border-radius: 6px;margin-bottom:20px;">

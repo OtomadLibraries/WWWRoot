@@ -76,7 +76,7 @@
              display: flex;
              overflow: visible;
              /*align-items: center;*/
-             height: 100vh;
+             height: 120vh;
              flex-direction: column;
          }
 
@@ -106,6 +106,15 @@
             box-sizing: border-box; /* 让宽度包括填充和边框 */
         }
         #url_box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            font-size: 32px;
+            width: 100%;
+            height: 100px;
+            box-sizing: border-box; /* 让宽度包括填充和边框 */
+        }
+         #url_box_sub {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 20px;
@@ -174,10 +183,12 @@
         <div class="search-icon-container">
         </div>
     </div>
-    <div id="mobile_top_bar_select" class="scrollable-menu">
+    <div id="mobile_top_bar_select" class="scrollable-menu" style="">
         <input type="radio" id="index_button" name="option" value="index" onClick="changeContent()"><label for="index_button" class="custom-radio">首页</label>
         <input type="radio" id="video_button" name="option" value="video" onClick="changeContent()"><label for="video_button" class="custom-radio">视频</label>
+        <input type="radio" id="collaboration_button" name="option" value="collaboration" onClick="changeContent()"><label for="collaboration_button" class="custom-radio">合作推广</label>
         <input type="radio" id="comment_button" name="option" value="comment" onClick="changeContent()"><label for="comment_button" class="custom-radio">留言板</label>
+        <input type="radio" id="read_button" name="option" value="read" onClick="changeContent()"><label for="read_button" class="custom-radio">专栏</label>
         <input type="radio" id="resource_button" name="option" value="resource" onClick="changeContent()"><label for="resource_button" class="custom-radio">资源</label>
         <input type="radio" id="about_button" name="option" value="about" onClick="changeContent()"><label for="about_button" class="custom-radio">关于</label>
     </div>
@@ -187,8 +198,9 @@
                 <p class="username-paragraph"><big>您的用户名：</big><big><a class="username" href="https://github.com/"></a></big></p>
                 <div id="info_box">
                     <p><big>投稿标题</big><input type="text" id="title_box" placeholder="点击输入"><br></p>
-                    <p><big>封面链接</big><input type="text" id="poster_url_box" placeholder="点击输入"><br></p>
+                    <p><big id="poster_url_text">封面链接</big><input type="text" id="poster_url_box" placeholder="点击输入"></p>
                     <p><big id="url_box_text" style="display: none">内容链接</big><input type="text" id="url_box" placeholder="点击输入" style="display: none"></p>
+                    <p><big id="url_box_sub_text" style="display: none">从属合集</big><input type="text" id="url_box_sub" placeholder="点击输入" style="display: none"></p>
                     <p><big id="host_box_text" style="display: none">主催</big><input type="text" id="host_box" placeholder="点击输入" style="display: none"></p>
                     <p><big id="join_url_box_text" style="display: none">加入方式</big><input type="text" id="join_url_box" placeholder="点击输入" style="display: none"></p>
                     <p><big id="video_url_box_text" style="display: none">发布地址</big><input type="text" id="video_url_box" placeholder="点击输入" style="display: none"></p>
@@ -201,7 +213,8 @@
                     <label><input type="radio" name="upload_type" value="video" onclick="toggleUrlBox(this)">视频</label>
                     <label><input type="radio" name="upload_type" value="game" onclick="toggleUrlBox(this)">游戏</label>
                     <label><input type="radio" name="upload_type" value="software" onclick="toggleUrlBox(this)">软件</label>
-                    <label><input type="radio" name="upload_type" value="assets" onclick="toggleUrlBox(this)">素材</label>
+                    <label><input type="radio" name="upload_type" value="assets" onclick="toggleUrlBox(this)">素材合集</label>
+                    <label><input type="radio" name="upload_type" value="assets_unit" onclick="toggleUrlBox(this)">素材</label>
                     <label><input type="radio" name="upload_type" value="project" onclick="toggleUrlBox(this)">工程</label>
                     <label><input type="radio" name="upload_type" value="read" onclick="toggleUrlBox(this)">专栏</label>
                 </div>
@@ -262,6 +275,7 @@
 <script src="/mobile/js/page.js"></script>
 <script src="/js/loadModule.js"></script>
 <script src="/js/listModule.js"></script>
+<script src="/mobile/js/searcher.js"></script>
 <script src="/js/crypto-js.min.js"></script>
 <script>
     function toggleUrlBox(radioButton) {
@@ -277,14 +291,45 @@
         var progress = document.getElementById("progress");
         var introduce_text = document.getElementById("introduce_text");
         var the_text = document.getElementById("the_text");
+        var url_box_sub_text = document.getElementById("url_box_sub_text");
+        var url_box_sub = document.getElementById("url_box_sub");
+        var poster_url_text = document.getElementById("poster_url_text");
+        var poser_url_box = document.getElementById("poster_url_box");
 
-        if (radioButton.checked && (radioButton.value === "collaboration" || radioButton.value === "game" || radioButton.value === "software" || radioButton.value === "assets" || radioButton.value === "project" || radioButton.value === "read")) {
+        if (radioButton.checked && (radioButton.value === "collaboration" || radioButton.value === "read")) {
             urlBoxText.style.display = "none";
             urlBoxInput.style.display = "none";
         } else {
             urlBoxText.style.display = "inline";
             urlBoxInput.style.display = "inline";
         }
+
+        if (radioButton.checked && (radioButton.value === "game" || radioButton.value === "software" || radioButton.value === "project" )){
+            urlBoxText.style.display = "inline";
+            urlBoxInput.style.display = "inline";
+        }
+
+        if (radioButton.checked && radioButton.value === "assets"){
+            urlBoxText.style.display = "none";
+            urlBoxInput.style.display = "none";
+        }
+
+        if (radioButton.checked && radioButton.value === "assets_unit"){
+            urlBoxText.style.display = "inline";
+            urlBoxInput.style.display = "inline";
+            url_box_sub_text.style.display = "inline";
+            url_box_sub.style.display = "inline";
+            poster_url_text.style.display = "none";
+            poser_url_box.style.display = "none";
+        } else {
+            urlBoxText.style.display = "none";
+            urlBoxInput.style.display = "none";
+            url_box_sub_text.style.display = "none";
+            url_box_sub.style.display = "none";
+            poster_url_text.style.display = "inline";
+            poser_url_box.style.display = "inline";
+        }
+
 
         if(radioButton.checked && (radioButton.value === "collaboration" || radioButton.value === "read")) {
             introduce_text.style.display = "none";
@@ -351,8 +396,16 @@
                 this.parentNode.style.backgroundColor = "#007bff";
                 this.parentNode.style.color = "white";
             }
+            // 获取 mobile_top_bar_select 元素
+            var mobileTopBarSelect = document.getElementById('mobile_top_bar_select');
+
+            // 设置背景颜色和文字颜色
+            mobileTopBarSelect.style.backgroundColor = '#d9ebff';
+            mobileTopBarSelect.style.color = '#637d9e';
         });
     });
+
+
 </script>
 <script>
     function getSelectedValue() {
@@ -416,7 +469,6 @@
         var b64String = btoa(base);
         return b64String;
     }
-
 </script>
 <script>
     function generate() {
@@ -426,7 +478,7 @@
             var outputTextarea = document.getElementById("output");
             outputTextarea.value = "";
             outputTextarea.value = export_content;
-            alert("生成成功，请把json文本和具体投稿内容发给网站负责人/管理员/审核人员");
+            alert("生成成功，请把json文本和具体投稿内容(文件)发给网站负责人/管理员/审核人员");
         } else {
             alert("请选择分区！");
         }
@@ -453,6 +505,7 @@
         if(value === 'assets') prefix = 'Assets';
         if(value === 'project') prefix = 'Projects';
         if(value === 'read') prefix = 'Read';
+        if(value === 'assets_unit') prefix = 'assets_unit';
 
         if(value === 'collaboration') {
             var host = getInputBox("host_box");
@@ -477,6 +530,9 @@
                 '    }\n' +
                 '  ]\n' +
                 '}\n'
+        } else if(value === 'assets_unit') {
+            var unitUrl = getInputBox("url_box_sub");
+            return `{"title": "${title}","description": "${inputContent}","url":"${url}","id":"${unitUrl}","tag":"${tag}","builder":"${username}","token":"${token}"}`;
         } else {
             return '{\n' +
                 `  "prefix": "${prefix}",\n` +
