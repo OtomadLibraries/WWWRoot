@@ -511,9 +511,9 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {<!--视频播放源-->
         post('/videoplayer/player.html', '#video_player', 'https://video_api.kms233.com/bili/BV1D642137F7');
-        loadModule('/page/sidebar.html', '#sidebar');
-        loadModule('/page/bottombar.html', '#bottombar');
-        loadModule('/page/bottom_sidebar.html', '#bottom_sidebar');
+        loadModule('/_2page/sidebar.html', '#sidebar');
+        loadModule('/_2page/bottombar.html', '#bottombar');
+        loadModule('/_2page/bottom_sidebar.html', '#bottom_sidebar');
         accountCheck();
     });
 </script>

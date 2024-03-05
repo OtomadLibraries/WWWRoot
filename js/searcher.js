@@ -15,7 +15,6 @@ function addPageContentId(container, content) {
     }
 }
 
-
 async function run(json, keyword) {
     try {
         var result = await getJson(json, keyword); // 等待 getJson 函数的结果
@@ -25,6 +24,7 @@ async function run(json, keyword) {
             var img = await getValueByKey(key, 'img', json);
             var url = await getValueByKey(key, 'url', json);
             var mobile_url = await getValueByKey(key, 'mobile_url', json);
+            var time = await getValueByKey(key, 'time', json);
             var uploader = await getValueByKey(key, 'uploader', json);
             var uploader_header = await getValueByKey(key, 'uploader_header', json);
             var tag = await getValueByKey(key, 'tag', json);
@@ -32,10 +32,7 @@ async function run(json, keyword) {
             var tUrl = url;
             if(bl) {
                 tUrl = mobile_url;
-            } else {
-                tUrl = url;
-            }
-            const div_content = `
+                const div_content = `
                 <a class="square-box" href="`+tUrl+`">
                     <div class="top-section">
                         <img src="`+img+`" alt="Image" class="image">
@@ -48,7 +45,25 @@ async function run(json, keyword) {
                         </div>
                     </div>
                 </a>`;
-            addPageContentId('container', div_content);
+                addPageContentId('container', div_content);
+            } else {
+                tUrl = url;
+                const div_content = `
+                <div class="media-card">
+                    <a href="${url}">
+                        <img src="${img}" alt="Cover" class="media-cover" ></a>
+                        <div class="media-info">
+                            <div class="uploader-info">
+                                <a href="https://github.com/${uploader}"><img src="${uploader_header}" alt="Uploader Avatar" class="uploader-avatar"></a>
+                                <a href="https://github.com/${uploader}"><p class="uploader-name">${uploader}</p></a>
+                            </div>
+                            <a href="${url}"><div class="media-title">${title}</div></a>
+                            <time>${time}</time>
+                        </div>
+                    </div>
+                `;
+                addPageContentId('media-cards-container', div_content);
+            }
             //console.log(div_content);
         }
     } catch (error) {
@@ -85,7 +100,7 @@ function getJson(json, string) {
                 const innerObject = item[key];
 
                 // 检查 innerObject 中是否包含给定字符串
-                if (JSON.stringify(innerObject).toLowerCase().includes(string.toLowerCase())) {
+                if (typeof string === 'string' && JSON.stringify(innerObject).toLowerCase().includes(string.toLowerCase())) {
                     result.keys.push(key);
                 }
             });

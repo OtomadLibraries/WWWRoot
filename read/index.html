@@ -1,11 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
-    <meta http-equiv="refresh" content="0; URL=/read.html">
+    <meta charset="UTF-8">
+    <title>OtoMAD Libraries</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="description" name="description" content="音乐源于万物之声——OtoMADs Libraries，一个专注于音MAD知识库的网站。领域包括视频补档、资源分享、经验学习、素材/工程分享和游戏娱乐" class="description">
 </head>
 <body>
-    <script>
-        window.location.href = "/read.html";
-    </script>
+<div id="page" class="page">
+    <!-- 左侧栏/通过js控制 -->
+    <div class="left-bar" style="transform: translateY(0px);">
+        <div class="sidebar-sub">
+        </div>
+    </div>
+
+    <!-- 顶栏 -->
+    <div class="top-bar">
+        <div class="logo">
+            <img class="web_title" src="/images/page_logo.png" alt="otomads" onclick="">
+        </div>
+        <div class="searcher-container">
+        </div>
+        <div class="user-container">
+        </div>
+    </div>
+
+    <!-- 横幅 -->
+    <div class="top-banner-img">
+    </div>
+
+    <!-- 页面内容 -->
+    <div class="content">
+        <div class="content-outside-box">
+            <div class="content-box">
+                <h4>
+                    <big><big>专栏</big></big>
+                </h4>
+                <div class="paragraph_line"></div>
+                <div class="media-cards-container">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底栏 -->
+    <div class="bottom-bar">
+
+    </div>
+
+</div>
+<script src="/js/library.js"></script>
+<script>
+    postToFetch("/api/searcher-container.html",".searcher-container");
+    postToFetch("/api/sidebar.html",".sidebar-sub");
+    postToFetch("/api/bottom_bar.html",".bottom-bar");
+    postMediaListJson("/api/read.json",".media-cards-container");
+</script>
 </body>
 </html>

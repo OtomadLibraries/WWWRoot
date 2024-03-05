@@ -62,7 +62,7 @@ function accountCheck() {
                     |
                 </span>
                 <span class="top-bar-sign-in">
-                    <a href="/login.html">
+                    <a href="/_2html/login.html">
                         登录
                     </a>
                 </span>

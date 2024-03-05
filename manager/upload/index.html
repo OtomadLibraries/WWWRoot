@@ -1,112 +1,562 @@
 <!DOCTYPE html>
-<html lang="zh_cn">
+<html lang="zh">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script type="text/javascript" src="../../js/bundle-playback.js" charset="utf-8"></script>
-	<script>
-		window.RufflePlayer = window.RufflePlayer || {};
-		window.RufflePlayer.config = {
-			"autoplay": "on",
-			"unmuteOverlay": "hidden"
-		};
-	</script>
-	<script type="text/javascript" src="../../js/ruffle.js">
-	</script>
-	<link rel="stylesheet" type="text/css" href="../../css/banner-styles.css">
-	<link rel="stylesheet" type="text/css" href="../../css/iconochive.css">
-	<title class="next-head">
-		OtoMAD Libraries - 首页
-	</title>
-	<meta name="keywords" content="音MAD,音系MAD,音声MAD,otomad,otomads,オトマッド,鬼畜,MAD movie,remix" class="next-head">
-	<link rel="stylesheet" href="../../css/commons.css">
-	<link rel="stylesheet" href="../../css/styles.css">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
-	<meta name="apple-mobile-web-app-title" content="OtoMAD Libraries">
-	<meta name="format-detection" content="telephone=no">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="theme-color" content="#d3e8ff">
-	<meta name="renderer" content="webkit">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="icon" type="image/png" href="../../images/favicon.png">
-	<script>
-		"".startsWith || document.write('<script src="/_next/static/scripts/babel-polyfill@7.0.0.min.js"></s' + 'cript>')
-	</script>
-	<script>
-		if (window.performance) {
-			window.startTime = performance.now()
-		}
-	</script>
-	<meta itemprop="description" name="description" content="音乐源于万物之声——otomads，一个专注于音MAD的网站。在这里，分享音mad，分享喜悦。" class="next-head">
-	<meta charset="utf-8" class="next-head">
-	<!--压缩优化后-->
-	<link rel="stylesheet" type="text/css" href="../../css/swal.css">
-	<link rel="stylesheet" type="text/css" href="../../css/MuiButton.css">
-	<link rel="stylesheet" type="text/css" href="../../css/MuiButtonBase.css">
-	<link rel="stylesheet" type="text/css" href="../../css/MuiSvgIcon.css">
-	<link rel="stylesheet" type="text/css" href="../../css/MuiTouchRipple.css">
+    <meta charset="UTF-8">
+    <title>OtoMAD Libraries</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="description" name="description" content="音乐源于万物之声——OtoMADs Libraries，一个专注于音MAD知识库的网站。领域包括视频补档、资源分享、经验学习、素材/工程分享和游戏娱乐" class="description">
+    <style>
+        #manager_box {
+            display: flex;
+            background: #fff;
+        }
+    </style>
+    <style>
+        label {
+            display: inline-block;
+            padding: 15px 20px; /* 调整按钮的垂直内边距 */
+            margin-right: 1px;
+            margin-bottom: 10px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            cursor: pointer;
+            user-select: none;
+            text-decoration: none;
+            color: black;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            height: 4px; /* 调整按钮的高度 */
+            line-height: 2px; /* 使按钮中的文字垂直居中 */
+        }
+
+        /* 鼠标悬停样式 */
+        label:hover {
+            color: white;
+            background-color: #007bff;
+        }
+
+        /* 自定义样式的单选按钮标签（选中时） */
+        input[type="radio"]:checked + label,
+        input[type="radio"]:checked + label:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        /* 隐藏原始的单选按钮 */
+        input[type="radio"] {
+            display: none;
+        }
+
+    </style>
+    <style>
+        /* 按钮样式 */
+        #upload_button {
+            background-color: #00b3ff;
+            border-radius: 20px;
+            padding: 18px 45%;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            margin-top: 0px;
+            margin-left: auto;
+            margin-right: auto;
+            border: none;
+            cursor: pointer;
+            display: block; /* 使按钮成为块级元素 */
+            font-size: 20px;
+        }
+        /* 鼠标悬停时改变按钮颜色 */
+        #upload_button:hover {
+            background-color: #007acc;
+        }
+    </style>
+    <style>
+        #manager_box {
+            display: flex;
+            overflow: visible;
+            /*align-items: center;*/
+            height: 120vh;
+            flex-direction: column;
+        }
+
+    </style>
+    <style>
+
+        body {
+            overflow-x: hidden;
+        }
+
+        #title_box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box; /* 让宽度包括填充和边框 */
+        }
+        #poster_url_box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box; /* 让宽度包括填充和边框 */
+        }
+        #url_box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box; /* 让宽度包括填充和边框 */
+        }
+        #url_box_sub {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box; /* 让宽度包括填充和边框 */
+        }
+        #host_box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box; /* 让宽度包括填充和边框 */
+        }
+        #join_url_box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box; /* 让宽度包括填充和边框 */
+        }
+        #video_url_box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box; /* 让宽度包括填充和边框 */
+        }
+        #progress {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box; /* 让宽度包括填充和边框 */
+        }
+        #tag {
+            min-width: 200px;
+            max-width: 400px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box; /* 让宽度包括填充和边框 */
+        }
+
+    </style>
 </head>
 <body>
-<div id="__next">
-	<div class="loading-bar">
-		<div class="loading-bar-inner">
-		</div>
-	</div>
-	<div class="_9a2327" id="topbar">
-		<div>
-			<a href="/">
-				<img class="_287d54" alt="otomads" src="../../images/logo_blue.svg">
-			</a>
-		</div>
-		<div class="_235a4d">
-		</div>
-	</div>
-	<div class="component">
-		<div class="_9c0f96">
-			<div class="_642e3f">
-				<div style="transform: translateY(0px);">
-					<div id="sidebar" style="position: fixed; top: 0;">
+<div id="page" class="page">
+    <!-- 左侧栏/通过js控制 -->
+    <div class="left-bar" style="transform: translateY(0px);">
+        <div class="sidebar-sub">
+        </div>
+    </div>
 
-					</div>
-				</div>
-				<div id="bottom_sidebar">
+    <!-- 顶栏 -->
+    <div class="top-bar">
+        <div class="logo">
+            <img class="web_title" src="/images/page_logo.png" alt="otomads" onclick="">
+        </div>
+        <div class="searcher-container">
+        </div>
+        <div class="user-container">
+        </div>
+    </div>
 
-				</div>
-			</div>
-		</div>
-		<div class="container sidebar-width-1">
-			<div class="_22e432" style="margin-bottom:3em">
-				<img class="d16850" src="../../images/page_logo.png" alt="otomads">
-				<div class="c75a25 _73a022">
-					<input placeholder="Search" value="">
-					<div class="dc35d8">
-					</div>
-				</div>
-			</div>
-			<div id="index_info" class="index_info">
-			</div>
-		</div>
-	</div>
-	<div class="_076e19" id="bottombar">
-	</div>
+    <!-- 横幅 -->
+    <div class="top-banner-img">
+    </div>
+
+    <!-- 页面内容 -->
+    <div class="content">
+        <div class="content-outside-box">
+            <div class="content-box">
+                <div class="paragraph_line"></div>
+                <div id="upload_box">
+                    <p class="username-paragraph"><big>您的用户名：</big><big><a class="username" href="https://github.com/"></a></big></p>
+                    <div id="info_box">
+                        <p><big>投稿标题</big><input type="text" id="title_box" placeholder="点击输入"><br></p>
+                        <p><big id="poster_url_text">封面链接</big><input type="text" id="poster_url_box" placeholder="点击输入"></p>
+                        <p><big id="url_box_text" style="display: none">内容链接</big><input type="text" id="url_box" placeholder="点击输入" style="display: none"></p>
+                        <p><big id="url_box_sub_text" style="display: none">从属合集</big><input type="text" id="url_box_sub" placeholder="点击输入" style="display: none"></p>
+                        <p><big id="host_box_text" style="display: none">主催</big><input type="text" id="host_box" placeholder="点击输入" style="display: none"></p>
+                        <p><big id="join_url_box_text" style="display: none">加入方式</big><input type="text" id="join_url_box" placeholder="点击输入" style="display: none"></p>
+                        <p><big id="video_url_box_text" style="display: none">发布地址</big><input type="text" id="video_url_box" placeholder="点击输入" style="display: none"></p>
+                        <p><big id="progress_text" style="display: none">合作进度</big><input type="text" id="progress" placeholder="点击输入" style="display: none"></p>
+                    </div>
+                    <div id="type_box">
+                        <big>投稿分区</big>
+                        <br>
+                        <label><input type="radio" name="upload_type" value="collaboration" onclick="toggleUrlBox(this)">合作推广</label>
+                        <label><input type="radio" name="upload_type" value="video" onclick="toggleUrlBox(this)">视频</label>
+                        <label><input type="radio" name="upload_type" value="game" onclick="toggleUrlBox(this)">游戏</label>
+                        <label><input type="radio" name="upload_type" value="software" onclick="toggleUrlBox(this)">软件</label>
+                        <label><input type="radio" name="upload_type" value="assets" onclick="toggleUrlBox(this)">素材合集</label>
+                        <label><input type="radio" name="upload_type" value="assets_unit" onclick="toggleUrlBox(this)">素材</label>
+                        <label><input type="radio" name="upload_type" value="project" onclick="toggleUrlBox(this)">工程</label>
+                        <label><input type="radio" name="upload_type" value="read" onclick="toggleUrlBox(this)">专栏</label>
+                    </div>
+                    <div id="tag_box">
+                        <big>标签</big><br>
+                        <input type="text" id="tag" placeholder="点击输入(不同标签用#隔开)"><br>
+                    </div>
+                    <div id="input_box">
+                        <p><big id="introduce_text">简介</big></p>
+                        <p><big id="the_text" style="display: none;">正文(支持HTML和JS)</big></p>
+                        <textarea id="input" placeholder="点击输入" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; width: 100%; height: 200px; resize: none; box-sizing: border-box;"></textarea>
+                    </div>
+                    <div id="output_box">
+                        <textarea id="output" placeholder="输出" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; width: 100%; height: 224px; resize: none; box-sizing: border-box;"></textarea>
+                    </div>
+                    <button id="upload_button" class="button" onclick="generate()">投稿</button>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底栏 -->
+    <div class="bottom-bar">
+
+    </div>
+
 </div>
-<div id="modal">
-</div>
-<script src="../../js/commons.js" async=""></script>
-<script src="../../js/styles.js" async=""></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-<script src="../../js/loadModule.js"></script>
-<script src="/js/token.js"></script>
-<script src="/js/gitalk_loginout.js"></script>
+<script src="/js/library.js"></script>
 <script>
-	document.addEventListener('DOMContentLoaded', function() {
-		loadModule('/page/upload_info.html', '#index_info');
-		loadModule('/manager/upload/page.html', '#upload_box');
-		loadModule('/page/sidebar.html', '#sidebar');
-		loadModule('/page/bottombar.html', '#bottombar');
-		loadModule('/page/bottom_sidebar.html', '#bottom_sidebar');
-		accountCheck();
-	});
+    postToFetch("/api/searcher-container.html",".searcher-container");
+    postToFetch("/api/sidebar.html",".sidebar-sub")
+    postToFetch("/api/bottom_bar.html",".bottom-bar")
+    /*postToFetch("/manager/upload/page.html",".content-box")*/
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    });
+</script>
+<script>
+    window.onload = function() {
+        var buttons = document.querySelectorAll('.svg_button');
+        var maxLength = 0;
+        buttons.forEach(function(button) {
+            var span = button.querySelector('span');
+            var textLength = span.textContent.length;
+            maxLength = Math.max(maxLength, textLength);
+        });
+        buttons.forEach(function(button) {
+            var span = button.querySelector('span');
+            var paddingLength = maxLength - span.textContent.length;
+            if (paddingLength > 0) {
+                span.textContent += ' '.repeat(paddingLength);
+            }
+        });
+    };
+</script>
+<script src="/mobile/js/page.js"></script>
+<script src="/js/loadModule.js"></script>
+<script src="/js/listModule.js"></script>
+<script src="/js/crypto-js.min.js"></script>
+<script>
+    function toggleUrlBox(radioButton) {
+        var urlBoxText = document.getElementById("url_box_text");
+        var urlBoxInput = document.getElementById("url_box");
+        var host_box_text = document.getElementById("host_box_text");
+        var host_box = document.getElementById("host_box");
+        var join_url_box_text = document.getElementById("join_url_box_text");
+        var join_url_box = document.getElementById("join_url_box");
+        var video_url_box_text = document.getElementById("video_url_box_text");
+        var video_url_box = document.getElementById("video_url_box");
+        var progress_text = document.getElementById("progress_text");
+        var progress = document.getElementById("progress");
+        var introduce_text = document.getElementById("introduce_text");
+        var the_text = document.getElementById("the_text");
+        var url_box_sub_text = document.getElementById("url_box_sub_text");
+        var url_box_sub = document.getElementById("url_box_sub");
+        var poster_url_text = document.getElementById("poster_url_text");
+        var poser_url_box = document.getElementById("poster_url_box");
+
+        if (radioButton.checked && (radioButton.value === "collaboration" || radioButton.value === "read")) {
+            urlBoxText.style.display = "none";
+            urlBoxInput.style.display = "none";
+        } else {
+            urlBoxText.style.display = "inline";
+            urlBoxInput.style.display = "inline";
+        }
+
+        if (radioButton.checked && (radioButton.value === "game" || radioButton.value === "software" || radioButton.value === "project" )){
+            urlBoxText.style.display = "inline";
+            urlBoxInput.style.display = "inline";
+        }
+
+        if (radioButton.checked && radioButton.value === "assets"){
+            urlBoxText.style.display = "none";
+            urlBoxInput.style.display = "none";
+        }
+
+        if (radioButton.checked && radioButton.value === "assets_unit"){
+            urlBoxText.style.display = "inline";
+            urlBoxInput.style.display = "inline";
+            url_box_sub_text.style.display = "inline";
+            url_box_sub.style.display = "inline";
+            poster_url_text.style.display = "none";
+            poser_url_box.style.display = "none";
+        } else {
+            urlBoxText.style.display = "none";
+            urlBoxInput.style.display = "none";
+            url_box_sub_text.style.display = "none";
+            url_box_sub.style.display = "none";
+            poster_url_text.style.display = "inline";
+            poser_url_box.style.display = "inline";
+        }
+
+
+        if(radioButton.checked && (radioButton.value === "collaboration" || radioButton.value === "read")) {
+            introduce_text.style.display = "none";
+            the_text.style.display = "inline";
+        } else {
+            introduce_text.style.display = "inline";
+            the_text.style.display = "none";
+        }
+
+        if(radioButton.checked && radioButton.value !== "collaboration") {
+            host_box_text.style.display = "none";
+            host_box.style.display = "none";
+            join_url_box_text.style.display = "none";
+            join_url_box.style.display = "none";
+            video_url_box_text.style.display = "none";
+            video_url_box.style.display = "none";
+            progress_text.style.display = "none";
+            progress.style.display = "none";
+
+        } else {
+            host_box_text.style.display = "inline";
+            host_box.style.display = "inline";
+            join_url_box_text.style.display = "inline";
+            join_url_box.style.display = "inline";
+            video_url_box_text.style.display = "inline";
+            video_url_box.style.display = "inline";
+            progress_text.style.display = "inline";
+            progress.style.display = "inline";
+        }
+
+    }
+</script>
+<script>
+    var tagInput = document.getElementById("tag");
+    var initialWidth = tagInput.offsetWidth;
+    tagInput.addEventListener("input", function() {
+        var inputValue = this.value;
+        this.style.width = initialWidth + "px";
+
+        if (this.scrollWidth > this.clientWidth) {
+            this.style.width = this.scrollWidth + "px";
+        }
+    });
+</script>
+<script>
+    var username = localStorage.getItem('USERNAME');
+    var usernameText = document.createTextNode(username);
+    var pElement = document.querySelector('.username');
+    pElement.appendChild(usernameText);
+    var usernameLink = document.querySelector('.username');
+    usernameLink.href += username;
+</script>
+<script>
+    var radioButtons = document.querySelectorAll('input[type="radio"]');
+
+    radioButtons.forEach(function(radioButton) {
+        radioButton.addEventListener('click', function() {
+            radioButtons.forEach(function(btn) {
+                btn.parentNode.style.backgroundColor = "#f0f0f0";
+                btn.parentNode.style.color = "black";
+            });
+
+            if (this.checked) {
+                this.parentNode.style.backgroundColor = "#007bff";
+                this.parentNode.style.color = "white";
+            }
+            // 获取 mobile_top_bar_select 元素
+            var mobileTopBarSelect = document.getElementById('mobile_top_bar_select');
+
+            // 设置背景颜色和文字颜色
+            mobileTopBarSelect.style.backgroundColor = '#d9ebff';
+            mobileTopBarSelect.style.color = '#637d9e';
+        });
+    });
+
+
+</script>
+<script>
+    function getSelectedValue() {
+        var radioButtons = document.getElementsByName('upload_type');
+        for (var i = 0; i < radioButtons.length; i++) {
+            if (radioButtons[i].checked) {
+                return radioButtons[i].value;
+            }
+        }
+        return 'null';
+    }
+    function getInputContent() {
+        var textarea = document.getElementById("input");
+        var inputContent = textarea.value;
+        return inputContent;
+    }
+    function getInputBox(type) {
+        try {
+            var inputElement = document.getElementById(type);
+            var inputValue = inputElement.value;
+            if(inputValue!==null) {
+                return inputValue;
+            } else {
+                return 'null';
+            }
+        } catch (error) {
+            console.error(type)
+            console.error(inputValue)
+            console.error(error)
+        }
+    }
+    function getTime() {
+        var now = new Date();
+
+        var year = now.getFullYear();
+        var month = now.getMonth() + 1;
+        var day = now.getDate();
+
+        year = year.toString();
+        month = month < 10 ? '0' + month.toString() : month.toString();
+        day = day < 10 ? '0' + day.toString() : day.toString();
+
+        var formattedDate = year + '/' + month + '/' + day;
+
+        return formattedDate;
+    }
+    function getIntroduction() {
+        var inputTextarea = document.getElementById("input");
+        var inputValue = inputTextarea.value;
+        return inputValue;
+    }
+    function getTag() {
+        var inputTextarea = document.getElementById("tag");
+        var inputValue = inputTextarea.value;
+        return inputValue;
+    }
+    function getToken() {
+        var user = localStorage.getItem('USERNAME');
+        var token = localStorage.getItem('GT_ACCESS_TOKEN');
+        var base = user + "_" + token;
+        var b64String = btoa(base);
+        return b64String;
+    }
+</script>
+<script>
+    function generate() {
+        var value = getSelectedValue();
+        var export_content = getCommon(value);
+        if(value!=='null') {
+            var outputTextarea = document.getElementById("output");
+            outputTextarea.value = "";
+            outputTextarea.value = export_content;
+            alert("生成成功，请把json文本和具体投稿内容(文件)发给网站负责人/管理员/审核人员");
+        } else {
+            alert("请选择分区！");
+        }
+    }
+    function getCommon(value) {
+        var username = localStorage.getItem('USERNAME');
+        var header_avatar = localStorage.getItem('HEADER-AVATAR');
+        var inputContent = getInputContent();
+        var title = getInputBox("title_box");
+        var img = getInputBox("poster_url_box");
+        var poster = getInputBox("poster_url_box");
+        var url = getInputBox("url_box");
+        var time = getTime();
+        var introduction = getIntroduction();
+        var token = getToken();
+        var tag = getTag();
+        if(header_avatar==null) header_avatar = 'images/default_user.gif';
+        if(poster==null) poster = '/images/Unknown.png'
+        var prefix = null;
+        if(value === 'collaboration') prefix = 'Collaboration';
+        if(value === 'video') prefix = 'Videos';
+        if(value === 'game') prefix = 'Games';
+        if(value === 'software') prefix = 'Software';
+        if(value === 'assets') prefix = 'Assets';
+        if(value === 'project') prefix = 'Projects';
+        if(value === 'read') prefix = 'Read';
+        if(value === 'assets_unit') prefix = 'assets_unit';
+
+        if(value === 'collaboration') {
+            var host = getInputBox("host_box");
+            var join_url = getInputBox("join_url_box");
+            var video_url = getInputBox("video_url_box");
+            var progress = getInputBox("progress");
+            return '{\n' +
+                `  "prefix": "${prefix}",\n` +
+                '  "list": [\n' +
+                '    {\n' +
+                '      "identifier_number": {\n' +
+                `        "host": "${host}",\n` +
+                `        "title": "${title}",\n` +
+                `        "img": "${img}",\n` +
+                `        "join_url": "${join_url}",\n` +
+                `        "video_url": "${video_url}",\n` +
+                `        "progress": "${progress}",\n` +
+                `        "introduction": "${inputContent}",\n` +
+                `        "tag": "${tag}",\n` +
+                `        "token": "${token}"\n` +
+                '      }\n' +
+                '    }\n' +
+                '  ]\n' +
+                '}\n'
+        } else if(value === 'assets_unit') {
+            var unitUrl = getInputBox("url_box_sub");
+            return `{"title": "${title}","description": "${inputContent}","url":"${url}","id":"${unitUrl}","tag":"${tag}","builder":"${username}","token":"${token}"}`;
+        } else {
+            return '{\n' +
+                `  "prefix": "${prefix}",\n` +
+                '  "list": [\n' +
+                '    {\n' +
+                '      "identifier_number": {\n' +
+                `        "uploader": "${username}",\n` +
+                `        "uploader_header": "${header_avatar}",\n` +
+                `        "title": "${title}",\n` +
+                `        "img": "${poster}",\n` +
+                `        "content": "${url}",\n` +
+                `        "url": "auto",\n` +
+                `        "mobile_url": "auto",\n` +
+                `        "time": "${time}",\n` +
+                `        "description": "${introduction}",\n` +
+                `        "tag": "${tag}",\n` +
+                `        "token": "${token}"\n` +
+                '      }\n' +
+                '    }\n' +
+                '  ]\n' +
+                '}\n'
+        }
+
+    }
 </script>
 </body>
 </html>

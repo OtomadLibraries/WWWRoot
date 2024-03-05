@@ -3,11 +3,11 @@ var gitalk = new Gitalk({
     clientSecret: 'be6e91d681be86f5a727fb6b152025ce75fb0a5e',
     repo: 'web-comments',
     owner: 'SAGUMEDREAM',
-    admin: ['SAGUMEDREAM','OtomadLibraries','807131829'],
+    admin: ['SAGUMEDREAM'],
     title: 'issue',
-    id: location.pathname,
-    distractionFreeMode: false,
+    id: location.pathname,      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false,  // Facebook-like distraction free mode
     createIssueManually: true
-});
+})
 
-gitalk.render('gitalk-container');
+gitalk.render('gitalk-container')
