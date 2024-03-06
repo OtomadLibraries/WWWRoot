@@ -42,7 +42,7 @@ function accountCheck() {
     </span>
     <span class="top-bar-user-login-out">
         <span class="top-bar-login-out">
-            <a href="/loginout.html">
+            <a href="/_2html/loginout.html">
                 注销
             </a>
         </span>

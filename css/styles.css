@@ -24,6 +24,7 @@ a {
     width: auto; /* 让logo宽度自适应 */
 }
 
+
 .logo img {
     width: auto; /* 设置logo的宽度为父元素的100% */
     height: 3.5em; /* 高度自适应，以保持图像比例 */
@@ -110,6 +111,7 @@ a {
 
 .svg_button:hover {
     background-color: #c8d9eb; /* 鼠标悬停时的背景颜色 */
+    width: 85%; /* 设置宽度自动调整 */
 }
 
 .svg_button img {
@@ -135,9 +137,10 @@ a {
 .search-input {
     padding: 8px 10px; /* 输入框内边距 */
     border: 1px solid #ccc; /* 输入框边框 */
-    border-radius: 5px; /* 输入框圆角 */
+    border-radius: 8px; /* 输入框圆角 */
     font-size: 16px; /* 输入框文字大小 */
     width: 200px; /* 输入框宽度 */
+    max-width: 75%;
 }
 
 /* 搜索按钮样式 */
@@ -146,7 +149,7 @@ a {
     background-color: #3094ff; /* 按钮背景颜色 */
     color: #fff; /* 按钮文字颜色 */
     border: none; /* 去除按钮边框 */
-    border-radius: 5px; /* 按钮圆角 */
+    border-radius: 8px; /* 按钮圆角 */
     cursor: pointer; /* 鼠标指针样式 */
 }
 
@@ -168,6 +171,11 @@ a {
 
 .paragraph_line2 {
     border-bottom: #69ade1 2px solid;
+    padding-bottom: 0.1em;
+}
+
+.paragraph_line3 {
+    border-bottom: #637d9e 2px solid;
     padding-bottom: 0.1em;
 }
 
@@ -251,6 +259,12 @@ time {
     color: #cccccc;
     font-size: medium;
  }
+
+.right-bottom-box a:hover {
+    margin-right: 10px; /* 设置右边间距 */
+    color: #f2b140;
+    font-size: medium;
+}
 
 /* 子页面布局 */
 

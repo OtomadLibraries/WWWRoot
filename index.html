@@ -8,7 +8,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta itemprop="description" name="description" content="音乐源于万物之声——OtoMADs Libraries，一个专注于音MAD知识库的网站。领域包括视频补档、资源分享、经验学习、素材/工程分享和游戏娱乐" class="description">
     <style>
+        /* 父容器样式 */
+        .content-bar {
+            display: flex; /* 使用 Flexbox 布局 */
+            justify-content: space-around; /* 水平居中排列 */
+            width: 85%;
+            margin-left: auto; /* 左外边距设置为自动 */
+            margin-right: auto; /* 右外边距设置为自动 */
+        }
 
+        /* 方块样式 */
+        .boxBarTitle {
+            width: 100%; /* 设置宽度，使其并排自适应，并留出一些间距 */
+            /*text-align: center;*/ /* 文字居中 */
+            margin: 0 10px; /* 左右间距 */
+            font-size: 200%;
+        }
+
+        .boxBarTop {
+            width: 96%; /* 设置宽度，使其并排自适应，并留出一些间距 */
+            padding: 10px; /* 设置内边距 */
+            background-color: rgba(240, 240, 240, 0.8); /* 背景颜色，最后一个参数为透明度，取值范围为0到1 */
+            border-radius: 10px; /* 圆角 */
+            margin: 0 10px; /* 左右间距 */
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+        }
+
+        .boxBarTop:hover,.boxBar0:hover {
+            background-color: #e8e8e8;
+            width: 100%
+        }
+
+        .boxBar0 {
+             width: calc(47.5% - 20px); /* 设置宽度，使其并排自适应，并留出一些间距 */
+             padding: 10px; /* 设置内边距 */
+             background-color: rgba(240, 240, 240, 0.8); /* 背景颜色，最后一个参数为透明度，取值范围为0到1 */
+             border-radius: 10px; /* 圆角 */
+             margin: 0 10px; /* 左右间距 */
+             box-shadow: 0 0 1px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+         }
+
+        .friendUrl_list {
+            display: flex;
+            flex-direction: column;
+            font-size: 100%;
+        }
+        .friendUrl_list a{
+
+        }
+        .friendUrl_list a:hover{
+            color: #3b6c96;
+        }
     </style>
 </head>
 <body>
@@ -38,13 +88,56 @@
     <div class="content">
         <div class="content-outside-box">
             <div class="content-box">
-                <h4>
-                    <a target="_blank">
-                        <big><big>公告</big></big>
-                    </a>
+                <!--<h4>
+                    <big><big>公告</big></big>
                 </h4>
                 <time>2024年2月21日</time>
                 <div class="paragraph_line"></div>
+                -->
+
+                <div class="content-bar">
+                    <div class="boxBarTop">
+                        <div class="boxBarTitle">
+                            公告
+                        </div>
+                        <div class="">欢迎来到OtoMAD Libraries！</div>
+                    </div>
+                </div>
+                <br>
+                <div class="content-bar">
+                    <div class="boxBarTop">
+                        <div class="boxBarTitle">
+                            最新事件
+                        </div>
+                        <div class="new_event" id="new_event">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="content-bar">
+                    <div class="boxBar0">
+                        <div class="boxBarTitle">
+                            简介
+                        </div>
+                        <div class="content-text-box"></div>
+                    </div>
+                    <div class="boxBar0">
+                        <div class="boxBarTitle">
+                            友情站点
+                        </div>
+                        <div class="friendUrl_list">
+                            <br>
+                            <a href="https://www.bilibili.com">◯ 哔哩哔哩动画</a>
+                            <a href="https://www.nicovideo.jp/tag/%E9%9F%B3MAD">◯ ニコニコ動画</a>
+                            <a href="https://otomad.wiki/">◯ 音MAD中文维基</a>
+                            <a href="https://thwiki.cc/">◯ ThbWiki</a>
+                            <a href="https://tieba.baidu.com/f?kw=%D2%F4mad">◯ 音MAD百度贴吧</a>
+                            <a href="https://www.midishow.com/">◯ MidiShow</a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
             </div>
         </div>
     </div>
@@ -56,11 +149,15 @@
 
 </div>
 <script src="/js/library.js"></script>
+<script src="/js/mediawiki_api.js"></script>
+<script src="/js/otomadwiki_widget.js"></script>
+<script src="/js/from_otomadwiki.js"></script>
 <script>
     postToFetch("/api/searcher-container.html",".searcher-container");
     postToFetch("/api/sidebar.html",".sidebar-sub");
     postToFetch("/api/bottom_bar.html",".bottom-bar");
-    postToFetch("/read/cv0/text.html",".content-box");
+    postToFetch("/read/cv0/text.html",".content-text-box");
+    from_mediawiki(".new_event", "最新事件", "https://otomad.wiki/");
 </script>
 </body>
 </html>
