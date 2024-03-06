@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>开始</title>
+</head>
+<body>
+</body>
+<script>
+    mobileValue = localStorage.getItem("mValue");
+    if(!mobileValue) {
+        localStorage.setItem("mValue",1);
+    }
+    window.location.href = "/mobile/start.html";
+</script>
+</html>
