@@ -1,27 +1,3 @@
-body {
-    margin: auto;
-    font-family: Arial, sans-serif;
-    font-size: large;
-    background: #f7f9ff;
-}
-
-.top-bar {
-    background-color: #d9ebff;
-    color: #fff;
-    padding: 10px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.return-button {
-    cursor: pointer;
-}
-
 .content-block {
     padding: 20px;
     margin-top: auto; /* 让内容块下移，避免与顶栏重叠 */
@@ -41,16 +17,17 @@ body {
     margin-right: 10px;
 }
 
-.container {
+.container,.media-list-container {
     display: flex;
     flex-direction: column;
     gap: 10px; /* 项目之间的间距 */
 }
 
 .item {
-    background-color: #ffffff; /* 白色背景 */
+    background-color: rgba(240, 240, 240, 0.8);
     border-radius: 10px; /* 圆角 */
     padding: 20px; /* 内边距 */
+
 }
 
 h3 {
@@ -72,8 +49,4 @@ p {
     width: 100%;
     border: none;
     height: 1000px !important;
-}
-
-a {
-    text-decoration: none;
 }

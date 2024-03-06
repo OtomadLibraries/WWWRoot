@@ -8,6 +8,7 @@ function getAssets() {
         })
         .then(data => {
             const types = data.types;
+            const title = data.title;
             const uploader = data.uploader;
             const uploaderHeader = data.uploader_header;
             const info = data.info;

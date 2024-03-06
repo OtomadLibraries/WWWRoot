@@ -145,6 +145,61 @@ function setupVideoPlayer(src,img) {
     videoElement.src = src;
 }
 
+function togglePlayer(button) {
+    var mediaPlayer = button.nextElementSibling;
+
+    if (mediaPlayer.style.display === 'none') {
+        mediaPlayer.style.display = 'block';
+    } else {
+        mediaPlayer.style.display = 'none';
+    }
+}
+
+function postAssetsListJson(string, div) {
+    fetch('./info.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const types = data.types;
+            const title = data.title;
+            const uploader = data.uploader;
+            const uploaderHeader = data.uploader_header;
+            const info = data.info;
+            //console.log('Types:', types);
+            //console.log('Uploader:', uploader);
+            //console.log('Uploader Header:', uploaderHeader);
+            const div_avatar = '<img src="'+uploaderHeader+'" alt="Avatar" href="https://github.com/'+uploader+'" style="border-radius: 50%; width: 30px; height: 30px;">';
+            const div_upload = '<a href="https://github.com/'+uploader+'">'+uploader+'</a>';
+            addPageContent('.assets-title',title);
+            addPageContent('.uploader-avatar',div_avatar);
+            addPageContent('.uploader-name',div_upload);
+            info.forEach(item => {
+                const title = item.title;
+                const url = item.url;
+                const description = item.description;
+                const htmlContent0 = `
+                <div class="item">
+                    <h3>`+title+`</h3>
+                    <p>`+description+`</p>
+                    <button class="open-close-button" onclick="togglePlayer(this)">展开</button>
+                    <div class="media-player" style="display: none">
+                    <a href="`+url+`">点击下载/预览
+                    </a>
+                    </div>
+                </div>`;
+                addPageContent('.media-list-container',htmlContent0);
+            });
+
+        })
+        .catch(error => {
+            console.error('There was a problem fetching the JSON file:', error);
+        });
+}
+
 function postMediaListJson(string, div) {
     fetch(string)
         .then(response => {

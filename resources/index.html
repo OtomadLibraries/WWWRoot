@@ -7,6 +7,45 @@
     <link rel="stylesheet" href="/css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta itemprop="description" name="description" content="音乐源于万物之声——OtoMADs Libraries，一个专注于音MAD知识库的网站。领域包括视频补档、资源分享、经验学习、素材/工程分享和游戏娱乐" class="description">
+    <style>
+        /* 父容器样式 */
+        .content-three-bar {
+            display: flex; /* 使用 Flexbox 布局 */
+            justify-content: space-around; /* 水平居中排列 */
+        }
+
+        /* 方块样式 */
+        .boxBar {
+            width: calc(33.33% - 20px); /* 设置宽度，使其并排自适应，并留出一些间距 */
+            padding: 10px; /* 设置内边距 */
+            background-color: #f0f0f0; /* 背景颜色 */
+            border-radius: 10px; /* 圆角 */
+            margin: 0 10px; /* 左右间距 */
+            position: relative; /* 相对定位 */
+            display: flex; /* 使用 Flexbox 布局 */
+            flex-direction: column; /* 垂直排列 */
+            justify-content: space-between; /* 垂直方向上等间距排列 */
+        }
+        .boxTitle {
+            text-align: center; /* 文字居中 */
+        }
+
+        .corner-button {
+            background-color: #3094ff; /* 按钮背景色 */
+            color: #fff; /* 文字颜色 */
+             padding: 5px 10px; /* 按钮内边距 */
+             border-radius: 8px; /* 圆角大小 */
+             cursor: pointer;
+             align-self: flex-end; /* 按钮右对齐 */
+             margin-top: auto; /* 上边距设置为自动，使按钮位于底部 */
+         }
+
+        .corner-button:hover {
+            background-color: #82beff; /* 按钮背景色 */
+            color: white; /* 文字颜色 */
+        }
+
+    </style>
 </head>
 <body>
 <div id="page" class="page">
@@ -38,11 +77,23 @@
                 <h4>
                     <big><big>资源专区</big></big>
                 </h4>
-                <div class="paragraph_line"></div>
-                <div class="button-container">
-                    <a href="./software.html" class="button">软件资源</a>
-                    <a href="./assets.html" class="button">素材资源</a>
-                    <a href="./project.html" class="button">工程资源</a>
+                <!--<div class="paragraph_line"></div>-->
+                <div class="content-three-bar">
+                    <div class="boxBar">
+                        <h3>软件资源</h3>
+                        <p> 探索无限可能，获取最新软件资源。从实用工具到创意应用，满足您的各种需求。</p>
+                        <div class="corner-button" onclick="redirectToLink('/resources/software.html')">更多...</div>
+                    </div>
+                    <div class="boxBar">
+                        <h3>素材资源</h3>
+                        <p> 寻找灵感，发现音MAD素材的无限可能性。从音频到视频，打造独具创意的作品。</p>
+                        <div class="corner-button" onclick="redirectToLink('/resources/assets.html')">更多...</div>
+                    </div>
+                    <div class="boxBar">
+                        <h3>工程资源</h3>
+                        <p> 探索技术的边界，获取强大的工程资源。挖掘创新技术，开发出令人惊叹的作品。</p>
+                        <div class="corner-button" onclick="redirectToLink('/resources/project.html')">更多...</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -50,7 +101,6 @@
 
     <!-- 底栏 -->
     <div class="bottom-bar">
-
     </div>
 
 </div>
@@ -59,6 +109,10 @@
     postToFetch("/api/searcher-container.html",".searcher-container");
     postToFetch("/api/sidebar.html",".sidebar-sub")
     postToFetch("/api/bottom_bar.html",".bottom-bar")
+    function redirectToLink(url) {
+        window.location.href = url;
+    }
+</script>
 </script>
 </body>
 </html>
