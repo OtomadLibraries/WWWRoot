@@ -32,7 +32,7 @@ function Common() {
         if (accessTokenExists) {
             let USERNAME = localStorage.getItem("USERNAME");
             let HEADER_AVATAR = localStorage.getItem("HEADER-AVATAR");
-            loginHTML = `<span class="top-bar-header-avatar"><span class="top-bar-header-avatar-box"><a href="http://github.com/${USERNAME}"><img src="${HEADER_AVATAR}" alt="HEADER-AVATAR" style="width: 30px; height: 30px; border-radius: 50%; margin-top: 0px"></a></span></span><span class="top-bar-username"><span class="top-bar-username-box"><a href="http://github.com/${USERNAME}" style="text-decoration: none; text-align: center; transition: background-color 0.3s ease; display: inline-block; margin-right: 0px;">@${USERNAME}</a></span></span><span class="top-bar-upload"><div class="button-div"><a href="/manager/upload/index.html" class="button" style="background-color: #00b3ff; border-radius: 20px; padding: 4px 18px; text-decoration: none; color: white; text-align: center; transition: background-color 0.3s ease; display: inline-block; margin-top: 0px; margin-left: 0px; margin-right: 18px;">投稿</a></div></span><span class="top-bar-user-login-out"><span class="top-bar-login-out"><a href="/logout.html">注销</a></span></span>`;
+            loginHTML = `<span class="top-bar-header-avatar"><span class="top-bar-header-avatar-box"><a href="http://github.com/${USERNAME}"><img src="${HEADER_AVATAR}" alt="HEADER-AVATAR" class="HEADER-AVATAR-DIV" style="border-radius: 50%; margin-top: 0px"></a></span></span><span class="top-bar-username"><span class="top-bar-username-box"><a class="username-a" href="http://github.com/${USERNAME}" style="text-decoration: none; text-align: center; transition: background-color 0.3s ease; display: inline-block; margin-right: 0px;">@${USERNAME}</a></span></span><span class="top-bar-upload"><div class="button-div"><a href="/manager/upload/index.html" class="button" style="border-radius: 20px; text-decoration: none; color: white; text-align: center; transition: background-color 0.3s ease; display: inline-block; margin-top: 0px; margin-left: 0px; margin-right: 18px;">投稿</a></div></span><span class="top-bar-user-login-out"><span class="top-bar-login-out"><a class="button-logout" href="/logout.html">注销</a></span></span>`;
             container.innerHTML = loginHTML;
         } else {
             loginHTML = `<div class="user-container"><a href="#">注册</a> | <a href="/api/account.html">登录</a></div>`;
@@ -72,6 +72,28 @@ function pageOpen(url) {
 
 function pageJump(url) {
     window.location.href = url;
+}
+
+function stringToBase64(str) {
+    try {
+        return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+            return String.fromCharCode('0x' + p1);
+        }));
+    } catch (e) {
+        console.error("Could not convert the string to Base64.", e);
+        return null;
+    }
+}
+
+function base64ToString(b64) {
+    try {
+        return decodeURIComponent(Array.prototype.map.call(atob(b64), function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+    } catch (e) {
+        console.error("Could not convert Base64 to string.", e);
+        return null;
+    }
 }
 
 function postToFetch(filePath, parentSelector) {

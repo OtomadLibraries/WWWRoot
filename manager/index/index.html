@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>OtoMAD Libraries</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="description" name="description" content="音乐源于万物之声——OtoMADs Libraries，一个专注于音MAD知识库的网站。领域包括视频补档、资源分享、经验学习、素材/工程分享和游戏娱乐" class="description">
+</head>
+<body>
+<div id="page" class="page">
+    <!-- 左侧栏/通过js控制 -->
+    <div class="left-bar" style="transform: translateY(0px);">
+        <div class="sidebar-sub">
+        </div>
+    </div>
+
+    <!-- 顶栏 -->
+    <div class="top-bar">
+        <div class="logo">
+            <img class="web_title" src="/images/page_logo.png" alt="otomads" onclick="">
+        </div>
+        <div class="searcher-container">
+        </div>
+        <div class="user-container">
+        </div>
+    </div>
+
+    <!-- 横幅 -->
+    <div class="top-banner-img">
+    </div>
+
+    <!-- 页面内容 -->
+    <div class="content">
+        <div class="content-outside-box">
+            <div class="content-box">
+                <h4>
+                    <a target="_blank">
+                        <big><big class="db_title"></big></big>
+                    </a>
+                </h4>
+                <div class="paragraph_line"></div>
+                <big>
+                    <div style="text-align: center;" class="adm-div">
+
+                    </div>
+                </big>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底栏 -->
+    <div class="bottom-bar">
+    </div>
+
+</div>
+<script src="/js/library.js"></script>
+<script>
+    document.onkeydown = function (event) {
+        if (event.keyCode == 123) {
+            window.location.href = "./";
+            return false;
+        }
+    }
+    document.oncontextmenu = function () {
+        return false;
+    }
+
+    if(!localStorage.getItem("GT_ACCESS_TOKEN")) {
+        window.location.href = "/404.html";
+    }
+
+    function getKeywordByURL(name) {
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(window.location.href);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    window.onload = function() {
+        let a = getKeywordByURL('db');
+        if (a) {
+            sessionStorage.setItem("db",a)
+        }
+    };
+    postToFetch("/api/searcher-container.html",".searcher-container");
+    postToFetch("/api/sidebar.html",".sidebar-sub")
+    postToFetch("/api/bottom_bar.html",".bottom-bar")
+    const databaseKey = sessionStorage.getItem("db")
+    if(databaseKey) {
+        if(databaseKey==="F40ABCDCA37C184BCE317DE13C9C7D39") {
+            const b64ts0 = base64ToString("PHA+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL090b21hZExpYnJhcmllcy9XV1dSb290IiB0YXJnZXQ9Il9ibGFuayI+5Li75LuT5bqT566h55CGPC9hPjwvcD4KICAgICAgICAgICAgICAgICAgICA8cD48YSBocmVmPSJodHRwczovL2dpdGh1Yi5jb20vU0FHVU1FRFJFQU0vd2ViLWNvbW1lbnRzL2lzc3VlcyIgdGFyZ2V0PSJfYmxhbmsiPuivhOiuuuWMuueuoeeQhjwvYT48L3A+CiAgICAgICAgICAgICAgICAgICAgPHA+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL1NBR1VNRURSRUFNL3dlYi1jb21tZW50cy9pc3N1ZXMvMTYiIHRhcmdldD0iX2JsYW5rIj7mipXnqL/lrqHmoLjnrqHnkIY8L2E+PC9wPgogICAgICAgICAgICAgICAgICAgIDxwPjxhIGhyZWY9Ii4vIiBvbmNsaWNrPSJzZXNzaW9uU3RvcmFnZS5zZXRJdGVtKCdkYicsdW5kZWZpbmVkKSI+5riF55CG566h55CG5ZGY6YCa6KGM6K+BPC9hPjwvcD4=");
+            const b64ts1 = base64ToString("5ZCO5Y+w566h55CG57O757uf");
+            setPageContent(".adm-div",b64ts0);
+            setPageContent(".db_title",b64ts1);
+        }
+    }
+</script>
+</body>
+</html>

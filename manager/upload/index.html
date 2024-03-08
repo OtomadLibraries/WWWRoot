@@ -227,7 +227,7 @@
                         <p><big id="the_text" style="display: none;">正文(支持HTML和JS)</big></p>
                         <textarea id="input" placeholder="点击输入" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; width: 100%; height: 200px; resize: none; box-sizing: border-box;"></textarea>
                     </div>
-                    <div id="output_box">
+                    <div id="output_box" style="display: none;">
                         <textarea id="output" placeholder="输出" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; width: 100%; height: 224px; resize: none; box-sizing: border-box;"></textarea>
                     </div>
                     <button id="upload_button" class="button" onclick="generate()">投稿</button>
@@ -242,8 +242,28 @@
     <div class="bottom-bar">
 
     </div>
-
+    <div id="gitalk-container" style="display: none">
+    </div>
 </div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script>
+    var gitalk = new Gitalk({
+        clientID: '4c2ae1c3c9a84b017189',
+        clientSecret: 'b346f8276b0df4c81fef2a257bd69380500f6fa4',
+        repo: 'web-comments',
+        owner: 'SAGUMEDREAM',
+        admin: ['SAGUMEDREAM'],
+        title: 'issue',
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false,  // Facebook-like distraction free mode
+        createIssueManually: true
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+
 <script src="/js/library.js"></script>
 <script>
     postToFetch("/api/searcher-container.html",".searcher-container");
@@ -393,11 +413,13 @@
                 this.parentNode.style.color = "white";
             }
             // 获取 mobile_top_bar_select 元素
-            var mobileTopBarSelect = document.getElementById('mobile_top_bar_select');
+            var mobileTopBarSelect = document.querySelector('.mobile_top_bar_select');
 
             // 设置背景颜色和文字颜色
-            mobileTopBarSelect.style.backgroundColor = '#d9ebff';
-            mobileTopBarSelect.style.color = '#637d9e';
+            if(mobileTopBarSelect) {
+                mobileTopBarSelect.style.backgroundColor = '#d9ebff';
+                mobileTopBarSelect.style.color = '#637d9e';
+            }
         });
     });
 
@@ -467,14 +489,34 @@
     }
 </script>
 <script>
-    function generate() {
+    function generate() { //投稿按钮
         var value = getSelectedValue();
         var export_content = getCommon(value);
+        if(!localStorage.getItem("GT_ACCESS_TOKEN")) {
+            alert("请先登录！")
+            return;
+        }
         if(value!=='null') {
-            var outputTextarea = document.getElementById("output");
+            let outputTextarea = document.getElementById("output");
             outputTextarea.value = "";
             outputTextarea.value = export_content;
-            alert("生成成功，请把json文本和具体投稿内容(文件)发给网站负责人/管理员/审核人员");
+
+            alert("投稿成功，请等待内容审核。\n如果您没有视频源链接的话，\n您可以通知网站管理员向我们的视频源上传视频");
+
+            let outputTextarea2 = document.querySelector(".gt-header-textarea");
+            outputTextarea2.value = export_content;
+
+            let event = new Event('input', {
+                bubbles: true,
+                cancelable: true,
+            });
+
+            outputTextarea2.dispatchEvent(event);
+
+            setTimeout(function() {
+                let button = document.querySelector('.gt-btn.gt-btn-public');
+                button.click();
+            }, 1000);
         } else {
             alert("请选择分区！");
         }
