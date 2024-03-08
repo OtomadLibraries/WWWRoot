@@ -11,7 +11,7 @@
             margin: auto ; /* 设置顶部外边距为10%，左右外边距自动，实现水平居中 */
         }
 
-        #index_box {
+        .index_box {
             width: 95%;
             height: 50%;
             position: fixed;
@@ -24,15 +24,35 @@
             box-sizing: border-box;
         }
 
-        #index_box .content {
+        .index_box .content {
             /* 你的内容样式 */
         }
     </style>
+    <style>
+        @media screen and (max-width: 850px)
+        .mini-block {
+            align-self: stretch;
+            width: auto;
+        }
+        .mini-block {
+            width: 100%;
+            min-width: 20%;
+            padding: 16px;
+            margin-top: 8px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.04);
+            border: 1px solid;
+            border-color: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            word-break: break-all;
+            box-sizing: border-box;
+            background: white;
+         }
+    </style>
 </head>
-<link rel="stylesheet" href="/mobile/css/mobile.css">
+<link rel="stylesheet" href="/mobile/css/styles.css">
 <body>
-<div id="main_box">
-    <div id="mobile_top_bar" class="top-bar">
+<div class="main_box">
+    <div class="mobile_top_bar">
         <img src="/images/logo_blue.svg" alt="WebSite Icon" class="website-icon" onclick="">
         <div class="search-container">
             <input type="text" id="search-input" class="search-input" style="border-radius: 54px; border: none;">
@@ -41,66 +61,51 @@
         <div class="search-icon-container">
         </div>
     </div>
-    <div id="mobile_top_bar_select" class="scrollable-menu">
-        <input type="radio" id="index_button" name="option" value="index" onClick="changeContent()"><label for="index_button" class="custom-radio">首页</label>
-        <input type="radio" id="video_button" name="option" value="video" onClick="changeContent()"><label for="video_button" class="custom-radio">视频</label>
-        <input type="radio" id="collaboration_button" name="option" value="collaboration" onClick="changeContent()"><label for="collaboration_button" class="custom-radio">合作推广</label>
-        <input type="radio" id="comment_button" name="option" value="comment" onClick="changeContent()"><label for="comment_button" class="custom-radio">留言板</label>
-        <input type="radio" id="read_button" name="option" value="read" onClick="changeContent()"><label for="read_button" class="custom-radio">专栏</label>
-        <input type="radio" id="resource_button" name="option" value="resource" onClick="changeContent()"><label for="resource_button" class="custom-radio">资源</label>
-        <input type="radio" id="about_button" name="option" value="about" onClick="changeContent()"><label for="about_button" class="custom-radio">关于</label>
+    <div class="mobile_top_bar_select">
+
     </div>
-    <div id="mobile_content" style="block-size: auto;">
-        <div id="page_main_box">
-            <div style="top: 10%">
-                <img class="web_title" src="/images/page_logo.png" alt="otomads">
+    <div class="mobile_content" style="block-size: auto;">
+        <div class="page_main_box">
+            <div class="mini-block">
+                <div class="boxBarTop">
+                    <h3>公告</h3>
+                    欢迎来到OtoMAD Libraries！
+                </div>
             </div>
-            <div id="index_box">
+            <div class="mini-block">
+                <div class="boxBarNews">
+                    <h3>最新事件</h3>
+                </div>
+            </div>
+            <div class="mini-block">
+                <div class="boxBarDescription">
+                    <h3>简介</h3>
+                </div>
+            </div>
+            <div class="mini-block">
+                <div class="boxBarFriendWebsite">
+                    <h3>友情站点</h3>
+                    <div class="boxBarFW_List" style="display: flex; flex-direction: column; font-size: 100%;">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div id="mobile_bottom_bar">
-        <div class="svg_button" onclick="pageJump('/mobile/index.html',null)">
-            <img src="/images/sidebar/home-outline.svg" alt="index">
-            <span>首页</span>
-        </div>
-        <div class="svg_button" onclick="pageJump('/mobile/upload.html',null)">
-            <img src="/images/cloud-upload-outline.svg" alt="upload">
-            <span>投稿</span>
-        </div>
-        <div class="svg_button" onclick="pageJump('/mobile/account.html',null)">
-            <img src="/images/person-circle-outline.svg" alt="account">
-            <span>我的</span>
-        </div>
+    <div class="mobile_bottom_bar">
     </div>
 </div>
-
+<script src="/mobile/js/library.js"></script>
+<script src="/mobile/js/searcher.js"></script>
+<script src="/js/mediawiki_api.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        loadModule('/read/cv0/text.html', '#index_box');
+        postToFetch('/mobile/api/top_bar.html', '.mobile_top_bar_select');
+        postToFetch('/mobile/api/bottom_bar.html', '.mobile_bottom_bar');
+        from_mediawiki(".boxBarNews", "最新事件", "https://otomad.wiki/");
+        postToFetch('/read/cv0/text.html', '.boxBarDescription');
+        postToFetch("/api/friend_website.html", ".boxBarFW_List");
     });
 </script>
-<script>
-    window.onload = function() {
-        var buttons = document.querySelectorAll('.svg_button');
-        var maxLength = 0;
-        buttons.forEach(function(button) {
-            var span = button.querySelector('span');
-            var textLength = span.textContent.length;
-            maxLength = Math.max(maxLength, textLength);
-        });
-        buttons.forEach(function(button) {
-            var span = button.querySelector('span');
-            var paddingLength = maxLength - span.textContent.length;
-            if (paddingLength > 0) {
-                span.textContent += ' '.repeat(paddingLength);
-            }
-        });
-    };
-</script>
-<script src="/mobile/js/page.js"></script>
-<script src="/js/loadModule.js"></script>
-<script src="/js/listModule.js"></script>
-<script src="/mobile/js/searcher.js"></script>
 </body>
 </html>

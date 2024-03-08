@@ -6,87 +6,245 @@
     <title>OtoMAD Libraries - 投稿管理器</title>
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            color: #637d9e;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #main_box {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: #f7f9ff;
+            font-size: 48px;
+        }
+
+        #mobile_top_bar {
+            height: 180px;
+            background-image: url('https://www.dmoe.cc/random.php');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed; /* 固定顶部栏 */
+            top: 0px; /* 位于页面顶部 */
+            width: 100%; /* 宽度占满整个屏幕 */
+        }
+
+        #mobile_top_bar_select,.mobile_top_bar_select,.scrollable-menu,#scrollable-menu {
+            height: 85px;
+            /*font-size: 41px;*/
+            background-color: #d9ebff;
+            /*display: flex;*/
+            justify-content: center;
+            align-items: center;
+            position: fixed; /* 固定选择栏 */
+            top: 180px; /* 位于顶部栏下方 */
+            width: 100%; /* 宽度占满整个屏幕 */
+            overflow-x: auto; /* 水平方向滚动 */
+            white-space: nowrap; /* 防止按钮被压缩到一行 */
+            scroll-snap-type: x mandatory; /* 横向滚动时，强制对齐到每个子元素的开始位置 */
+        }
+
+        #comment_box {
+            border: none;
+        }
+
+        .svg_button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 32px; /* 增大内边距以增大按钮大小 */
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            width: 260px;
+            height: 130px;
+        }
+
+        .svg_button:hover {
+            background-color: #c8d9eb; /* 鼠标悬停时的背景颜色 */
+        }
+
+        .svg_button img {
+            width: 100px; /* 设置图像的宽度 */
+            height: 100px; /* 设置图像的高度 */
+        }
+
+        .svg_button span {
+            font-size: 32px;
+            margin-top: 8px; /* 设置文字与图像之间的间距 */
+            /* 其他文字样式设置 */
+        }
+
+        .search-input {
+            width: 700px;
+            height: 95px;
+            border-radius: 10px;
+            font-size: 48px; /* 设置输入框内文字的字体大小 */
+            padding: 0px; /* 设置输入框的内边距 */
+        }
+
+        .website-icon {
+            width: 80px; /* 图片的宽度 */
+            height: 80px; /* 图片的高度 */
+            margin-right: 20px; /* 调整图片与输入框的间距 */
+        }
+
+        .search-icon {
+            width: 100px; /* 图片的宽度 */
+            height: 100px; /* 图片的高度 */
+            margin-right: 20px; /* 调整图片与输入框的间距 */
+        }
+
+        #mobile_content {
+            padding-top: 254px; /* 留出顶部栏和选择栏的空间 */
+            padding-bottom: 190px; /* 留出底部栏的空间 */
+            overflow-y: auto; /* 允许内容滚动 */
+        }
+
+        #mobile_bottom_bar {
+            height: 190px;
+            background-color: #d9ebff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed; /* 固定底部栏 */
+            bottom: 0; /* 位于页面底部 */
+            width: 100%; /* 宽度占满整个屏幕 */
+        }
+
+        .top-bar {
+            align-items: center;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        .search-input {
+            max-width: calc(100% - 50px); /* 动态计算最大宽度 */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .search-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px; /* 调整图标与输入框右侧的距离 */
+            transform: translateY(-50%);
+            cursor: pointer;
+            border-radius: 50%; /* 将图标容器设置为圆形 */
+            background-image: url('/images/search-outlines.svg'); /* 添加搜索图标的背景 */
+            background-size: cover; /* 图标填充容器 */
+        }
+        /* 隐藏原生的单选框 */
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* 自定义按钮样式 */
+        .custom-radio {
+            display: inline-block;
+            padding: 10px 20px;
+            /*border: 2px solid #007bff;*/ /* 初始边框颜色 */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+            text-align: center; /* 居中文本 */
+        }
+
+        .custom-radio:hover {
+            background-color: #007bff; /* 悬停时背景颜色 */
+            border-color: #007bff; /* 悬停时边框颜色 */
+            color: white; /* 悬停时文字颜色 */
+        }
+
+        /* 当选中对应单选框时，按钮的样式变化 */
+        input[type="radio"]:checked + .custom-radio {
+            background-color: #c8d9eb; /* 选中时背景颜色 */
+            border-color: #c8d9eb; /* 选中时边框颜色 */
+            color: black; /* 悬停时文字颜色 */
+        }
+    </style>
+    <style>
         #manager_box {
             display: flex;
             background: #fff;
         }
-        </style>
-        <style>
-            #manager_box label {
-                display: inline-block;
-                padding: 38px 55px; /* 调整按钮的垂直内边距 */
-                margin-right: 1px;
-                margin-bottom: 10px;
-                background-color: #f0f0f0;
-                border-radius: 20px;
-                cursor: pointer;
-                user-select: none;
-                text-decoration: none;
-                color: black;
-                transition: background-color 0.3s ease;
-                text-align: center;
-                height: 4px; /* 调整按钮的高度 */
-                line-height: 2px; /* 使按钮中的文字垂直居中 */
-            }
+        #manager_box label {
+            display: inline-block;
+            padding: 38px 55px; /* 调整按钮的垂直内边距 */
+            margin-right: 1px;
+            margin-bottom: 10px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            cursor: pointer;
+            user-select: none;
+            text-decoration: none;
+            color: black;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            height: 4px; /* 调整按钮的高度 */
+            line-height: 2px; /* 使按钮中的文字垂直居中 */
+        }
 
-            /* 鼠标悬停样式 */
-            #manager_box label:hover {
-                color: white;
-                background-color: #007bff;
-            }
+        /* 鼠标悬停样式 */
+        #manager_box label:hover {
+            color: white;
+            background-color: #007bff;
+        }
 
-            /* 自定义样式的单选按钮标签（选中时） */
-            #manager_box input[type="radio"]:checked + label,
-            #manager_box input[type="radio"]:checked + label:hover {
-                background-color: #007bff;
-                color: white;
-            }
+        /* 自定义样式的单选按钮标签（选中时） */
+        #manager_box input[type="radio"]:checked + label,
+        #manager_box input[type="radio"]:checked + label:hover {
+            background-color: #007bff;
+            color: white;
+        }
 
-            /* 隐藏原始的单选按钮 */
-            #manager_box input[type="radio"] {
-                display: none;
-            }
-
-        </style>
-        <style>
-             /* 按钮样式 */
-             #upload_button {
-                 background-color: #00b3ff;
-                 border-radius: 20px;
-                 padding: 18px 45%;
-                 text-decoration: none;
-                 color: white;
-                 text-align: center;
-                 transition: background-color 0.3s ease;
-                 margin-top: 0px;
-                 margin-left: auto;
-                 margin-right: auto;
-                 border: none;
-                 cursor: pointer;
-                 display: block; /* 使按钮成为块级元素 */
-                 font-size: 40px;
-             }
-             /* 鼠标悬停时改变按钮颜色 */
+        /* 隐藏原始的单选按钮 */
+        #manager_box input[type="radio"] {
+            display: none;
+        }
+        /* 按钮样式 */
+        #upload_button {
+            background-color: #00b3ff;
+            border-radius: 20px;
+            padding: 18px 45%;
+            text-decoration: none;
+            color: white;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            margin-top: 0px;
+            margin-left: auto;
+            margin-right: auto;
+            border: none;
+            cursor: pointer;
+            display: block; /* 使按钮成为块级元素 */
+            font-size: 40px;
+        }
+        /* 鼠标悬停时改变按钮颜色 */
         #upload_button:hover {
             background-color: #007acc;
         }
-        </style>
-        <style>
-         #manager_box {
-             display: flex;
-             overflow: visible;
-             /*align-items: center;*/
-             height: 120vh;
-             flex-direction: column;
-         }
-
-        </style>
-        <style>
-
-         body {
-             overflow-x: hidden;
-         }
-
+        #manager_box {
+            display: flex;
+            overflow: visible;
+            /*align-items: center;*/
+            height: 120vh;
+            flex-direction: column;
+        }
+        body {
+            overflow-x: hidden;
+        }
         #title_box {
             padding: 10px;
             border: 1px solid #ccc;
@@ -114,7 +272,7 @@
             height: 100px;
             box-sizing: border-box; /* 让宽度包括填充和边框 */
         }
-         #url_box_sub {
+        #url_box_sub {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 20px;
@@ -171,7 +329,6 @@
         }
     </style>
 </head>
-<link rel="stylesheet" href="/mobile/css/mobile.css">
 <body>
 <div id="main_box">
     <div id="mobile_top_bar" class="top-bar">
@@ -271,11 +428,64 @@
         });
     };
 </script>
-<script src="/mobile/js/page.js"></script>
-<script src="/js/loadModule.js"></script>
-<script src="/js/listModule.js"></script>
 <script src="/mobile/js/searcher.js"></script>
-<script src="/js/_js/crypto-js.min.js"></script>
+<script>
+    function changeContent() {
+        var nUrl = window.location.pathname;
+        var url = '/404.html';
+        var radioButtons = document.getElementsByName('option'); // 获取所有单选按钮
+        var selectedOption;
+        for (var i = 0; i < radioButtons.length; i++) {
+            if (radioButtons[i].checked) {
+                selectedOption = radioButtons[i].value; // 获取被选中的选项的值
+                break;
+            }
+        }
+        if (selectedOption === 'index') {
+            url = '/mobile/index.html';
+            document.title = "OtoMAD Libraries - 主页";
+            pageJump(url,nUrl)
+        } else if (selectedOption === 'video') {
+            url = '/mobile/video.html';
+            document.title = "OtoMAD Libraries - 视频";
+            pageJump(url,nUrl)
+        } else if (selectedOption === 'comment') {
+            url = '/mobile/comment.html';
+            document.title = "OtoMAD Libraries - 视频";
+            pageJump(url,nUrl)
+        } else if (selectedOption === 'collaboration') {
+            url = '/mobile/collaboration.html';
+            document.title = "OtoMAD Libraries - 合作推广";
+            pageJump(url,nUrl)
+        } else if (selectedOption === 'read') {
+            url = '/mobile/read.html';
+            document.title = "OtoMAD Libraries - 专栏";
+            pageJump(url,nUrl)
+        } else if (selectedOption === 'resource') {
+            url = '/mobile/resource.html';
+            pageJump(url,nUrl)
+        } else if (selectedOption === 'about') {
+            url = '/mobile/about.html';
+            document.title = "OtoMAD Libraries - 关于";
+            pageJump(url,nUrl)
+        }
+
+        console.log(selectedOption)
+    }
+    function replaceContent(url) {
+        var mobileContent = document.getElementById('mobile_content');
+        var newContent = document.createElement('div');
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                newContent.innerHTML = data;
+                mobileContent.appendChild(newContent);
+            });
+    }
+    function pageJump(url,nUrl) {
+        window.location.href = url;
+    }
+</script>
 <script>
     function toggleUrlBox(radioButton) {
         var urlBoxText = document.getElementById("url_box_text");

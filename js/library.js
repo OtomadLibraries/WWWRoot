@@ -1,5 +1,5 @@
 const commonInstance = new Common();
-commonInstance.setup();
+commonInstance.init();
 
 const jsConsole = String("\n" +
     "   ____  __________  __  ______    ____  _____    __    ________  ____  ___    ____  _______________\n" +
@@ -22,7 +22,7 @@ function searchButton() {
 }
 
 function Common() {
-    function setup() {
+    function init() {
         login()
     }
     function login() {
@@ -47,8 +47,8 @@ function Common() {
             return true;
         }
     }
-    Common.prototype.setup = function() {
-        setup();
+    Common.prototype.init = function() {
+        init();
     };
 }
 
@@ -130,11 +130,15 @@ function postVideoJson() {
             var time = data.video.time;
             var description = data.video.description;
             var tag = data.video.tag;
-            const div_avatar = '<img src="'+uploaderHeader+'" alt="Avatar" href="https://github.com/'+uploader+'" style="border-radius: 50%; width: 40px; height: 40px;">';
+            const div_avatar = '<img src="'+uploaderHeader+'" alt="Avatar" href="https://github.com/'+uploader+'" style="border-radius: 50%; width: 30px; height: 30px;">';
             const div_upload = '<a href="https://github.com/'+uploader+'">'+uploader+'</a>';
             setupVideoPlayer(src,img);
-            setPageContent('.web_title',title + ' - OtoMAD Libraries')
-            setPageContent('.videopage-title',title)
+            setPageContent('.web_title',title + ' - OtoMAD Libraries');
+            setPageContent('.videopage-title',title);
+            addPageContent('.uploader-info',div_avatar);
+            addPageContent('.uploader-info',div_upload);
+            addPageContent('.description_text',description);
+            addPageContent('.tag_text',tag);
         })
         .catch(error => console.error('Error:', error));
 }

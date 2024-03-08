@@ -18,7 +18,7 @@ body {
     box-sizing: border-box;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
 }
-#backButton {
+.backButton {
     border-radius: 150px; /* 添加圆角 */
     border: none;
     width: auto;
@@ -33,7 +33,7 @@ body {
 .title_box .video-title {
     flex: 1;
 }
-#expandButton {
+.expandButton {
     margin-left: 85%; /* 设置按钮与标题之间的间距 */
     border-radius: 15px; /* 添加圆角 */
     background-color: #637d9e;
@@ -56,7 +56,7 @@ video {
     display: block; /* 使其表现为块级元素 */
 }
 .description,
-#video-box {
+.video-box {
     padding: 4px;
     box-sizing: border-box;
     display: none; /* 默认隐藏简介 */
@@ -77,7 +77,7 @@ video {
 .username {
     font-size: 16px; /* 根据需要设置用户名的字体大小 */
 }
-#comment_box {
+.comment_box {
     display: block;
     margin: 0 auto; /* 居中 */
     width: 100%; /* 宽度自适应 */

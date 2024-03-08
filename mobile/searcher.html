@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="web_title">OtoMAD Libraries - 搜索结果</title>
     <link rel="icon" type="image/png" href="/images/favicon.png">
-    <link rel="stylesheet" href="/mobile/css/search.css">
+    <link rel="stylesheet" href="/mobile/css/searcher.css">
     <script type="text/javascript" src="/js/searcher.js" charset="utf-8"></script>
     <style>
         .search-container {
@@ -118,6 +118,26 @@
     function goBack() {
         history.back();
     }
+    function getUrlParameter(name) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(window.location.href);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+    var inputElement2 = document.querySelector('.search-input');
+    var keyword = getUrlParameter('keyword');
+    if (keyword !== null) {
+        inputElement2.value = keyword;
+    }
+
+    const inputElement = document.querySelector('.search-input');
+    inputElement.addEventListener('keydown', function(event) {
+        if (event.keyCode === 13) {
+            searchButton()
+        }
+    });
 </script>
 </body>
 </html>

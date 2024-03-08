@@ -6,7 +6,7 @@
     <title id="web_title"></title>
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="stylesheet" href="/mobile/css/read.css">
-    <script type="text/javascript" src="/js/readingInfos.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/mobile/js/library.js" charset="utf-8"></script>
 </head>
 <body>
 <header class="top-bar">
@@ -16,17 +16,16 @@
 </header>
 <main>
     <div class="content-block">
-        <h1 style="color: black;" id="text-title"></h1>
+        <h1 style="color: black;" class="text-title"></h1>
         <div class="uploader">
-            <div class="uploader-avatar" id="uploader-avatar"></div>
-            <span class="uploader-name" id="uploader-name" style="color: #637d9e"></span>
+            <div class="uploader-avatar"></div>
+            <span class="uploader-name" style="color: #637d9e"></span>
         </div>
         <!-- 文章内容 -->
-        <article class="article-content" id="article-content">
-
+        <article class="article-content">
         </article>
-        <h4><time id="tag" style="color: #637d9e"></time></h4>
-        <h1 style="color: black">评论区</h1>
+        <h3><time id="tag" style="color: #637d9e"></time></h3>
+        <h3 style="color: black">评论区</h3>
         <iframe src="comment.html" class="comment-section" id="comment-section"></iframe>
     </div>
 </main>
@@ -34,11 +33,6 @@
     getReading();
     window.addEventListener('DOMContentLoaded', function() {
     });
-</script>
-<script>
-    function goBack() {
-        history.back();
-    }
 </script>
 </body>
 </html>

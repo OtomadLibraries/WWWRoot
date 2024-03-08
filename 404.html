@@ -13,7 +13,7 @@
         }
     </style>
 </head>
-<body>
+<body class="pBody">
 <div id="page" class="page">
     <!-- 左侧栏/通过js控制 -->
     <div class="left-bar" style="transform: translateY(0px);">
@@ -58,6 +58,15 @@
 
 </div>
 <script src="/js/library.js"></script>
+<script>
+    mobileValue = localStorage.getItem("mValue");
+    if(mobileValue) {
+        if(mobileValue==1) {
+            setPageContent(".pBody","")
+            postToFetch("/mobile/404.html",".pBody")
+        }
+    }
+</script>
 <script>
     postToFetch("/api/searcher-container.html",".searcher-container");
     postToFetch("/api/sidebar.html",".sidebar-sub")

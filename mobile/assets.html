@@ -3,67 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="user-scalable=no">
-    <title>OtoMAD Libraries - 素材资源</title>
+    <title>素材资源 ~ OtoMAD Libraries</title>
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <style>
-        .cards-container {
-            display: flex;
-            flex-wrap: wrap; /* 设置弹性容器换行 */
-            justify-content: space-between; /* 在弹性容器内左右分配项目 */
-            margin: 0 -0px; /* 去除两侧的默认间距 */
-        }
-
-        .cover {
-            width: 100%;
-            height: auto;
+        .web_title {
             display: block;
-            aspect-ratio: 16 / 9; /* 强制视频封面保持16:9的纵横比 */
-        }
-
-        .card {
-            width: 50%; /* 设置视频卡片宽度为父容器宽度的一半减去间距 */
-            margin-bottom: 20px; /* 设置视频卡片之间的垂直间距 */
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            overflow: hidden;
-            box-sizing: border-box; /* 让元素的宽度包含边框和内边距 */
-            padding: 0 4px; /* 添加间距 */
-        }
-
-
-        .card-info {
-            padding: 10px;
-        }
-
-        .uploader-info {
-            display: flex;
-            align-items: center; /* 让头像和文字垂直居中 */
-        }
-
-        .uploader-avatar {
-            width: 48px; /* 设置头像宽度 */
-            height: 48px; /* 设置头像高度 */
-            border-radius: 50%; /* 将头像设置为圆形 */
-            margin-right: 10px; /* 设置头像与文字的间距 */
-        }
-
-        .uploader-name {
-            margin: 0;
-            font-size: 30px;
-            color: #666;
-        }
-
-        .card-title {
-            margin: 10px 0 0; /* 设置标题与上传者信息的间距 */
-            font-size: 30px;
-            color: #333;
+            margin: auto ; /* 设置顶部外边距为10%，左右外边距自动，实现水平居中 */
         }
     </style>
 </head>
-<link rel="stylesheet" href="/mobile/css/mobile.css">
+<link rel="stylesheet" href="/mobile/css/styles.css">
 <body>
-<div id="main_box">
-    <div id="mobile_top_bar" class="top-bar">
+<div class="main_box">
+    <div class="mobile_top_bar">
         <img src="/images/logo_blue.svg" alt="WebSite Icon" class="website-icon" onclick="">
         <div class="search-container">
             <input type="text" id="search-input" class="search-input" style="border-radius: 54px; border: none;">
@@ -72,62 +24,27 @@
         <div class="search-icon-container">
         </div>
     </div>
-    <div id="mobile_top_bar_select" class="scrollable-menu">
-        <input type="radio" id="index_button" name="option" value="index" onClick="changeContent()"><label for="index_button" class="custom-radio">首页</label>
-        <input type="radio" id="video_button" name="option" value="video" onClick="changeContent()"><label for="video_button" class="custom-radio">视频</label>
-        <input type="radio" id="collaboration_button" name="option" value="collaboration" onClick="changeContent()"><label for="collaboration_button" class="custom-radio">合作推广</label>
-        <input type="radio" id="comment_button" name="option" value="comment" onClick="changeContent()"><label for="comment_button" class="custom-radio">留言板</label>
-        <input type="radio" id="read_button" name="option" value="read" onClick="changeContent()"><label for="read_button" class="custom-radio">专栏</label>
-        <input type="radio" id="resource_button" name="option" value="resource" onClick="changeContent()"><label for="resource_button" class="custom-radio">资源</label>
-        <input type="radio" id="about_button" name="option" value="about" onClick="changeContent()"><label for="about_button" class="custom-radio">关于</label>
+    <div class="mobile_top_bar_select">
+
     </div>
-    <div id="mobile_content" style="block-size: auto;">
-        <div id="index_box">
-            <div class="cards-container" id="cards-container">
+    <div class="mobile_content" style="block-size: auto;">
+        <div class="page_main_box">
+            <div class="media-cards-container">
+
             </div>
         </div>
     </div>
-    <div id="mobile_bottom_bar">
-        <div class="svg_button" onclick="pageJump('/mobile/index.html',null)">
-            <img src="/images/sidebar/home-outline.svg" alt="index">
-            <span>首页</span>
-        </div>
-        <div class="svg_button" onclick="pageJump('/mobile/upload.html',null)">
-            <img src="/images/cloud-upload-outline.svg" alt="upload">
-            <span>投稿</span>
-        </div>
-        <div class="svg_button" onclick="pageJump('/mobile/account.html',null)">
-            <img src="/images/person-circle-outline.svg" alt="account">
-            <span>我的</span>
-        </div>
+    <div class="mobile_bottom_bar">
     </div>
 </div>
+<script src="/mobile/js/library.js"></script>
+<script src="/mobile/js/searcher.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        readCommonJsonMobileModule('/api/assets.json', '#cards-container');
+        postToFetch('/mobile/api/top_bar.html', '.mobile_top_bar_select');
+        postToFetch('/mobile/api/bottom_bar.html', '.mobile_bottom_bar');
+        postMediaListJson('/api/assets.json', '.media-cards-container');
     });
 </script>
-<script>
-    window.onload = function() {
-        var buttons = document.querySelectorAll('.svg_button');
-        var maxLength = 0;
-        buttons.forEach(function(button) {
-            var span = button.querySelector('span');
-            var textLength = span.textContent.length;
-            maxLength = Math.max(maxLength, textLength);
-        });
-        buttons.forEach(function(button) {
-            var span = button.querySelector('span');
-            var paddingLength = maxLength - span.textContent.length;
-            if (paddingLength > 0) {
-                span.textContent += ' '.repeat(paddingLength);
-            }
-        });
-    };
-</script>
-<script src="/mobile/js/page.js"></script>
-<script src="/js/loadModule.js"></script>
-<script src="/js/listModule.js"></script>
-<script src="/mobile/js/searcher.js"></script>
 </body>
 </html>
