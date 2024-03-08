@@ -198,6 +198,18 @@ a {
     margin-left: 5em; /* 为了避免左侧栏遮挡页面内容，需要设置与左侧栏相同的宽度的左边距 */
 }
 
+.content-text h4:before {
+    border: none;
+    content: "";
+    width: 0em;
+    height: 0em;
+    border-radius: 0em;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0em;
+    margin-top: 0px;
+}
+
 .paragraph_line {
     border-bottom: #d5eaf6 2px solid;
     padding-bottom: 0.5em;
