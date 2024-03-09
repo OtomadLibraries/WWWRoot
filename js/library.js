@@ -35,7 +35,7 @@ function Common() {
             loginHTML = `<span class="top-bar-header-avatar"><span class="top-bar-header-avatar-box"><a href="http://github.com/${USERNAME}"><img src="${HEADER_AVATAR}" alt="HEADER-AVATAR" class="HEADER-AVATAR-DIV" style="border-radius: 50%; margin-top: 0px"></a></span></span><span class="top-bar-username"><span class="top-bar-username-box"><a class="username-a" href="http://github.com/${USERNAME}" style="text-decoration: none; text-align: center; transition: background-color 0.3s ease; display: inline-block; margin-right: 0px;">@${USERNAME}</a></span></span><span class="top-bar-upload"><div class="button-div"><a href="/manager/upload/index.html" class="button" style="border-radius: 20px; text-decoration: none; color: white; text-align: center; transition: background-color 0.3s ease; display: inline-block; margin-top: 0px; margin-left: 0px; margin-right: 18px;">投稿</a></div></span><span class="top-bar-user-login-out"><span class="top-bar-login-out"><a class="button-logout" href="/logout.html">注销</a></span></span>`;
             container.innerHTML = loginHTML;
         } else {
-            loginHTML = `<div class="user-container"><a href="#">注册</a> | <a href="/api/account.html">登录</a></div>`;
+            loginHTML = `<div class="user-container"><a href="https://github.com/signup">注册</a> | <a href="/api/account.html">登录</a></div>`;
             container.innerHTML = loginHTML;
         }
     }

@@ -713,6 +713,11 @@
             outputTextarea.value = "";
             outputTextarea.value = export_content;
 
+            if((!document.querySelector('.gt-btn.gt-btn-public'))&&(!document.querySelector(".gt-header-textarea"))) {
+                alert("网络错误！请尝试刷新页面或使用代理");
+                return;
+            }
+
             alert("投稿成功，请等待内容审核。\n如果您没有视频源链接的话，\n您可以通知网站管理员向我们的视频源上传视频");
 
             let outputTextarea2 = document.querySelector(".gt-header-textarea");
