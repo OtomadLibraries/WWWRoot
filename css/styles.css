@@ -195,12 +195,17 @@ a {
     border: none; /* 去除按钮边框 */
     border-radius: 8px; /* 按钮圆角 */
     cursor: pointer; /* 鼠标指针样式 */
+    transition: scale 200ms;
 }
 
 .search-button:hover {
-    padding: 6px 10px; /* 按钮内边距 */
     background-color: #007bff; /* 按钮背景颜色 */
     color: #fff; /* 按钮文字颜色 */
+    scale: 1.02;
+}
+
+.search-button:active {
+    scale: 0.98;
 }
 
 /* 页面内容样式 */
