@@ -131,7 +131,7 @@ a {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    padding: 3px; /* 增大内边距以增大按钮大小 */
+    padding: 8px 0;
     border-radius: 8px;
     transition: background-color 0.3s ease;
     width: auto; /* 设置宽度自动调整 */
@@ -140,6 +140,7 @@ a {
     max-height: 100%; /* 最大高度限制为父元素的高度 */
     border: none;
     background-color: #d9ebff;
+    font-size: 14px;
     transition: scale 200ms; /* 缩放过渡动画 */
 }
 
@@ -168,7 +169,8 @@ a {
 
 .sidebar-sub {
     height: 100%;
-    padding: 4em 0 0 0;
+    padding: 6px;
+    margin-top: 3.5em;
 }
 
 /* 输入框样式 */
