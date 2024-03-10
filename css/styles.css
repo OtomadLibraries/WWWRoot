@@ -9,6 +9,10 @@ body {
     font-size: 16px;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 a {
     text-decoration: none;
     color: #637d9e;
@@ -270,18 +274,25 @@ time {
     /*text-align: center;*/
     align-items: center;
     display: flex;
-    height: 50px; /* 固定高度，单位可以根据需要调整 */
+    height: 64px; /* 固定高度，单位可以根据需要调整 */
     position: fixed; /* 如果您希望底部栏固定在页面底部，可以将 position 设置为 fixed */
     bottom: 0;
     width: 100%;
     justify-content: space-between; /* 将左右两个子元素分别放置在底栏的两侧 */
+    padding: 0 16px;
 
 }
 
 .left-bottom {
     display: flex;
     align-items: center;
+    gap: 10px;
     color: #cccccc;
+    font-size: 14px;
+}
+
+.left-bottom-text {
+    line-height: 1.5em;
 }
 
 .right-bottom {
