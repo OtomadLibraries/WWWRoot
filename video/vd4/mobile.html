@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="web_title"></title>
+    <link rel="stylesheet" href="/mobile/css/videoplayer.css">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <script type="text/javascript" src="/mobile/js/library.js" charset="utf-8"></script>
+</head>
+<body>
+<!-- 顶部栏 -->
+<div class="top-bar">
+    <div class="backButton" style="cursor: pointer; width: 24px; height: 24px;" onclick="goBack()">
+        <img src="/images/arrow-back-outline.svg" alt="返回" width="100%" height="100%">
+    </div>
+</div>
+
+<!-- 视频内容 -->
+<div class="video-container">
+    <video id="videoplayer" playsinline controls data-poster="" >
+
+    </video>
+</div>
+
+<!-- 头像/用户名 -->
+<div class="info_box">
+    <div class="avatar">
+    </div>
+    <div class="username">
+    </div>
+    <time class="time"></time>
+</div>
+<!-- 标题 -->
+<div class="title_box">
+    <div class="video-title">
+        <big><big class="text-title"></big></big>
+    </div>
+</div>
+<!-- 展开 -->
+<button onclick="getDescription()" class="expandButton">展开</button>
+<!-- 简介 -->
+<div class="description" style="display: none">
+
+</div>
+<div class="video-box" style="display: none">
+    <div class="time-tag"></div>
+    <div class="video-tag">Tag: </div>
+</div>
+<!-- 评论区 -->
+<div class="comment-section">
+    <big><big>评论区</big></big><br>
+
+</div>
+<iframe class="comment_box" src="./comment.html"></iframe>
+<script>
+    getVideo();
+    window.addEventListener('DOMContentLoaded', function() {
+        var iframe = document.querySelector('.comment_box');
+        iframe.addEventListener('load', function() {
+            var contentHeight = iframe.contentWindow.document.body.scrollHeight;
+            iframe.style.height = contentHeight + 'px';
+        });
+    });
+
+    function goBack() {
+        history.back();
+    }
+
+    function getDescription() {
+        var video_tag_box = document.querySelector('.video-box');
+        var description = document.querySelector('.description');
+        var button = document.querySelector('.expandButton');
+
+        if (description.style.display === 'none') {
+            description.style.display = 'block';
+            video_tag_box.style.display = 'block';
+            button.textContent = '收起';
+        } else {
+            description.style.display = 'none';
+            video_tag_box.style.display = 'none';
+            button.textContent = '展开';
+        }
+    }
+
+    function checkCommentBox() {
+        var commentBox = document.getElementById('GT_box');
+        var loginButton = document.querySelector('.gt-action-login');
+        var btnLogin = document.querySelector('.gt-btn-login');
+
+        if (commentBox && (loginButton || btnLogin)) {
+            document.querySelector('.gt-btn-login').addEventListener('click', function() {
+                window.location.href = '/api/account.html';
+            });
+            document.querySelector('.gt-action-login').addEventListener('click', function() {
+                window.location.href = '/api/account.html';
+            });
+            clearInterval(checkInterval);
+        }
+    }
+    var checkInterval = setInterval(checkCommentBox, 100);
+</script>
+</body>
+</html>

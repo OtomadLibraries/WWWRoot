@@ -9,6 +9,10 @@ body {
     font-size: 16px;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 a {
     text-decoration: none;
     color: #637d9e;
@@ -56,8 +60,8 @@ a {
 }
 
 .top-bar-header-avatar {
-     margin-right: 5px;
- }
+    margin-right: 5px;
+}
 /* 左侧栏样式 */
 .left-bar {
     position: fixed;
@@ -131,7 +135,7 @@ a {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    padding: 3px; /* 增大内边距以增大按钮大小 */
+    padding: 8px 0;
     border-radius: 8px;
     transition: background-color 0.3s ease;
     width: auto; /* 设置宽度自动调整 */
@@ -140,11 +144,17 @@ a {
     max-height: 100%; /* 最大高度限制为父元素的高度 */
     border: none;
     background-color: #d9ebff;
+    font-size: 14px;
+    transition: scale 200ms; /* 缩放过渡动画 */
 }
 
 .svg_button:hover {
     background-color: #c8d9eb; /* 鼠标悬停时的背景颜色 */
-    width: 85%; /* 设置宽度自动调整 */
+    scale: 1.02; /* 鼠标悬停时放大按钮 */
+}
+
+.svg_button:active {
+    scale: 0.98; /* 鼠标悬停时缩小按钮 */
 }
 
 .svg_button img {
@@ -163,7 +173,8 @@ a {
 
 .sidebar-sub {
     height: 100%;
-    padding: 4em 0 0 0;
+    padding: 6px;
+    margin-top: 3.5em;
 }
 
 /* 输入框样式 */
@@ -184,12 +195,17 @@ a {
     border: none; /* 去除按钮边框 */
     border-radius: 8px; /* 按钮圆角 */
     cursor: pointer; /* 鼠标指针样式 */
+    transition: scale 200ms;
 }
 
 .search-button:hover {
-    padding: 6px 10px; /* 按钮内边距 */
     background-color: #007bff; /* 按钮背景颜色 */
     color: #fff; /* 按钮文字颜色 */
+    scale: 1.02;
+}
+
+.search-button:active {
+    scale: 0.98;
 }
 
 /* 页面内容样式 */
@@ -263,18 +279,25 @@ time {
     /*text-align: center;*/
     align-items: center;
     display: flex;
-    height: 50px; /* 固定高度，单位可以根据需要调整 */
+    height: 64px; /* 固定高度，单位可以根据需要调整 */
     position: fixed; /* 如果您希望底部栏固定在页面底部，可以将 position 设置为 fixed */
     bottom: 0;
     width: 100%;
     justify-content: space-between; /* 将左右两个子元素分别放置在底栏的两侧 */
+    padding: 0 16px;
 
 }
 
 .left-bottom {
     display: flex;
     align-items: center;
+    gap: 10px;
     color: #cccccc;
+    font-size: 14px;
+}
+
+.left-bottom-text {
+    line-height: 1.5em;
 }
 
 .right-bottom {
@@ -304,7 +327,7 @@ time {
     margin-right: 10px; /* 设置右边间距 */
     color: #cccccc;
     font-size: medium;
- }
+}
 
 .right-bottom-box a:hover {
     margin-right: 10px; /* 设置右边间距 */
