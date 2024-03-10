@@ -140,11 +140,16 @@ a {
     max-height: 100%; /* 最大高度限制为父元素的高度 */
     border: none;
     background-color: #d9ebff;
+    transition: scale 200ms; /* 缩放过渡动画 */
 }
 
 .svg_button:hover {
     background-color: #c8d9eb; /* 鼠标悬停时的背景颜色 */
-    width: 85%; /* 设置宽度自动调整 */
+    scale: 1.02; /* 鼠标悬停时放大按钮 */
+}
+
+.svg_button:active {
+    scale: 0.98; /* 鼠标悬停时缩小按钮 */
 }
 
 .svg_button img {
