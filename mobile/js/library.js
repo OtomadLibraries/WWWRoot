@@ -246,11 +246,11 @@ function getVideo() {
             var description = data.video.description;
             var tag = data.video.tag;
             const div_avatar = '<img src="'+uploaderHeader+'" alt="Avatar" href="https://github.com/'+uploader+'" style="border-radius: 50%; width: 40px; height: 40px;">';
-            const div_videoplayer = '<source src="'+content+'" type="video/mp4">';
+            const div_videoplayer = '<video id="videoplayer" playsinline controls data-poster="" src="'+content+'" poster="'+img+'"> </video>';
             const div_upload = '<a href="https://github.com/'+uploader+'">'+uploader+'</a>';
             setPageContent('.username',div_upload)
             setPageContent('.avatar',div_avatar)
-            setPageContent('.videoplayer',div_videoplayer)
+            setPageContent('.video-container',div_videoplayer)
             setPageContent('.text-title',title)
             setPageContent('.web_title',title + ' ~ OtoMAD Libraries')
             setPageContent('.description',description)
