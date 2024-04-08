@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta name="baidu-site-verification" content="codeva-D8l7mkwNSG" />
+    <meta charset="UTF-8">
+    <title>OtoMAD Libraries</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="description" name="description" content="音乐源于万物之声——OtoMADs Libraries，一个专注于音MAD知识库的网站。领域包括视频补档、资源分享、经验学习、素材/工程分享和游戏娱乐" class="description">
+    <style>
+        big {
+            text-shadow: 0 0 1px #9cc6ff;
+        }
+
+        .Inputbox {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 90%;
+            box-sizing: border-box;
+            box-shadow: 0 0 2px #87a9d8;
+            margin: 2px;
+        }
+
+        .Inputbox:hover {
+            transform: scale(0.999);
+        }
+        .Inputbox:active {
+            transform: scale(0.998);
+        }
+        .modifyButton,.uploadButton {
+            display: inline-block;
+            padding: 10px 18px;
+            margin: 0px;
+            background-color: #00b3ff; /* 按钮的背景颜色 */
+            color: #fff; /* 按钮的文字颜色 */
+            border: 1px solid transparent; /* 按钮的边框 */
+            border-radius: 10px; /* 椭圆形的边框半径 */
+            cursor: pointer;
+            box-shadow: 0 0 2px #87a9d8;
+        }
+
+        /* 鼠标悬停状态 */
+        .modifyButton:hover,.uploadButton:hover {
+            background-color: #00eaff;
+            transform: scale(.95);
+            box-shadow: 0 9px 9px rgba(114, 153, 251, 0.3);
+        }
+
+        .modifyButton:active,.uploadButton:active {
+            background-color: #00eaff;
+            transform: scale(.93);
+            box-shadow: 0 9px 9px rgba(114, 153, 251, 0.3);
+        }
+        .modifyButton:disabled,.uploadButton:disabled {
+            opacity: 0.6; /* 设置透明度 */
+            cursor: not-allowed; /* 设置鼠标样式为不可用 */
+            transform: scale(1);
+        }
+        .content-box {
+            flex-direction: column; /* 设置为列布局 */
+            align-items: center; /* 垂直居中 */
+        }
+        .InputboxFather {
+
+        }
+        .Inputbox2 {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 80%;
+            box-sizing: border-box;
+            box-shadow: 0 0 2px #87a9d8;
+        }
+
+        .Inputbox2:hover {
+            transform: scale(0.999);
+        }
+        .Inputbox2:active {
+            transform: scale(0.998);
+        }
+
+    </style>
+</head>
+<body>
+<div id="page" class="page">
+    <!-- 左侧栏/通过js控制 -->
+    <div class="left-bar" style="transform: translateY(0px);">
+        <div class="sidebar-sub">
+        </div>
+    </div>
+
+    <!-- 顶栏 -->
+    <div class="top-bar">
+        <div class="logo">
+            <img class="web_title" src="/images/page_logo.png" alt="otomads" onclick="">
+        </div>
+        <div class="searcher-container">
+        </div>
+        <div class="user-container">
+        </div>
+    </div>
+
+    <!-- 横幅 -->
+    <div class="top-banner-img">
+    </div>
+
+    <!-- 页面内容 -->
+    <div class="content">
+        <div class="content-outside-box">
+            <div class="content-box">
+                <div class="InputboxFather useravatarBox">
+                    <p>
+                        <big class="useravatar_text">头像:</big><br>
+                        <div class="useravatar"></div>
+                        <button class="uploadButton" onclick="modify(9)">选择/上传</button>
+                    <input type="file" id="fileInput" style="display: none;" accept="image/png, image/jpeg, image/bmp" size="5242880">
+                    </p>
+                </div>
+                <div class="InputboxFather usernameBox">
+                    <p>
+                        <big class="username_text">用户名:</big><br>
+                        <input type="text" class="Inputbox titleValue" placeholder="不可修改" readonly>
+                        <button class="modifyButton" onclick="modify(1)" title="不可修改" disabled>修改</button>
+                    </p>
+                </div>
+                <div class="InputboxFather emailBox">
+                    <p>
+                        <big class="uid_text">邮箱地址:</big><br>
+                        <input type="text" class="Inputbox emailValue" placeholder="点击输入">
+                        <button class="modifyButton" onclick="modify(2)">修改</button>
+                    </p>
+                </div>
+                <div class="InputboxFather passwordBox">
+                    <p>
+                        <big class="uid_text">更改密码:</big><br>
+                        <input type="password" class="Inputbox oldPasswordValue" placeholder="旧密码">
+                        <input type="password" class="Inputbox newPasswordValue" placeholder="新密码">
+                        <button class="modifyButton" onclick="modify(3)">修改</button>
+                    </p>
+                </div>
+                <div class="InputboxFather permissionBox">
+                    <p>
+                        <big class="permission_text">权限组:</big><br>
+                        <input type="text" class="Inputbox permissionValue" placeholder="不可修改" readonly>
+                        <button class="modifyButton" onclick="modify(4)" title="不可修改" disabled>修改</button>
+                    </p>
+                </div>
+                <div class="InputboxFather keyBox">
+                    <p>
+                        <big class="uid_text">密钥:</big><br>
+                        <input type="text" class="Inputbox keyValue" placeholder="不可修改" readonly>
+                        <button class="modifyButton" onclick="modify(5)" >重置</button>
+                    </p>
+                </div>
+                <div class="InputboxFather timeBox">
+                    <p>
+                        <big class="time_text">注册时间:</big><br>
+                        <input type="text" class="Inputbox timeValue" placeholder="不可修改" readonly>
+                        <button class="modifyButton" onclick="modify(6)" title="不可修改" disabled>修改</button>
+                    </p>
+                </div>
+                <div class="InputboxFather uidBox">
+                    <p>
+                        <big class="uid_text">注册UID:</big><br>
+                        <input type="text" class="Inputbox uidValue" placeholder="不可修改" readonly>
+                        <button class="modifyButton" onclick="modify(7)" title="不可修改" disabled>修改</button>
+                    </p>
+                </div>
+                <div>
+                    <p><big class="introduce_text">简介</big></p>
+                    <textarea class="Inputbox2 descriptionValue" placeholder="点击输入" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; width: 90%; height: 200px; resize: none; box-sizing: border-box;"></textarea>
+                    <button class="modifyButton" onclick="modify(8)">修改</button>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+
+    <!-- 底栏 -->
+    <div class="bottom-bar">
+    </div>
+
+</div>
+<script src="/js/library.js"></script>
+<script src="/js/mediawiki_api.js"></script>
+<script src="/js/otomadwiki_widget.js"></script>
+<script src="/js/from_otomadwiki.js"></script>
+<script>
+    postToFetch("/api/searcher-container.html",".searcher-container");
+    postToFetch("/api/sidebar.html",".sidebar-sub");
+    postToFetch("/api/bottom_bar.html",".bottom-bar");
+</script>
+<script>
+    var token = null;
+    if(!localStorage.getItem('token')) {
+        window.location.href = "/login.html";
+    } else {
+        token = localStorage.getItem('token');
+    }
+
+    document.getElementById('fileInput').addEventListener('change', function() {
+        const file = this.files[0];
+        const maxSize = parseInt(this.getAttribute('size'));
+
+        if (file) {
+            if (file.size > maxSize) {
+                alert('文件大小超过限制，请选择小于' + maxSize + '字节的文件。');
+                this.value = '';
+                return;
+            }
+
+            //console.log('选择的文件:', file);
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch(`https://api.otomads.top/user/userAvatarUpload.php?token=${token}`, {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('网络错误');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    let code = data.code
+                    let message = data.message
+                    console.log(data);
+                    if(code==200) {
+                        let path = data.path;
+                        document.querySelector(".useravatar").querySelector('img').src = path;
+                        location.reload();
+                    }
+                    window.alert(message);
+                    // 根据返回的结果处理逻辑
+                    // 这里可以根据需要做相应的操作，比如显示上传结果等
+                })
+                .catch(error => {
+                    console.error('文件上传失败:', error);
+                });
+        } else {
+            console.error('未选择文件');
+        }
+    });
+
+    {
+        let apiUrl = "https://api.otomads.top/user/queryToken.php?token=" + encodeURIComponent(token);
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('网络请求失败');
+                }
+                return response.json();
+            })
+            .then(json => {
+                let code = json.code;
+                let data = json.data;
+                if(code!=200) window.location.href = "/404.html";
+                //console.log(data);
+                let username = data.username;
+                let useravatar = data.useravatar;
+                let description = data.description;
+                let email = data.email;
+                let uid = data.uid;
+                let permission = data.permissions;
+                let time = data.create_time;
+                document.querySelector(".useravatar").innerHTML = `<img src="${useravatar}" style="transform: scale(.98); max-height: 75px; max-width: 75px; border-radius: 50%;">`;
+                document.querySelector(".titleValue").value = username;
+                document.querySelector(".uidValue").value = uid;
+                document.querySelector(".emailValue").value = email;
+                document.querySelector(".timeValue").value = time;
+                document.querySelector(".descriptionValue").value = description;
+                //document.querySelector(".useravatarValue").value = useravatar;
+                document.querySelector(".keyValue").value = stringToBase64(stringToBase64(stringToBase64(localStorage.getItem("token"))));
+                if(permission==0) {
+                    document.querySelector(".permissionValue").value = "未验证用户";
+                } else if(permission==1) {
+                    document.querySelector(".permissionValue").value = "用户";
+                } else if(permission==2) {
+                    document.querySelector(".permissionValue").value = "贡献者";
+                } else if(permission==3) {
+                    document.querySelector(".permissionValue").value = "审查员";
+                } else if(permission==4) {
+                    document.querySelector(".permissionValue").value = "管理员";
+                } else if(permission==5) {
+                    document.querySelector(".permissionValue").value = "系统用户";
+                } else {
+                    document.querySelector(".permissionValue").value = "未知";
+                }
+            })
+            .catch(error => {
+                console.error('发生错误:', error.message);
+            });
+    }
+    function modify(Type) {
+        let apiUrl;
+        let params;
+        if(Type==1) {
+
+        } else if(Type==2) {
+            let email = document.querySelector(".emailValue").value;
+
+            params = {
+                token: `${token}`,
+                email: `${email}`
+            };
+            apiUrl = "https://api.otomads.top/user/sendMail.php?";
+        } else if(Type==3) {
+            let oldPassword = document.querySelector(".oldPasswordValue").value;
+            let newPassword = document.querySelector(".newPasswordValue").value;
+            let uid = document.querySelector(".uidValue").value;
+            params = {
+                token: `${token}`,
+                newPassword: `${newPassword}`,
+                oldPassword: `${oldPassword}`,
+                uid: `${uid}`,
+            };
+            apiUrl = "https://api.otomads.top/user/resetPassword.php?";
+        } else if(Type==4) {
+
+        } else if(Type==5) {
+            params = {
+                token: `${token}`
+            };
+            apiUrl = "https://api.otomads.top/user/resetToken.php?";
+        } else if(Type==6) {
+
+        } else if(Type==7) {
+
+        } else if(Type==8) {
+            let src = document.querySelector(".descriptionValue").value;
+            params = {
+                token: `${token}`,
+                src: `${src}`
+            };
+            apiUrl = "https://api.otomads.top/user/setDescription.php?";
+        } else if(Type==9) {
+            document.getElementById('fileInput').click();
+            return;
+        } else if(Type==10) {
+
+            return;
+        } else {
+            window.alert("未知操作");
+            return;
+        }
+        let paramString = Object.keys(params).map(function(key) {
+            return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+        }).join('&');
+        apiUrl = apiUrl + paramString;
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('网络请求失败');
+                }
+                return response.json();
+            })
+            .then(json => {
+                let code = json.code;
+                let message = json.message;
+                window.alert(message)
+                if(code==200 && (Type == 3|| Type == 5)) {
+                    newToken = json.nToken;
+                    localStorage.setItem("token",newToken)
+
+                }
+                window.location.href = "./modifyData.html";
+            })
+            .catch(error => {
+                console.error('发生错误:', error.message);
+            });
+
+    }
+</script>
+</body>
+</html>

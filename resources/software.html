@@ -53,11 +53,12 @@
 
 </div>
 <script src="/js/library.js"></script>
+<script src="/js/showdown.min.js"></script>
 <script>
     postToFetch("/api/searcher-container.html",".searcher-container");
     postToFetch("/api/sidebar.html",".sidebar-sub");
     postToFetch("/api/bottom_bar.html",".bottom-bar");
-    postMediaListJson("/api/software.json",".media-cards-container");
+    postMediaListJson("software",".media-cards-container");
 </script>
 </body>
 </html>

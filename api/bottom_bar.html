@@ -11,15 +11,43 @@
 </div>
 <div class="right-bottom">
     <div class="right-bottom-box">
+        <a href="/manager/special/index.html" style="display: none" class="special_a">
+            特殊页面
+        </a>
         <a href="https://space.bilibili.com/158597454" target="_blank">
             官方账号
         </a>
-        <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&amp;k=656gkjZBcN4AaqYYRS8guIXdimN0Nse4&amp;authKey=YH%2FluQX2amOIupAekg2lsTXC3acDPBCk0i7yhPgwafGoN8ndtKP3FEchEWvIa1pQ&amp;noverify=0&amp;group_code=478925764" target="_blank">
+        <a href="https://qm.qq.com/cgi-bin/qm/qr?_wv=1027&amp;k=656gkjZBcN4AaqYYRS8guIXdimN0Nse4&amp;authKey=YH%2FluQX2amOIupAekg2lsTXC3acDPBCk0i7yhPgwafGoN8ndtKP3FEchEWvIa1pQ&amp;noverify=0&amp;group_code=478925764" target="_blank">
             交流群
         </a>
         <a href="/resources/release.apk" target="_blank">
             下载客户端
         </a>
     </div>
-
 </div>
+<script>
+    var token = localStorage.getItem('token');
+    var apiUrl = "https://api.otomads.top/user/queryToken.php?token=" + token;
+
+    if (localStorage.getItem('token')) {
+        fetch(apiUrl, {
+            mode: 'cors'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('网络请求失败');
+                }
+                return response.json();
+            })
+            .then(data => {
+                var code = data.code;
+                var userData = data.data;
+                if(code==200) {
+                    var PERMISSIONS = userData.permissions;
+                    if(PERMISSIONS>=4) document.querySelector(".special_a").style = "block"
+                }
+            })
+            .catch(error => {
+            });
+    }
+</script>

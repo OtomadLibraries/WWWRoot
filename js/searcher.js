@@ -1,11 +1,87 @@
 function search(keyword) {
-    addPageContentId('search_text',keyword)
-    run('/api/videos.json',keyword)
-    run('/api/read.json',keyword)
-    run('/api/games.json',keyword)
-    run('/api/assets.json',keyword)
-    run('/api/software.json',keyword)
-    run('/api/project.json',keyword)
+    addPageContentId('searcher-text',keyword);
+    document.querySelector('.container');
+    let apiUrl = "https://api.otomads.top/searcher.php?keyword="+encodeURIComponent(keyword);
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('网络请求失败');
+            }
+            return response.json();
+        })
+        .then(json => {
+            //console.log(json);
+            let code = json.code;
+            if(code=200) {
+                let data = json.data;
+                let assetsArray = data.assets;
+                let gameArray = data.game;
+                let videoArray = data.video;
+                let readArray = data.read;
+                let softwareArray = data.software;
+                let projectArray = data.project;
+                arrayFor(assetsArray,"assets");
+                arrayFor(gameArray,"game");
+                arrayFor(videoArray,"video");
+                arrayFor(readArray,"read");
+                arrayFor(softwareArray,"software");
+                arrayFor(projectArray,"project");
+            }
+        })
+        .catch(error => {
+            console.error('发生错误:', error.message);
+        });
+}
+
+function arrayFor(array,type) {
+    array.forEach(item => {
+        let cid = item.cid;
+        let title = item.title;
+        let uid = item.uploader;
+        let img = item.img;
+        let time = item.time;
+        let Link = "/404.html";
+        if(type=="assets") Link = "/resources/assets/index.html?cid=" + cid;
+        if(type=="game") Link = item.src;
+        if(type=="video") Link =  "/video/index.html?cid=" + cid;
+        if(type=="read") Link =  "/read/index.html?cid=" + cid;
+        if(type=="software") Link =  item.src;
+        if(type=="project") Link =  item.src;
+
+        fetch("https://api.otomads.top/user/queryUser.php?uid="+encodeURIComponent(uid))
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('网络请求失败');
+                }
+                return response.json();
+            })
+            .then(json => {
+                let code = json.code;
+                let jsonp = json.data;
+                if(code==200) {
+                    let username = jsonp.username;
+                    let useravatar = jsonp.useravatar;
+                    let content = `
+                <div class="media-card">
+                    <a href="${Link}">
+                        <img src="${img}" alt="Cover" class="media-cover" ></a>
+                        <div class="media-info">
+                            <div class="uploader-info">
+                                <a href="${uid}"><img src="${useravatar}" alt="avatar" class="uploader-avatar"></a>
+                                <a href="${uid}"><span class="username">${username}</span></a>
+                            </div>
+                            <a href="${Link}"><div class="media-title">${title}</div></a>
+                            <time>${time}</time>
+                        </div>
+                    </div>
+                `;
+                    document.querySelector('.media-cards-container').innerHTML += content;
+                }
+            })
+            .catch(error => {
+                console.error('发生错误:', error.message);
+            });
+    });
 }
 
 function addPageContentId(container, content) {

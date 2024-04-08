@@ -2,11 +2,21 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>OtoMAD Libraries</title>
+    <title class="web_title" id="web_title">OtoMAD Libraries</title>
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/video-page.css">
+    <link rel="stylesheet" href="/css/gitalk.css">
+    <!-- <link rel="stylesheet" href="/css/video-js.css" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta itemprop="description" name="description" content="音乐源于万物之声——OtoMADs Libraries，一个专注于音MAD知识库的网站。领域包括视频补档、资源分享、经验学习、素材/工程分享和游戏娱乐" class="description">
+    <style>
+        .art-video {
+            pointer-events: none;
+        }
+    </style>
+    <script src="/js/artplayer.js"></script>
+    <script src="/js/flv.min.js"></script>
 </head>
 <body>
 <div id="page" class="page">
@@ -28,36 +38,65 @@
     </div>
 
     <!-- 横幅 -->
-    <div class="top-banner-img">
+    <div class="top-banner-img">&nbsp;
     </div>
 
     <!-- 页面内容 -->
     <div class="content">
         <div class="content-outside-box">
             <div class="content-box">
-                <h4>
-                    <big><big>视频列表</big></big>
-                </h4>
-                <div class="paragraph_line"></div><br>
-                <div class="media-cards-container">
+                <h4 class="videopage-title"></h4>
+                <time class="uploader"></time>
+                <span class="uploader-info">
+                      <time class="time"></time>
+                </span>
+                <div class="paragraph_line"></div>
+                <div class="artplayer"></div>
+                <!--<video id="video-player" class="video-player" controls="controls" preload="auto" poster="" src="" data-setup="{}">
+                </video>-->
+                <div class="description">
+                    <span class="description_text">简介：</span>
+                </div>
+                <div class="tag">
+                    <span class="tag_text">TAGS：</span>
                 </div>
                 <br>
+                <div class="paragraph_line"></div>
+                <h4>评论区</h4>
+                <div id="comment_box" class="comment_box"></div>
             </div>
         </div>
     </div>
 
     <!-- 底栏 -->
     <div class="bottom-bar">
-
     </div>
 
 </div>
 <script src="/js/library.js"></script>
+<script src="/js/comment.js"></script>
+<script src="/js/showdown.min.js"></script>
 <script>
+    const urlParams = new URLSearchParams(window.location.search);
     postToFetch("/api/searcher-container.html",".searcher-container");
-    postToFetch("/api/sidebar.html",".sidebar-sub");
-    postToFetch("/api/bottom_bar.html",".bottom-bar");
-    postMediaListJson("/api/videos.json",".media-cards-container");
+    postToFetch("/api/sidebar.html",".sidebar-sub")
+    postToFetch("/api/bottom_bar.html",".bottom-bar")
+    postToFetch("/api/comment_box.html",".comment_box")
+    postVideoJson();
+    if(urlParams.has('cid')) {
+        let cid = urlParams.get("cid");
+        var _pidL = "_video"+cid;
+        registerCommentsBox(_pidL);
+    }
+</script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        var iframe = document.getElementById('comment_box');
+        iframe.addEventListener('load', function() {
+            var contentHeight = iframe.contentWindow.document.body.scrollHeight;
+            iframe.style.height = contentHeight + 'px';
+        });
+    });
 </script>
 </body>
 </html>

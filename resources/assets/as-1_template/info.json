@@ -1,9 +1,0 @@
-{
-  "title": "TEST",
-  "types": "assets",
-  "uploader": "UPLOADER",
-  "uploader_header": "/images/default_user.gif",
-  "info": [
-    {"title": "我是素材","description": "音高B5","url": "https://example.com/abc.wav","id":"as0","tag":"","builder":"${}","token": "null"}
-  ]
-}

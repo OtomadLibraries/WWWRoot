@@ -37,7 +37,7 @@
             <div class="content-box">
                 <h4>
                     <a target="_blank">
-                        <big><big class="db_title"></big></big>
+                        <big><big class="db_title">特殊页面</big></big>
                     </a>
                 </h4>
                 <div class="paragraph_line"></div>
@@ -57,47 +57,9 @@
 </div>
 <script src="/js/library.js"></script>
 <script>
-    document.onkeydown = function (event) {
-        if (event.keyCode == 123) {
-            window.location.href = "./";
-            return false;
-        }
-    }
-    document.oncontextmenu = function () {
-        return false;
-    }
-
-    if(!localStorage.getItem("GT_ACCESS_TOKEN")) {
-        window.location.href = "/404.html";
-    }
-
-    function getKeywordByURL(name) {
-        name = name.replace(/[\[\]]/g, "\\$&");
-        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-            results = regex.exec(window.location.href);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
-    }
-
-    window.onload = function() {
-        let a = getKeywordByURL('db');
-        if (a) {
-            sessionStorage.setItem("db",a)
-        }
-    };
     postToFetch("/api/searcher-container.html",".searcher-container");
     postToFetch("/api/sidebar.html",".sidebar-sub")
     postToFetch("/api/bottom_bar.html",".bottom-bar")
-    const databaseKey = sessionStorage.getItem("db")
-    if(databaseKey) {
-        if(databaseKey==="F40ABCDCA37C184BCE317DE13C9C7D39") {
-            const b64ts0 = base64ToString("PHA+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL090b21hZExpYnJhcmllcy9XV1dSb290IiB0YXJnZXQ9Il9ibGFuayI+5Li75LuT5bqT566h55CGPC9hPjwvcD4KICAgICAgICAgICAgICAgICAgICA8cD48YSBocmVmPSJodHRwczovL2dpdGh1Yi5jb20vU0FHVU1FRFJFQU0vd2ViLWNvbW1lbnRzL2lzc3VlcyIgdGFyZ2V0PSJfYmxhbmsiPuivhOiuuuWMuueuoeeQhjwvYT48L3A+CiAgICAgICAgICAgICAgICAgICAgPHA+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL1NBR1VNRURSRUFNL3dlYi1jb21tZW50cy9pc3N1ZXMvMTYiIHRhcmdldD0iX2JsYW5rIj7mipXnqL/lrqHmoLjnrqHnkIY8L2E+PC9wPgogICAgICAgICAgICAgICAgICAgIDxwPjxhIGhyZWY9Ii4vIiBvbmNsaWNrPSJzZXNzaW9uU3RvcmFnZS5zZXRJdGVtKCdkYicsdW5kZWZpbmVkKSI+5riF55CG566h55CG5ZGY6YCa6KGM6K+BPC9hPjwvcD4=");
-            const b64ts1 = base64ToString("5ZCO5Y+w566h55CG57O757uf");
-            setPageContent(".adm-div",b64ts0);
-            setPageContent(".db_title",b64ts1);
-        }
-    }
 </script>
 </body>
 </html>

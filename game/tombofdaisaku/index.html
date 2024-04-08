@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>池田大作之墓</title>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/cachep2p.min.js"></script>
+    <script type="text/javascript" src="js/py.js"></script>
+    <link rel="stylesheet" href="/css/gitalk.css">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <link href="css/b.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body onload="ld();">
+    <div id="all">
+        <div class="diantext">奠</div>
+        <div id="dian">
+            <span id="diantx">胜利属于有勇气的一方</span>
+        </div>
+        <div id="sbframe">
+            <img id="sb" src="img/sb.png" style="filter: saturate(0); transform: scale(1);" />
+            <!--<img class="lns" id="isa" src="img/a.gif" style="margin-top: -55px;" />-->
+        </div>
+        <style>
+            @keyframes rot {
+                0% {
+                    transform: scale(0.3) rotateZ(0deg)
+                }
+
+                100% {
+                    transform: scale(0.3) rotateZ(360deg)
+                }
+            }
+
+            @keyframes stop {
+                0% {
+                    transform: scale(0.3)
+                }
+
+                100% {
+                    transform: scale(0.3)
+                }
+            }
+        </style>
+        <div id="leftyx">
+            <div class="lb"></div>
+            <div class="lb"></div>
+            <div class="light"></div>
+        </div>
+        <div id="rightyx">
+            <div class="lb"></div>
+            <div class="lb"></div>
+            <div class="light"></div>
+        </div>
+        <div id="btmper">
+            <audio src="music/lol.mp3" id="playera" controls loop></audio>
+            <div id="wd">
+                <p class="tx">低音</p><input type="range" id="low" min="1" max="30" value="1" />
+                <p class="tx">高音</p><input type="range" id="high" min="1" max="30" value="1" />
+                <p class="tx">让我们永远缅怀</p><a href="javascript:;" class="file">选丧歌<input type="file" name="file"
+                        id="file" onchange="onInputFileChange(); cx.resume();"></a>
+            </div>
+			<span class="lastx" style="color: #d5ff00;text-shadow: 0px 0px 1px;">  	</span>
+            <span class="lastx" style="color: #d5ff00;text-shadow: 0px 0px 1px;">请等待加载完成再点击播放
+                (仅Chormium内核浏览器可正常浏览)</span>
+            <span class="lastx" style="color: #d5ff00;text-shadow: 0px 0px 1px;">请自行在控制台输入 ld(); 以实现调整高低音和正常播放动画，不会看https://juejin.cn/post/6844903841360510983</span>
+            <button onclick="ld()">点击此按钮运行ld();</button>
+			<span class="lastx" style="color: #d5ff00;text-shadow: 0px 0px 1px;">  	</span>
+            <span class="lastx" style="color: #d5ff00;text-shadow: 0px 0px 1px;">平庸的生活使人感到一生不幸，波澜万丈的人生才能使人感到生存的意义。</span>
+			<span class="lastx" style="color: #d5ff00;text-shadow: 0px 0px 1px;">没有和平的家庭，就没有和平的社会。</span>
+			<span class="lastx" style="color: #d5ff00;text-shadow: 0px 0px 1px;">如果没有改造自我并进而改造自己境遇的态度和勇气，就不能成为一个排忧解难的人。</span>
+			<span class="lastx" style="color: #d5ff00;text-shadow: 0px 0px 1px;">不要把工作当做义务，要当做权利。</span>
+			<span class="lastx" style="color: #d5ff00;text-shadow: 0px 0px 1px;">人生中能拥有伟大的师匠，是无上的幸福。</span>
+            <div id="comment_box" class="comment_box"></div>
+        </div>
+    </div>
+</body>
+<script src="/js/library.js"></script>
+<script src="/js/userspace.js"></script>
+<script src="/js/comment.js"></script>
+<script src="/js/mediawiki_api.js"></script>
+<script src="/js/otomadwiki_widget.js"></script>
+<script src="/js/from_otomadwiki.js"></script>
+<script>
+    postToFetch("/api/comment_box.html",".comment_box");
+    var _pidL = "_gPage_daisaku";
+    registerCommentsBox(_pidL);
+
+    window.onload = function(){
+        cx.resume();
+        setTimeout(function(){ld();}, 2000);
+    }
+    </script>
+</html>

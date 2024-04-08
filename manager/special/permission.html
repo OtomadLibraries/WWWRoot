@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta name="baidu-site-verification" content="codeva-D8l7mkwNSG" />
+    <meta charset="UTF-8">
+    <title>OtoMAD Libraries</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="description" name="description" content="音乐源于万物之声——OtoMADs Libraries，一个专注于音MAD知识库的网站。领域包括视频补档、资源分享、经验学习、素材/工程分享和游戏娱乐" class="description">
+    <style>
+        big {
+            text-shadow: 0 0 1px #9cc6ff;
+        }
+
+        .Inputbox {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 0 2px #87a9d8;
+        }
+
+        .Inputbox:hover {
+            transform: scale(0.999);
+        }
+        .Inputbox:active {
+            transform: scale(0.998);
+        }
+
+        .commonButton {
+            background-color: #72adfb; /* 设置背景颜色 */
+            border: none; /* 移除边框 */
+            color: white; /* 设置文本颜色 */
+            padding: 6px 16px; /* 设置内边距 */
+            text-align: center; /* 文本居中 */
+            text-decoration: none; /* 移除下划线 */
+            display: inline-block; /* 行内块元素 */
+            font-size: 16px; /* 字体大小 */
+            /*margin: 4px 2px;*/ /* 设置外边距 */
+            cursor: pointer; /* 鼠标样式为手型 */
+            border-radius: 5px; /* 设置圆角 */
+            transition-duration: 0.4s; /* 过渡效果持续时间 */
+        }
+
+        .commonButton:hover {
+            color: white; /* 鼠标悬停时的文本颜色 */
+            box-shadow: 0 9px 9px rgba(114, 226, 251, 0.3);
+            transform: scale(.98);
+        }
+        .commonButton:active {
+            background-color: #578abd; /* 鼠标悬停时的背景颜色 */
+            color: white; /* 鼠标悬停时的文本颜色 */
+            box-shadow: 0 0 0 rgba(114, 198, 251, 0.3);
+            transform: scale(.95);
+        }
+
+    </style>
+</head>
+<body>
+<div id="page" class="page">
+    <!-- 左侧栏/通过js控制 -->
+    <div class="left-bar" style="transform: translateY(0px);">
+        <div class="sidebar-sub">
+        </div>
+    </div>
+
+    <!-- 顶栏 -->
+    <div class="top-bar">
+        <div class="logo">
+            <img class="web_title" src="/images/page_logo.png" alt="otomads" onclick="">
+        </div>
+        <div class="searcher-container">
+        </div>
+        <div class="user-container">
+        </div>
+    </div>
+
+    <!-- 横幅 -->
+    <div class="top-banner-img">
+    </div>
+
+    <!-- 页面内容 -->
+    <div class="content">
+        <div class="content-outside-box">
+            <div class="content-box">
+                <h4>
+                    <big><big class="db_title">特殊页面:权限组管理</big></big>
+                </h4>
+                <div class="paragraph_line"></div>
+                <div class="uploadIndex">
+                    <div>
+                        <div class="InputboxFather titleBox">
+                            <p><big class="title_text">用户名</big></p>
+                            <p><input type="text" class="Inputbox usernameValue" placeholder="点击输入"></p>
+                        </div>
+                        <div class="InputboxFather permBox">
+                            <p><big class="title_text">权限等级</big></p>
+                            <p><input type="text" class="Inputbox permValue" placeholder="点击输入"></p>
+                        </div>
+                    </div>
+                    <button onclick="setPermissions()" title="pass" accesskey="v" class="commonButton">提交</button>
+                    <button onclick="getPermissions()" title="pass" accesskey="v" class="commonButton">查询</button>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底栏 -->
+    <div class="bottom-bar">
+
+    </div>
+
+</div>
+<script src="/js/library.js"></script>
+<script src="/js/mediawiki_api.js"></script>
+<script src="/js/otomadwiki_widget.js"></script>
+<script src="/js/from_otomadwiki.js"></script>
+<script src="/js/showdown.min.js"></script>
+<script>
+    postToFetch("/api/searcher-container.html",".searcher-container");
+    postToFetch("/api/sidebar.html",".sidebar-sub");
+    postToFetch("/api/bottom_bar.html",".bottom-bar");
+</script>
+<script>
+    var token = localStorage.getItem('token');
+    var apiUrl = "https://api.otomads.top/user/queryToken.php?token=" + token;
+    if (localStorage.getItem('token')) {
+        fetch(apiUrl, {
+            mode: 'cors'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('网络请求失败');
+                }
+                return response.json();
+            })
+            .then(data => {
+                var code = data.code;
+                var userData = data.data;
+                if(code==200) {
+
+                }
+            })
+            .catch(error => {
+                document.querySelector(".content").remove();
+            });
+    } else {
+        document.querySelector(".content").remove();
+    }
+</script>
+<script>
+    function setPermissions() {
+        let input = document.querySelector(".usernameValue").value;
+        let value = document.querySelector(".permValue").value;
+        let apiUrl = "https://api.otomads.top/manager/userPermission.php?"+`username=${encodeURIComponent(input)}&value=${encodeURIComponent(value)}&token=${encodeURIComponent(localStorage.getItem("token"))}`;
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('网络请求失败');
+                }
+                return response.json();
+            })
+            .then(data => {
+                let code = data.code;
+                let message = data.message;
+                if(code==200) {
+                }
+                window.alert(message);
+            })
+            .catch(error => {
+                console.error('发生错误:', error.message);
+            });
+    }
+    function getPermissions() {
+        let input = document.querySelector(".usernameValue").value;
+        let apiUrl = "https://api.otomads.top/user/queryUsername.php?username=" + encodeURIComponent(input);
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('网络请求失败');
+                }
+                return response.json();
+            })
+            .then(json => {
+                let code = json.code;
+                let data = json.data;
+                if(code==200) {
+                    let permissions = data.permissions;
+                    document.querySelector(".permValue").value = permissions;
+                }
+            })
+            .catch(error => {
+                console.error('发生错误:', error.message);
+            });
+    }
+</script>
+</body>
+</html>

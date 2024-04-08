@@ -22,6 +22,8 @@
             <img class="web_title" src="/images/page_logo.png" alt="otomads" onclick="">
         </div>
         <div class="searcher-container">
+            <input type="text" class="search-input" placeholder="点击搜索">
+            <button class="search-button" onclick="searchButton()">搜索</button>
         </div>
         <div class="user-container">
         </div>
@@ -43,6 +45,8 @@
                 <div class="paragraph_line"></div>
                 <div class="media-cards-container">
                 </div>
+                <br>
+                <br>
             </div>
         </div>
     </div>
@@ -56,11 +60,20 @@
 <script src="/js/library.js"></script>
 <script src="/js/searcher.js"></script>
 <script>
-    postToFetch("/api/searcher-container.html",".searcher-container");
     postToFetch("/api/sidebar.html",".sidebar-sub")
     postToFetch("/api/bottom_bar.html",".bottom-bar")
-</script>
-<script>
+
+    var inputElement2 = document.querySelector('.search-input');
+    var keyword = getUrlParameter('keyword');
+    if (keyword !== null) {
+        inputElement2.value = keyword;
+    }
+
+    keyword = getKeywordByURL('keyword');
+    if (keyword) {
+        search(keyword)
+    }
+
     function getKeywordByURL(name) {
         name = name.replace(/[\[\]]/g, "\\$&");
         var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
@@ -69,16 +82,21 @@
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
+    function getUrlParameter(name) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(window.location.href);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
 
-    window.onload = function() {
-        var keyword = getKeywordByURL('keyword');
-        if (keyword) {
-            search(keyword)
-            //document.getElementById('keyword').textContent = keyword;
+    const inputElement = document.querySelector('.search-input');
+    inputElement.addEventListener('keydown', function(event) {
+        if (event.keyCode === 13) {
+            searchButton()
         }
-    };
-
-
+    });
 </script>
 </body>
 </html>

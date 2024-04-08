@@ -1,25 +1,2 @@
 <input type="text" class="search-input" placeholder="点击搜索">
 <button class="search-button" onclick="searchButton()">搜索</button>
-
-<script>
-    function getUrlParameter(name) {
-        name = name.replace(/[\[\]]/g, '\\$&');
-        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-            results = regex.exec(window.location.href);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, ' '));
-    }
-    var inputElement2 = document.querySelector('.search-input');
-    var keyword = getUrlParameter('keyword');
-    if (keyword !== null) {
-        inputElement2.value = keyword;
-    }
-
-    const inputElement = document.querySelector('.search-input');
-    inputElement.addEventListener('keydown', function(event) {
-        if (event.keyCode === 13) {
-            searchButton()
-        }
-    });
-</script>

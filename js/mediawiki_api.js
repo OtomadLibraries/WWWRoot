@@ -58,8 +58,12 @@ function from_mediawiki(id, page, websiteUrl) {
     scriptTag.src = fullURL;
 
     window.callback = function(data) {
-        let jsonData = data;
-        appendTextTo(id, jsonData, websiteUrl)
+        if (data && data.parse && data.parse.text && data.parse.text['*']) {
+            let jsonData = data;
+            appendTextTo(id, jsonData, websiteUrl);
+        } else {
+            document.querySelector(id).innerText = "找不到元素";
+        }
     };
 
     document.body.appendChild(scriptTag);

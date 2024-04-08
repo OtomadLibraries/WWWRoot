@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta name="baidu-site-verification" content="codeva-D8l7mkwNSG" />
+    <meta charset="UTF-8">
+    <title>OtoMAD Libraries</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/gitalk.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="description" name="description" content="音乐源于万物之声——OtoMADs Libraries，一个专注于音MAD知识库的网站。领域包括视频补档、资源分享、经验学习、素材/工程分享和游戏娱乐" class="description">
+    <style>
+        /* 父容器样式 */
+        .content-bar {
+            display: flex; /* 使用 Flexbox 布局 */
+            /*justify-content: space-around;*/ /* 水平居中排列 */
+            width: auto;
+            margin-left: auto; /* 左外边距设置为自动 */
+            margin-right: auto; /* 右外边距设置为自动 */
+            color: black;
+            justify-content: space-around; /* 将内容条右对齐 */
+        }
+
+        /* 方块样式 */
+        .boxBarTitle {
+            width: 100%; /* 设置宽度，使其并排自适应，并留出一些间距 */
+            /*text-align: center;*/ /* 文字居中 */
+            margin: 0 10px; /* 左右间距 */
+            font-size: 200%;
+        }
+
+        .boxBarTop {
+            width: 96%; /* 设置宽度，使其并排自适应，并留出一些间距 */
+            padding: 10px; /* 设置内边距 */
+            background-color: rgba(240, 240, 240, 0.8); /* 背景颜色，最后一个参数为透明度，取值范围为0到1 */
+            border-radius: 10px; /* 圆角 */
+            margin: 0 10px; /* 左右间距 */
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+        }
+
+        .boxBarTop:hover,.boxBar0:hover {
+            background-color: #e8e8e8;
+            width: 100%
+        }
+
+        .boxBar0 {
+            width: calc(47.5% - 20px); /* 设置宽度，使其并排自适应，并留出一些间距 */
+            padding: 10px; /* 设置内边距 */
+            background-color: rgba(240, 240, 240, 0.8); /* 背景颜色，最后一个参数为透明度，取值范围为0到1 */
+            border-radius: 10px; /* 圆角 */
+            margin: 0 10px; /* 左右间距 */
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+        }
+
+        .userbar_top {
+            display: flex;
+            align-items: center; /* 垂直居中 */
+        }
+
+        .userinfo {
+            display: flex;
+            flex-direction: column; /* 竖直排列 */
+            justify-content: space-between; /* 上下两个部分平均分布 */
+        }
+
+        .useravatar {
+            margin-left: 10px; /* 可以根据需要调整间距 */
+        }
+
+        .useravatar img {
+            border-radius: 50%;
+            padding: 4px;
+            border: none;
+            width: 75px;
+        }
+
+        .up {
+            display: flex;
+            justify-content: flex-start; /* 左对齐 */
+        }
+
+        .down {
+
+        }
+
+        .down a {
+            color: #008ac5;
+            font-weight: 700;
+            margin: 0 6px;
+        }
+
+        .username {
+            font-size: 2em;
+            font-weight: 700;
+            line-height: 26px;
+            float: left;
+            margin: 0 15px 0 0;
+        }
+    </style>
+    <style>
+        .profile-toggle-button {
+            background-color: #72adfb;
+            border-radius: 4px;
+            padding: 5px 10px;
+            transition: box-shadow 200ms, transform 200ms;
+            box-shadow: 0 4px 4px rgba(114, 230, 251, 0.3);
+        }
+        .profile-toggle-button {
+            top: 5px;
+            right: 0;
+            padding: 5px 10px;
+            position: absolute;
+        }
+        .profile-toggle-button a {
+            font-weight: bold
+        }
+        .profile-toggle-button a {
+            font-weight: bold;
+        }
+        .profile-toggle-button a {
+            color: #fff;
+            font-weight: 700;
+        }
+        .profile-toggle-button:hover {
+            box-shadow: 0 9px 9px rgba(114, 226, 251, 0.3)
+        }
+
+        .profile-toggle-button:active {
+            box-shadow: 0 0 0 rgba(114, 198, 251, 0.3);
+            transform: scale(.95);
+            background-color: #578abd
+        }
+    </style>
+    <style>
+        .media {
+        }
+
+        .commonButton {
+            background-color: #72adfb; /* 设置背景颜色 */
+            border: none; /* 移除边框 */
+            color: white; /* 设置文本颜色 */
+            padding: 6px 16px; /* 设置内边距 */
+            text-align: center; /* 文本居中 */
+            text-decoration: none; /* 移除下划线 */
+            display: inline-block; /* 行内块元素 */
+            font-size: 16px; /* 字体大小 */
+            /*margin: 4px 2px;*/ /* 设置外边距 */
+            cursor: pointer; /* 鼠标样式为手型 */
+            border-radius: 5px; /* 设置圆角 */
+            transition-duration: 0.4s; /* 过渡效果持续时间 */
+        }
+
+        .commonButton:hover {
+            color: white; /* 鼠标悬停时的文本颜色 */
+            box-shadow: 0 9px 9px rgba(114, 226, 251, 0.3);
+            transform: scale(.98);
+        }
+        .commonButton:active {
+            background-color: #578abd; /* 鼠标悬停时的背景颜色 */
+            color: white; /* 鼠标悬停时的文本颜色 */
+            box-shadow: 0 0 0 rgba(114, 198, 251, 0.3);
+            transform: scale(.95);
+        }
+
+    </style>
+</head>
+<body>
+<div id="page" class="page">
+    <!-- 左侧栏/通过js控制 -->
+    <div class="left-bar" style="transform: translateY(0px);">
+        <div class="sidebar-sub">
+        </div>
+    </div>
+
+    <!-- 顶栏 -->
+    <div class="top-bar">
+        <div class="logo">
+            <img class="web_title" src="/images/page_logo.png" alt="otomads" onclick="">
+        </div>
+        <div class="searcher-container">
+        </div>
+        <div class="user-container">
+        </div>
+    </div>
+
+    <!-- 横幅 -->
+    <div class="top-banner-img">
+    </div>
+
+    <!-- 页面内容 -->
+    <div class="content">
+        <div class="content-outside-box">
+            <div class="content-box" style="">
+                <div class="profile-toggle-button mdui-ripple mdui-ripple-white" style="display: none">
+                    <a href="/space/modifyData.html" rel="nofollow">修改个人资料</a>
+                </div>
+                <div class="content-bar" style="margin: 20px">
+                    <div class="userbar_top">
+                        <div class="useravatar">
+                        </div>
+                        <div class="userinfo">
+                            <div class="up">
+                                <div class="username" style="text-align: right">USERNAME</div>
+                            </div>
+                            <div class="mid">
+                                <div class="userDescription">
+                                </div>
+                            </div>
+                            <div class="down">
+                            </div>
+                        </div>
+                        <!--<button class="btn" style="display: flex;align-items: flex-start">按钮</button>-->
+                    </div>
+
+                </div>
+                <h4>
+                    <big><big class="type">投稿列表</big></big>
+                </h4>
+                <button onclick="_thisChange(this.title)" title="video" accesskey="v" class="commonButton">视频</button>
+                <button onclick="_thisChange(this.title)" title="read" accesskey="v" class="commonButton">专栏</button>
+                <button onclick="_thisChange(this.title)" title="assets" accesskey="v" class="commonButton">素材</button>
+                <button onclick="_thisChange(this.title)" title="software" accesskey="v" class="commonButton">软件</button>
+                <button onclick="_thisChange(this.title)" title="project" accesskey="v" class="commonButton">工程</button>
+                <button onclick="_thisChange(this.title)" title="game" accesskey="v" class="commonButton">游戏</button>
+                <div class="paragraph_line"></div><br>
+                <div class="media">
+                    <div class="media-cards-container">
+                        <div class="assetsContainer" style="display: flex"></div>
+                        <div class="gameContainer" style="display: flex"></div>
+                        <div class="videoContainer" style="display: flex"></div>
+                        <div class="readContainer" style="display: flex"></div>
+                        <div class="softwareContainer" style="display: flex"></div>
+                        <div class="projectContainer" style="display: flex"></div>
+                    </div>
+                </div>
+
+                <div id="comment_box" class="comment_box"></div>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底栏 -->
+    <div class="bottom-bar">
+
+    </div>
+
+</div>
+<script src="/js/library.js"></script>
+<script src="/js/userspace.js"></script>
+<script src="/js/comment.js"></script>
+<script src="/js/mediawiki_api.js"></script>
+<script src="/js/otomadwiki_widget.js"></script>
+<script src="/js/from_otomadwiki.js"></script>
+<script src="/js/showdown.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', function() {
+        var iframe = document.getElementById('comment_box');
+        iframe.addEventListener('load', function() {
+            var contentHeight = iframe.contentWindow.document.body.scrollHeight;
+            iframe.style.height = contentHeight + 'px';
+        });
+    });
+
+    const urlParams = new URLSearchParams(window.location.search);
+    postToFetch("/api/searcher-container.html",".searcher-container");
+    postToFetch("/api/sidebar.html",".sidebar-sub");
+    postToFetch("/api/bottom_bar.html",".bottom-bar");
+    postToFetch("/api/comment_box.html",".comment_box")
+    postUserSpace();
+    if(urlParams.has('uid')) {
+        let uid = urlParams.get("uid");
+        var _pidL = "_userPage"+uid;
+        getUserUpload(uid);
+        isOwner(uid);
+        registerCommentsBox(_pidL);
+    }
+    hideAllUserUploadList();
+    document.querySelector(".videoContainer").style.display = "flex"
+
+    function isOwner(uid) {
+        if(localStorage.getItem('token')) {
+            let token = localStorage.getItem('token');
+            let apiUrl = "https://api.otomads.top/user/queryToken.php?token=" + token;
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('网络请求失败');
+                    }
+                    return response.json();
+                })
+                .then(json => {
+                    let code = json.code;
+                    //console.log(dataArray)
+                    if(code==200) {
+                        let dataArray = json.data;
+                        let sUid = dataArray.uid;
+                        if(uid==sUid) {
+                            document.querySelector(".profile-toggle-button").style.display = "block"
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('发生错误:', error.message);
+                });
+        }
+    }
+
+    function hideAllUserUploadList() {
+        document.querySelector(".assetsContainer").style.display = "none"
+        document.querySelector(".gameContainer").style.display = "none"
+        document.querySelector(".videoContainer").style.display = "none"
+        document.querySelector(".readContainer").style.display = "none"
+        document.querySelector(".softwareContainer").style.display = "none"
+        document.querySelector(".projectContainer").style.display = "none"
+    }
+    function _thisChange(T) {
+        hideAllUserUploadList();
+        let V = "."+T+"Container";
+        document.querySelector(V).style.display = "flex"
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
+    }
+</script>
+</body>
+</html>

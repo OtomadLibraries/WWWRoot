@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>工程列表 ~ OtoMAD Libraries</title>
+    <title>OtoMAD Libraries</title>
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <link rel="stylesheet" href="/css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,15 +48,17 @@
 
     <!-- 底栏 -->
     <div class="bottom-bar">
+
     </div>
 
 </div>
 <script src="/js/library.js"></script>
+<script src="/js/showdown.min.js"></script>
 <script>
     postToFetch("/api/searcher-container.html",".searcher-container");
     postToFetch("/api/sidebar.html",".sidebar-sub");
     postToFetch("/api/bottom_bar.html",".bottom-bar");
-    postMediaListJson("/api/project.json",".media-cards-container");
+    postMediaListJson("project",".media-cards-container");
 </script>
 </body>
 </html>

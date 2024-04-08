@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>OtoMAD Libraries</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/assets.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="description" name="description" content="音乐源于万物之声——OtoMADs Libraries，一个专注于音MAD知识库的网站。领域包括视频补档、资源分享、经验学习、素材/工程分享和游戏娱乐" class="description">
+    <link rel="stylesheet" href="/css/gitalk.css">
+    <script src="/js/showdown.min.js"></script>
+</head>
+<body>
+<div id="page" class="page">
+    <!-- 左侧栏/通过js控制 -->
+    <div class="left-bar" style="transform: translateY(0px);">
+        <div class="sidebar-sub">
+        </div>
+    </div>
+
+    <!-- 顶栏 -->
+    <div class="top-bar">
+        <div class="logo">
+            <img class="web_title" src="/images/page_logo.png" alt="otomads" onclick="">
+        </div>
+        <div class="searcher-container">
+        </div>
+        <div class="user-container">
+        </div>
+    </div>
+
+    <!-- 横幅 -->
+    <div class="top-banner-img">
+    </div>
+
+    <!-- 页面内容 -->
+    <div class="content">
+        <div class="content-outside-box">
+            <div class="content-box">
+                <h4 class="h4_box">
+                    <big><big class="title"></big></big>
+                </h4>
+                <time class="time"></time>
+                <span class="uploader-info">
+                    <div class="uploader">
+                        <p>合集发起人：</p>
+                        <div class="uploader-avatar" id="uploader-avatar"></div>
+                        <span class="uploader-name" id="uploader-name" style="color: #637d9e"></span>
+                    </div>
+                </span>
+                <div class="paragraph_line"></div>
+                <div class="media-list-container"></div>
+                <div class="comment_box"></div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- 底栏 -->
+    <div class="bottom-bar">
+    </div>
+
+</div>
+<script src="/js/library.js"></script>
+<script src="/js/showdown.min.js"></script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    postToFetch("/api/searcher-container.html",".searcher-container");
+    postToFetch("/api/sidebar.html",".sidebar-sub")
+    postToFetch("/api/bottom_bar.html",".bottom-bar")
+    postToFetch("/api/comment_box.html",".comment_box")
+    postAssetsJson()
+    if(urlParams.has('cid')) {
+        let cid = urlParams.get("cid");
+        var _pidL = "_assets"+cid;
+        registerCommentsBox(_pidL);
+    }
+</script>
+<!--
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="/js/gitalk.js"></script>-->
+</body>
+</html>

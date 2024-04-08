@@ -5,9 +5,18 @@ body {
     background-size: cover;
     background: #f7f9ff;
     color: #637d9e;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 16px;
+    font-family: '-apple-system', 'BlinkMacSystemFont', 'PingFang SC', 'Segoe UI Variable Display', 'Roboto', 'Helvetica Neue', 'Segoe UI', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Yu Gothic UI', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';;
 }
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url(https://gstatic.loli.net/s/materialicons/v140/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2')
+}
+
 
 * {
     box-sizing: border-box;
@@ -18,6 +27,24 @@ a {
     color: #637d9e;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a,li {
+    overflow-wrap: break-word; /* 文本超出容器时换行 */
+}
+
+.searcher-container {
+    display: flex;
+}
+
+.logo {
+    display: block;
+    transition-duration: 0.4s;
+}
+
 .page {
     display: flex;
     flex-direction: column;
@@ -26,6 +53,11 @@ a {
 
 .logo {
     width: auto; /* 让logo宽度自适应 */
+    height: auto;
+
+}
+.logo::after {
+    box-shadow: 0 4px 4px rgba(198, 214, 255, 0.76);
 }
 
 .logo img {
@@ -34,9 +66,38 @@ a {
     user-select: none; /* 禁止图像被选中 */
 }
 
+.logo img:hover {
+    transform: scale(1.01);
+    transition-duration: 0.4s;
+}
+.logo img:active {
+    transform: scale(.98);
+    transition-duration: 0.3s;
+}
+
+.search-input{
+    width: 200%;
+    height: 100%;
+    min-height: 0;
+    padding: 0.4em 3.7em 0.3em 1.2em;
+    border: 0;
+    margin: 0;
+    background: white;
+    font-family: inherit;
+    box-shadow: 0 0 2px #87a9d8;
+}
+
+.search-input:hover {
+    transform: scale(0.97);
+}
+.search-input:active {
+    transform: scale(0.96);
+}
+
+/* 顶栏样式 */
 /* 顶栏样式 */
 .top-bar {
-    top: 0; /* 元素固定在视口的顶部 */
+    top: 0;
     z-index: 2;
     height: 3.5em;
     width: auto;
@@ -46,7 +107,7 @@ a {
     background-color: #d9ebff;
     box-shadow: 0 0 1em #87a9d8;
     color: #637d9e;
-    padding: 0 3em 0 1.75em;
+    padding: 0 1.5em; /* 减少左右 padding */
 }
 
 .user-container {
@@ -61,14 +122,106 @@ a {
 
 .top-bar-header-avatar {
      margin-right: 5px;
- }
+}
+
+/* 隐藏下拉菜单 */
+.top-bar-header-avatar-box .dropdown-menu {
+    display: none;
+}
+
+/* 隐藏下拉菜单 */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: auto;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    opacity: 0; /* 初始透明度为0 */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* 添加过渡效果 */
+    transition-duration: 1s;
+    border-radius: 8px;
+}
+
+/* 将下拉菜单显示为块级元素，并设置鼠标悬停时的样式 */
+.dropdown-menu a {
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: #333;
+}
+.dropdown-menu a:hover {
+    background-color: rgba(180, 180, 180, 0.2);
+    box-shadow: 0 4px 4px 0 rgba(68, 68, 68, 0.2);
+    transition-duration: 1s;
+}
+
+/* 当鼠标悬停在头像上时显示下拉菜单 */
+.top-bar-header-avatar-box:hover .dropdown-menu {
+    display: block;
+    opacity: 1; /* 淡入效果 */
+    visibility: visible; /* 显示菜单 */
+}
+
+/* 表格样式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* 表头样式 */
+th {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* 第一行背景色 */
+tr:first-child {
+    background-color: #f9f9f9;
+}
+
+/* 其他单元格样式 */
+tr:not(:first-child) td {
+
+}
+
+
+/* 鼠标悬停效果 */
+tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* 单元格样式 */
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* 响应式设计 */
+@media screen and (max-width: 600px) {
+    .table-container {
+        overflow-x: auto; /* 添加水平滚动条 */
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        padding: 6px;
+    }
+}
+
+
 /* 左侧栏样式 */
 .left-bar {
     position: fixed;
     top: 0;
     z-index: 1;
     width: 5em;
-    height: 100vh;
+    min-height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,6 +231,7 @@ a {
     word-wrap: break-word;
     text-align: center;
     margin-right: 6em; /* 设置右边距等于左侧栏的宽度 */
+    left: 0rem;
 }
 
 /* 横幅样式 */
@@ -108,16 +262,20 @@ a {
 
 .button:hover {
     background-color: #00eaff;
-    padding: 3px 14px;
+    transform: scale(.95);
+    box-shadow: 0 9px 9px rgba(114, 153, 251, 0.3);
 }
 
 .button-logout,.username-a {
     color: #637d9e;
+    transform: scale(1);
 }
 
 .button-logout:hover,.username-a:hover {
     color: #52969d;
-    font-size: 15px;
+    transform: scale(.98);
+    text-shadow: 0 9px 9px rgba(114, 153, 251, 0.3);
+    transition-duration: 0.4s;
 }
 
 .HEADER-AVATAR-DIV {
@@ -126,8 +284,12 @@ a {
 }
 
 .HEADER-AVATAR-DIV:hover {
-    width: 26px;
-    height: 26px;
+    transform: scale(.95);
+    box-shadow: 0 9px 9px rgba(114, 153, 251, 0.3);
+    transition-duration: 0.4s;
+}
+
+.media-title:hover {
 }
 
 .svg_button {
@@ -135,22 +297,24 @@ a {
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    padding: 8px 0;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
+    padding: 6px 0;
+    border-radius: 10px;
     width: auto; /* 设置宽度自动调整 */
     height: auto; /* 设置高度自动调整 */
     max-width: 100%; /* 最大宽度限制为父元素的宽度 */
     max-height: 100%; /* 最大高度限制为父元素的高度 */
     border: none;
-    background-color: #d9ebff;
+    /*background-color: #d9ebff;*/
     font-size: 14px;
-    transition: scale 200ms; /* 缩放过渡动画 */
+    z-index: 1;
+    scale: 0.93;
+    transition: all 0.2s;
 }
 
 .svg_button:hover {
     background-color: #c8d9eb; /* 鼠标悬停时的背景颜色 */
-    scale: 1.02; /* 鼠标悬停时放大按钮 */
+    scale: 0.99; /* 鼠标悬停时放大按钮 */
+    z-index: 0;
 }
 
 .svg_button:active {
@@ -175,6 +339,7 @@ a {
     height: 100%;
     padding: 6px;
     margin-top: 3.5em;
+    border-radius: 8px; /* 输入框圆角 */
 }
 
 /* 输入框样式 */
@@ -226,6 +391,15 @@ a {
     margin-top: 0px;
 }
 
+h4:hover {
+    transform: scale(1.00);
+    transition-duration: 0.2s;
+}
+h4:active {
+    transform: scale(1.01);
+    transition-duration: 0.2s;
+}
+
 .paragraph_line {
     border-bottom: #d5eaf6 2px solid;
     padding-bottom: 0.5em;
@@ -246,7 +420,7 @@ h4:before {
     width: 1em;
     height: 1em;
     border-radius: 1em;
-    border: #6de68b 3px solid;
+    border: #6dcbe6 3px solid;
     display: inline-block;
     vertical-align: middle;
     margin-right: 0.5em;
@@ -259,7 +433,7 @@ h4:before {
 }
 
 .content-box {
-    background-color: #ffffff;
+    background-color: rgba(0, 0, 0, 0);
     flex: 2;
     padding: 2em;
     padding-top: 1em;
@@ -300,6 +474,10 @@ time {
     line-height: 1.5em;
 }
 
+.left-bottom-text a:hover {
+    text-shadow: 0 9px 9px rgba(251, 176, 114, 0.3);
+}
+
 .right-bottom {
     display: flex;
     justify-content: flex-end; /* 右对齐 */
@@ -333,6 +511,7 @@ time {
     margin-right: 10px; /* 设置右边间距 */
     color: #f2b140;
     font-size: medium;
+    text-shadow: 0 9px 9px rgba(251, 176, 114, 0.3);
 }
 
 /* 子页面布局 */
@@ -348,14 +527,27 @@ time {
     max-height: 60%; /* 让视频的高度自适应，根据宽度进行缩放 */
     border-radius: 10px; /* 添加圆角，根据需要调整数值 */
 }
+.artplayer {
+    /*width: 85.3vh;*/
+    height: 48vh;
+    display: block; /* 将视频元素设置为块级元素 */
+    margin: 0 auto; /* 设置左右外边距为自动，实现居中 */
+    border-radius: 10px; /* 添加圆角，根据需要调整数值 */
+}
 
 
 /* 视频专区页面布局 */
-.media-cards-container {
+.media-cards-container,
+.assetsContainer,
+.gameContainer,
+.videoContainer,
+.readContainer,
+.softwareContainer,
+.projectContainer {
     display: flex;
     flex-wrap: wrap; /* 设置弹性容器换行 */
     /*justify-content: space-between;*/ /* 在弹性容器内左右分配项目 */
-    margin: 0 -0px; /* 去除两侧的默认间距 */
+    margin: 0 0rem; /* 去除两侧的默认间距 */
 }
 
 .media-cover {
@@ -366,13 +558,61 @@ time {
 }
 
 .media-card {
+    box-shadow: 0 2px 2px rgba(82, 133, 255, 0.3)
+}
+
+.media-card > a > img {
+    user-select: none;
+}
+
+.media-card {
     width: 25%; /* 设置视频卡片宽度为父容器宽度的一半减去间距 */
-    margin-bottom: 10px; /* 设置视频卡片之间的垂直间距 */
-    border: 1px solid #ccc;
+    margin-bottom: 1rem; /* 设置视频卡片之间的垂直间距 */
+    border: 1px solid #e5e5e5;
     border-radius: 8px;
     overflow: hidden;
     box-sizing: border-box; /* 让元素的宽度包含边框和内边距 */
     padding: 0 4px; /* 添加间距 */
+}
+.media-card:hover {
+    transform: scale(.98);
+    box-shadow: 0 9px 9px rgba(114, 153, 251, 0.3);
+    transition-duration: 0.2s; /* 过渡效果持续时间 */
+}
+.media-card:active {
+    transform: scale(.95);
+    box-shadow: 0 9px 9px rgba(114, 153, 251, 0.3);
+    transition-duration: 0.2s; /* 过渡效果持续时间 */
+}
+.media-card a img {
+    border-radius: 6px;
+}
+
+@media screen and (max-width: 768px) {
+    .media-cards-container,
+    .assetsContainer,
+    .gameContainer,
+    .videoContainer,
+    .readContainer,
+    .softwareContainer,
+    .projectContainer {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .media-card {
+        width: 33.33%; /* 当屏幕宽度小于 768px 时，将宽度设置为 50%，即2等分 */
+    }
+}
+@media screen and (max-width: 624px) {
+    .media-card {
+        width: 50%; /* 当屏幕宽度小于 624px 时，将宽度设置为 33%，即3等分 */
+    }
+}
+@media screen and (max-width: 480px) {
+    .media-card {
+        width: 100%; /* 当屏幕宽度小于 480px 时，将宽度设置为 100%，即单一 */
+    }
 }
 
 .media-info {
@@ -401,4 +641,70 @@ time {
     margin: 10px 0 0; /* 设置标题与上传者信息的间距 */
     /*font-size: 30px;*/
     color: #333;
+}
+/* 缩小屏幕时的样式 */
+@media screen and (max-width: 945px) {
+    .top-bar {
+        padding: 0 1em; /* 进一步减少左右 padding */
+        display: flex; /* 使用 flex 布局 */
+        justify-content: space-between; /* 在主轴上平均分配空间，元素往左右靠 */
+        align-items: center; /* 交叉轴方向居中对齐 */
+    }
+    .content-bar {
+        display: block;
+        width: 100%;
+    }
+    .content-box {
+        display: block;
+        padding: 0;
+    }
+    .boxBar0 {
+        width: 100%;
+    }
+
+    .logo {
+    }
+    .logo > img {
+        height: 2.5em; /* 缩小logo图片大小 */
+        display: none;
+    }
+
+    .top-bar-username {
+        display: none; /* 在小屏幕下隐藏用户名 */
+    }
+
+    .search-input {
+        width: 60%;
+        max-width: 200%;
+    }
+
+    .searcher-container {
+        display: flex; /* 使用 flex 布局 */
+        justify-content: flex-start; /* 主轴方向向左对齐 */
+        align-items: center; /* 交叉轴方向居中对齐 */
+    }
+
+    .button-div {
+        transform: scale(0.78);
+    }
+    .search-button {
+        transform: scale(0.78);
+    }
+    .button-logout {
+        transform: scale(0.78);
+    }
+}
+
+.menu_button {
+    z-index: 50;
+}
+.menu_svgButton {
+    background-color: #24a2ff;
+    box-shadow: 0 2px 2px rgb(40 40 40 / 76%);
+    scale: 1;
+    margin-bottom: 1rem;
+
+}
+.menu_svgButton:hover {
+    background-color: #5cc8ff;
 }

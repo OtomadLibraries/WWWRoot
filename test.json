@@ -1,45 +1,11 @@
 {
-  "warnings": {
-    "main": {
-      "*": "Unrecognized parameters: rvlimit, rvprop."
-    }
-  },
-  "parse": {
-    "title": "最新事件",
-    "pageid": 2874,
-    "revid": 16353,
-    "text": {
-      "*": "<div class=\"mw-parser-output\"><style data-mw-deduplicate=\"TemplateStyles:r16245\">.mw-parser-output .childbox-image-more::before{content:\"\";opacity:0;transition:opacity 0.2s}.mw-parser-output .childbox-image-more:hover::before{content:\"了解更多\";font-weight:bold;position:absolute;display:flex;font-size:20px;color:black;width:100%;height:100%;justify-content:center;align-items:center;z-index:200;opacity:1;background-color:rgba(255,255,255,0.7)}.mw-parser-output .childbox-image-more{transform:scale(1);transition:all 0.2s}.mw-parser-output .childbox-image-more:hover{transform:scale(1.01)}.mw-parser-output .childbox-image-more-child img{width:100%;height:auto}@media(min-width:850px){.mw-parser-output .childbox-box{display:flex;gap:8px;font-size:0}.mw-parser-output .childbox-image{width:30%;border-radius:6px;overflow:hidden;cursor:default;align-items:center}.mw-parser-output .childbox-text{width:65%;margin-left:20px}.mw-parser-output .childbox-title{flex:1;font-weight:700;font-size:20px;margin-top:5px}}@media(max-width:850px){.mw-parser-output .childbox-box{display:flex;flex-direction:column;gap:8px;font-size:0}.mw-parser-output .childbox-image{width:100%;border-radius:6px;overflow:hidden;cursor:default;align-items:center;margin:auto}.mw-parser-output .childbox-text{width:100%}.mw-parser-output .childbox-title{text-align:center;flex:1;font-weight:700;font-size:20px;margin-top:5px}}</style>\n<div class=\"childbox-box\">\n<div class=\"childbox-image childbox-image-more\" data-more=\"https&#58;//www.bilibili.com/video/BV19u4m1P799/\"><div class=\"childbox-image-more-child\" style=\"pointer-events: none;\"><a href=\"/File:24%E6%96%B0%E6%98%A5%E5%AE%B4%E5%9B%9B%E5%AD%A3.png\" class=\"image\"><img alt=\"24新春宴四季.png\" src=\"/images/9/98/24%E6%96%B0%E6%98%A5%E5%AE%B4%E5%9B%9B%E5%AD%A3.png\" decoding=\"async\" loading=\"lazy\" width=\"1920\" height=\"1080\" data-file-width=\"1920\" data-file-height=\"1080\" /></a></div></div>\n<div class=\"childbox-text\">\n<div class=\"childbox-title\">【2024东方新春宴单品】令人怀念的东方之血 ~ Imperishable Legacy</div>\n<div style=\"flex:1;font-size:14px;margin-top:10px\">原华灯宴音MAD合作</div>\n</div>\n</div><p><script>\nRLQ.push([[\"jquery\"],function(){\n$(\".childbox-image-more\").each(\nfunction(){\n    let more = $(this).attr(\"data-more\");\n    $(this).attr(\"onclick\",\"child_more('\"+more+\"');\");\n})\n}]);\n\nfunction child_more(more){\n    window.open(more);\n}\n</script>\n</p><hr style=\"margin: 1em 0\" />\n<link rel=\"mw-deduplicated-inline-style\" href=\"mw-data:TemplateStyles:r16245\"/>\n<div class=\"childbox-box\">\n<div class=\"childbox-image childbox-image-more\" data-more=\"https&#58;//www.bilibili.com/video/av1850471138/\"><div class=\"childbox-image-more-child\" style=\"pointer-events: none;\"><a href=\"/File:24%E6%96%B0%E6%98%A5%E5%AE%B4%E7%A8%80%E7%A5%9E.png\" class=\"image\"><img alt=\"24新春宴稀神.png\" src=\"/images/c/c0/24%E6%96%B0%E6%98%A5%E5%AE%B4%E7%A8%80%E7%A5%9E.png\" decoding=\"async\" loading=\"lazy\" width=\"1730\" height=\"1080\" data-file-width=\"1730\" data-file-height=\"1080\" /></a></div></div>\n<div class=\"childbox-text\">\n<div class=\"childbox-title\">【2024东方新春宴单品】疾走于现世的幻想乐章 ～ Lunatic symphony from lunatic world</div>\n<div style=\"flex:1;font-size:14px;margin-top:10px\">东方新春宴p2音MAD合作</div>\n</div>\n</div><p><script>\nRLQ.push([[\"jquery\"],function(){\n$(\".childbox-image-more\").each(\nfunction(){\n    let more = $(this).attr(\"data-more\");\n    $(this).attr(\"onclick\",\"child_more('\"+more+\"');\");\n})\n}]);\n\nfunction child_more(more){\n    window.open(more);\n}\n</script></p></div>"
-    },
-    "langlinks": [],
-    "categories": [],
-    "links": [],
-    "templates": [
-      {
-        "ns": 10,
-        "exists": "",
-        "*": "Template:子栏目"
-      },
-      {
-        "ns": 10,
-        "exists": "",
-        "*": "Template:子栏目.css"
-      }
-    ],
-    "images": [
-      "24新春宴四季.png",
-      "24新春宴稀神.png"
-    ],
-    "externallinks": [],
-    "sections": [],
-    "parsewarnings": [],
-    "displaytitle": "<span class=\"mw-page-title-main\">最新事件</span>",
-    "iwlinks": [],
-    "properties": [
-      {
-        "name": "page_image_free",
-        "*": "24新春宴四季.png"
-      }
-    ]
+  "code":200,
+  "data": {
+    "assets": [],
+    "game": [],
+    "project": [],
+    "video": [],
+    "read": [],
+    "software": []
   }
 }

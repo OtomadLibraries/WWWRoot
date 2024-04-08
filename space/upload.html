@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta name="baidu-site-verification" content="codeva-D8l7mkwNSG" />
+    <meta charset="UTF-8">
+    <title>OtoMAD Libraries</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="description" name="description" content="音乐源于万物之声——OtoMADs Libraries，一个专注于音MAD知识库的网站。领域包括视频补档、资源分享、经验学习、素材/工程分享和游戏娱乐" class="description">
+    <style>
+        big {
+            text-shadow: 0 0 1px #9cc6ff;
+        }
+
+        .Inputbox {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 0 2px #87a9d8;
+        }
+
+        .Inputbox:hover {
+             transform: scale(0.999);
+         }
+        .Inputbox:active {
+            transform: scale(0.998);
+        }
+
+        /* 隐藏原始的单选框 */
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* 自定义的样式 */
+        label {
+            display: inline-block;
+            padding: 5px 18px;
+            margin: 0px;
+            background-color: #00b3ff; /* 按钮的背景颜色 */
+            color: #fff; /* 按钮的文字颜色 */
+            border: 1px solid transparent; /* 按钮的边框 */
+            border-radius: 30px; /* 椭圆形的边框半径 */
+            cursor: pointer;
+            box-shadow: 0 0 2px #87a9d8;
+        }
+
+        /* 鼠标悬停状态 */
+        label:hover {
+            background-color: #00eaff;
+            transform: scale(.95);
+            box-shadow: 0 9px 9px rgba(114, 153, 251, 0.3);
+        }
+
+        label:active {
+            background-color: #00eaff;
+            transform: scale(.93);
+            box-shadow: 0 9px 9px rgba(114, 153, 251, 0.3);
+        }
+
+
+        .upload_button {
+            display: inline-block;
+            padding: 5px 18px;
+            margin: 0px;
+            background-color: #00b3ff; /* 按钮的背景颜色 */
+            color: #fff; /* 按钮的文字颜色 */
+            border: 1px solid transparent; /* 按钮的边框 */
+            border-radius: 30px; /* 椭圆形的边框半径 */
+            cursor: pointer;
+            box-shadow: 0 0 2px #87a9d8;
+        }
+
+        /* 鼠标悬停状态 */
+        .upload_button:hover {
+            background-color: #00eaff;
+            transform: scale(.95);
+            box-shadow: 0 9px 9px rgba(114, 153, 251, 0.3);
+        }
+
+        .upload_button:active {
+            background-color: #00eaff;
+            transform: scale(.93);
+            box-shadow: 0 9px 9px rgba(114, 153, 251, 0.3);
+        }
+
+        /* 选中状态 */
+        input[type="radio"]:checked + label {
+            background-color: #40efff; /* 按钮的背景颜色 */
+            border-color: #40efff; /* 按钮的边框颜色 */
+        }
+
+    </style>
+</head>
+<body>
+<div id="page" class="page">
+    <!-- 左侧栏/通过js控制 -->
+    <div class="left-bar" style="transform: translateY(0px);">
+        <div class="sidebar-sub">
+        </div>
+    </div>
+
+    <!-- 顶栏 -->
+    <div class="top-bar">
+        <div class="logo">
+            <img class="web_title" src="/images/page_logo.png" alt="otomads" onclick="">
+        </div>
+        <div class="searcher-container">
+        </div>
+        <div class="user-container">
+        </div>
+    </div>
+
+    <!-- 横幅 -->
+    <div class="top-banner-img">
+    </div>
+
+    <!-- 页面内容 -->
+    <div class="content">
+        <div class="content-outside-box">
+            <div class="content-box">
+                <div class="paragraph_line"></div>
+                <div class="uploadIndex">
+                    <div class="upload-options">
+                        <big class="upload_type_options">投稿分区</big><br>
+                        <div class="options">
+                            <input type="radio" id="collaboration" name="upload_type" value="collaboration" onclick="exchangeButton(this)">
+                            <label for="collaboration">合作推广</label>
+
+                            <input type="radio" id="video" name="upload_type" value="video" onclick="exchangeButton(this)">
+                            <label for="video">视频</label>
+
+                            <input type="radio" id="game" name="upload_type" value="game" onclick="exchangeButton(this)">
+                            <label for="game">游戏</label>
+
+                            <input type="radio" id="software" name="upload_type" value="software" onclick="exchangeButton(this)">
+                            <label for="software">软件</label>
+
+                            <input type="radio" id="assets" name="upload_type" value="assets" onclick="exchangeButton(this)">
+                            <label for="assets">素材合集</label>
+
+                            <input type="radio" id="assets_unit" name="upload_type" value="assets_unit" onclick="exchangeButton(this)">
+                            <label for="assets_unit">素材</label>
+
+                            <input type="radio" id="project" name="upload_type" value="project" onclick="exchangeButton(this)">
+                            <label for="project">工程</label>
+
+                            <input type="radio" id="read" name="upload_type" value="read" onclick="exchangeButton(this)">
+                            <label for="read">专栏</label>
+                        </div>
+
+
+                    </div>
+                    <div>
+                        <div class="InputboxFather titleBox">
+                            <p><big class="title_text">稿件标题</big></p>
+                            <p><input type="text" class="Inputbox titleValue" placeholder="点击输入"></p>
+                        </div>
+                        <div class="InputboxFather imgBox">
+                            <p><big>封面链接</big></p>
+                            <p><input type="text" class="Inputbox imgValue" placeholder="点击输入"></p>
+                        </div>
+                        <div class="InputboxFather srcBox">
+                            <p><big>内容链接/视频源</big></p>
+                            <p><input type="text" class="Inputbox srcValue" placeholder="点击输入"></p>
+                        </div>
+                        <div class="InputboxFather belongBox">
+                            <p><big>从属合集</big></p>
+                            <p><input type="text" class="Inputbox belongValue" placeholder="点击输入"></p>
+                        </div>
+                        <div class="InputboxFather hostBox">
+                            <p><big>主催</big></p>
+                            <p><input type="text" class="Inputbox hostValue" placeholder="点击输入"></p>
+                        </div>
+                        <div class="InputboxFather joinUrlBox">
+                            <p><big>加入方式</big></p>
+                            <p><input type="text" class="Inputbox joinUrlValue" placeholder="点击输入"></p>
+                        </div>
+                        <div class="InputboxFather videoUrlBox">
+                            <p><big>发布地址</big></p>
+                            <p><input type="text" class="Inputbox videoUrlValue" placeholder="点击输入"></p>
+                        </div>
+                        <div class="InputboxFather progressBox">
+                            <p><big>合作进度</big></p>
+                            <p><input type="text" class="Inputbox progressValue" placeholder="点击输入"></p>
+                        </div>
+                        <div class="InputboxFather tagBox">
+                            <p><big>标签(使用#隔开)</big></p>
+                            <p><input type="text" class="Inputbox tagValue" placeholder="点击输入"></p>
+                        </div>
+                    </div>
+                    <div>
+                        <p><big class="introduce_text">简介</big></p>
+                        <textarea class="Inputbox descriptionValue" placeholder="点击输入" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; width: 100%; height: 200px; resize: none; box-sizing: border-box;"></textarea>
+                    </div>
+                    <button class="upload_button" onclick="done()">投稿</button>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底栏 -->
+    <div class="bottom-bar">
+
+    </div>
+
+</div>
+<script src="/js/library.js"></script>
+<script src="/js/mediawiki_api.js"></script>
+<script src="/js/otomadwiki_widget.js"></script>
+<script src="/js/from_otomadwiki.js"></script>
+<script src="/js/showdown.min.js"></script>
+<script>
+    postToFetch("/api/searcher-container.html",".searcher-container");
+    postToFetch("/api/sidebar.html",".sidebar-sub");
+    postToFetch("/api/bottom_bar.html",".bottom-bar");
+</script>
+<script>
+    let progressInput = document.querySelector('.progressValue');
+    progressInput.addEventListener('input', function(event) {
+        let inputValue = event.target.value;
+        event.target.value = inputValue.replace(/\D/g, '');
+    });
+</script>
+<script>
+    var mode = 0;
+    var token = null;
+    if(!localStorage.getItem('token')) {
+        window.location.href = "/login.html";
+    } else {
+        token = localStorage.getItem('token');
+    }
+    loadSetupBox();
+    function exchangeButton(T) {
+        resetBox();
+        loadSetupBox();
+        let V = T.value;
+        if(V=="video" || V=="read" || V=="assets" || V=="project" || V=="software") {
+            this.mode = 1;
+            if(V=="video") {
+                this.mode = 11;
+            }
+            if(V=="read") {
+                this.mode = 12;
+            }
+            if(V=="assets") {
+                this.mode = 13;
+            }
+            if(V=="project") {
+                this.mode = 14;
+            }
+            if(V=="software") {
+                this.mode = 15;
+            }
+        }
+        
+        if(V=="assets_unit") {
+            enable("belongBox");
+            this.mode = 2;
+        } else {
+            disable("belongBox");
+        }
+
+        if(V=="read") {
+            document.querySelector('.introduce_text').textContent = "正文(支持HTML)";
+            this.mode = 12;
+        } else {
+            document.querySelector('.introduce_text').textContent = "简介";
+        }
+
+        if(V=="collaboration") {
+            document.querySelector('.title_text').textContent = "合作标题";
+            this.mode = 3;
+            enable("hostBox");
+            enable("joinUrlBox");
+            enable("videoUrlBox");
+            enable("progressBox");
+        } else {
+            document.querySelector('.title_text').textContent = "稿件标题";
+            disable("hostBox");
+            disable("joinUrlBox");
+            disable("videoUrlBox");
+            disable("progressBox");
+        }
+
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    function done() {
+        if(token==null) {
+            window.alert('未登录');
+            return;
+        }
+        let params = {
+        };
+        let apiUrl = "https://api.otomads.top/user/upload.php?";
+        //输入参数
+        let title = document.querySelector(".titleValue").value;
+        let img = document.querySelector(".imgValue").value;
+        let src = document.querySelector(".srcValue").value;
+        let description = document.querySelector(".descriptionValue").value;
+        let belong = document.querySelector(".belongValue").value;
+        let host = document.querySelector(".hostValue").value;
+        let joinUrl = document.querySelector(".joinUrlValue").value;
+        let videoUrl = document.querySelector(".videoUrlValue").value;
+        let progress = document.querySelector(".progressValue").value;
+        let tag = document.querySelector(".tagValue").value;
+
+        switch (this.mode) {
+            case 11: { //video
+                params = {
+                    token: `${token}`,
+                    type: 'video',
+                    title: `${title}`,
+                    img: `${img}`,
+                    src: `${src}`,
+                    description: `${description}`,
+                    tag: `${tag}`
+                };
+                break;
+            }
+            case 12: { //read
+                params = {
+                    token: `${token}`,
+                    type: 'read',
+                    title: `${title}`,
+                    img: `${img}`,
+                    src: `${src}`,
+                    description: `${description}`,
+                    tag: `${tag}`
+                };
+                break;
+            }
+            case 13: { //assets
+                params = {
+                    token: `${token}`,
+                    type: 'assets',
+                    title: `${title}`,
+                    img: `${img}`,
+                    src: `${src}`,
+                    description: `${description}`,
+                    tag: `${tag}`
+                };
+                break;
+            }
+            case 14: { //project
+                params = {
+                    token: `${token}`,
+                    type: 'project',
+                    title: `${title}`,
+                    img: `${img}`,
+                    src: `${src}`,
+                    description: `${description}`,
+                    tag: `${tag}`
+                };
+                break;
+            }
+            case 15: { //software
+                params = {
+                    token: `${token}`,
+                    type: 'software',
+                    title: `${title}`,
+                    img: `${img}`,
+                    src: `${src}`,
+                    description: `${description}`,
+                    tag: `${tag}`
+                };
+                break;
+            }
+            case 2: { //assetsUnit
+                params = {
+                    token: `${token}`,
+                    type: 'assetsarray',
+                    cid: `${belong}`,
+                    title: `${title}`,
+                    description: `${description}`,
+                    src: `${src}`
+                };
+                break;
+            }
+            case 3: { //collaboration
+                params = {
+                    token: `${token}`,
+                    type: 'collaboration',
+                    title: `${title}`,
+                    img: `${img}`,
+                    src: '.',
+                    host: `${host}`,
+                    join_url: `${joinUrl}`,
+                    video_url: `${videoUrl}`,
+                    progress: `${progress}`,
+                    description: `${description}`,
+                    tag: `${tag}`
+                };
+                break;
+            }
+            default: {
+                return;
+            }
+        }
+
+        let paramString = Object.keys(params).map(function(key) {
+            return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+        }).join('&');
+
+        apiUrl = apiUrl + paramString;
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('网络请求失败');
+                }
+                return response.json();
+            })
+            .then(json => {
+                let code = json.code;
+                let message = json.message;
+                window.alert(message);
+                if(code==200) {
+                    window.location.href = "./";
+                }
+            })
+            .catch(error => {
+            console.error('发生错误:', error.message);
+        });
+
+    }
+
+    function loadSetupBox() {
+        resetBox();
+        enable("titleBox");
+        enable("imgBox");
+        enable("srcBox");
+        enable("tagBox");
+    }
+    function enable(T) {
+        if(document.querySelector('.'+T)) {
+            document.querySelector('.'+T).style.display = "block";
+        } else if(document.querySelector(T)) {
+            document.querySelector(T).style.display = "block";
+        }
+    }
+    function disable(T) {
+        if(document.querySelector('.'+T)) {
+            document.querySelector('.'+T).style.display = "none";
+        } else if(document.querySelector(T)) {
+            document.querySelector(T).style.display = "none";
+        }
+    }
+    function resetBox() {
+        let ibArray = document.querySelectorAll('.InputboxFather');
+        ibArray.forEach(ib=> {
+            ib.style.display = "none";
+        })
+    }
+
+</script>
+</body>
+</html>

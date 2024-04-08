@@ -51,9 +51,7 @@
     postToFetch("/api/searcher-container.html",".searcher-container");
     postToFetch("/api/sidebar.html",".sidebar-sub")
     postToFetch("/api/bottom_bar.html",".bottom-bar")
-    localStorage.removeItem('GT_ACCESS_TOKEN');
-    localStorage.removeItem('HEADER-AVATAR');
-    localStorage.removeItem('USERNAME');
+    localStorage.removeItem('token');
     setTimeout(function() {
         history.go(-1);
     }, 1000);

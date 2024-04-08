@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>OtoMAD Libraries</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="description" name="description" content="音乐源于万物之声——OtoMADs Libraries，一个专注于音MAD知识库的网站。领域包括视频补档、资源分享、经验学习、素材/工程分享和游戏娱乐" class="description">
+    <style>
+        .commonButton {
+            background-color: #72adfb; /* 设置背景颜色 */
+            border: none; /* 移除边框 */
+            color: white; /* 设置文本颜色 */
+            padding: 6px 16px; /* 设置内边距 */
+            text-align: center; /* 文本居中 */
+            text-decoration: none; /* 移除下划线 */
+            display: inline-block; /* 行内块元素 */
+            font-size: 16px; /* 字体大小 */
+            /*margin: 4px 2px;*/ /* 设置外边距 */
+            cursor: pointer; /* 鼠标样式为手型 */
+            border-radius: 5px; /* 设置圆角 */
+            transition-duration: 0.4s; /* 过渡效果持续时间 */
+        }
+
+        .commonButton:hover {
+            color: white; /* 鼠标悬停时的文本颜色 */
+            box-shadow: 0 9px 9px rgba(114, 226, 251, 0.3);
+            transform: scale(.98);
+        }
+        .commonButton:active {
+            background-color: #578abd; /* 鼠标悬停时的背景颜色 */
+            color: white; /* 鼠标悬停时的文本颜色 */
+            box-shadow: 0 0 0 rgba(114, 198, 251, 0.3);
+            transform: scale(.95);
+        }
+    </style>
+    <style>
+        /* 设置左侧列 */
+        .left-column {
+            float: left; /* 左浮动 */
+            width: 25%; /* 占据父容器的一半宽度 */
+            background-color: #f0f0f0; /* 背景色 */
+            padding: 20px; /* 内边距 */
+            min-height: 40rem;
+            border-radius: 8px;
+        }
+
+        /* 设置右侧列 */
+        .right-column {
+            float: right; /* 右浮动 */
+            width: 75%; /* 占据父容器的一半宽度 */
+            background-color: #f6f6f6; /* 背景色 */
+            color: #262626;
+            padding: 20px; /* 内边距 */
+            min-height: 25rem;
+            border-radius: 8px;
+        }
+
+        .left-column:hover,.right-column:hover {
+            transition-duration: 0.4s; /* 过渡效果持续时间 */
+            transform: scale(.994);
+            box-shadow: 0 4px 4px rgba(114, 226, 251, 0.3);
+        }
+
+        /* 清除浮动 */
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* 可选：调整响应式布局 */
+        @media (max-width: 768px) {
+            .left-column, .right-column {
+                width: 100%; /* 在较小的屏幕上占据整个宽度 */
+                float: none; /* 取消浮动 */
+            }
+        }
+        .media-card {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="page" class="page">
+    <!-- 左侧栏/通过js控制 -->
+    <div class="left-bar" style="transform: translateY(0px);">
+        <div class="sidebar-sub">
+        </div>
+    </div>
+
+    <!-- 顶栏 -->
+    <div class="top-bar">
+        <div class="logo">
+            <img class="web_title" src="/images/page_logo.png" alt="otomads" onclick="">
+        </div>
+        <div class="searcher-container">
+        </div>
+        <div class="user-container">
+        </div>
+    </div>
+
+    <!-- 横幅 -->
+    <div class="top-banner-img">
+    </div>
+
+    <!-- 页面内容 -->
+    <div class="content">
+        <div class="content-outside-box">
+            <div class="content-box">
+                <h4>
+                    <big><big class="db_title">特殊页面:投稿审核管理</big></big>
+                </h4>
+                <div class="paragraph_line"></div>
+                <div>
+                    <button onclick="_thisChange(this.title)" title="video" accesskey="v" class="commonButton">视频</button>
+                    <button onclick="_thisChange(this.title)" title="read" accesskey="v" class="commonButton">专栏</button>
+                    <button onclick="_thisChange(this.title)" title="assets" accesskey="v" class="commonButton">素材</button>
+                    <button onclick="_thisChange(this.title)" title="software" accesskey="v" class="commonButton">软件</button>
+                    <button onclick="_thisChange(this.title)" title="project" accesskey="v" class="commonButton">工程</button>
+                    <button onclick="_thisChange(this.title)" title="game" accesskey="v" class="commonButton">游戏</button>
+                    <button onclick="location.reload()" title="reload" accesskey="v" class="commonButton" style="background-color: #72fbc6">刷新</button>
+                </div>
+                <!-- 左侧列 -->
+                <div class="left-column">
+                    <div class="assetsContainer" style="display: flex"></div>
+                    <div class="gameContainer" style="display: flex"></div>
+                    <div class="videoContainer" style="display: flex"></div>
+                    <div class="readContainer" style="display: flex"></div>
+                    <div class="softwareContainer" style="display: flex"></div>
+                    <div class="projectContainer" style="display: flex"></div>
+                </div>
+
+                <!-- 右侧列 -->
+                <div class="right-column">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- 底栏 -->
+    <div class="bottom-bar">
+    </div>
+
+</div>
+<script src="/js/library.js"></script>
+<script src="/js/userspace.js"></script>
+<script src="/js/reviewer.js"></script>
+<script src="/js/comment.js"></script>
+<script src="/js/mediawiki_api.js"></script>
+<script src="/js/otomadwiki_widget.js"></script>
+<script src="/js/from_otomadwiki.js"></script>
+<script src="/js/showdown.min.js"></script>
+<script>
+    postToFetch("/api/searcher-container.html",".searcher-container");
+    postToFetch("/api/sidebar.html",".sidebar-sub")
+    postToFetch("/api/bottom_bar.html",".bottom-bar")
+    hideAllUserUploadList();
+    _thisChange("video");
+</script>
+<script>
+    var token = localStorage.getItem('token');
+    var apiUrl = "https://api.otomads.top/manager/getReview0.php?token=" + token;
+    if (localStorage.getItem('token')) {
+        fetch(apiUrl, {
+            mode: 'cors'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('网络请求失败');
+                }
+                return response.json();
+            })
+            .then(data => {
+                var code = data.code;
+                var userData = data.data;
+                if(code==200) func200(userData);
+            })
+            .catch(error => {
+                console.log(error)
+                document.querySelector(".content").remove();
+            });
+    } else {
+        document.querySelector(".content").remove();
+    }
+</script>
+</body>
+</html>

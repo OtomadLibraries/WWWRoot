@@ -28,6 +28,7 @@ a {
     position: fixed; /* 固定顶部栏 */
     top: 0px; /* 位于页面顶部 */
     width: 100%; /* 宽度占满整个屏幕 */
+    z-index: 300;
 }
 
 .mobile_top_bar_select {
@@ -43,6 +44,7 @@ a {
     overflow-x: auto; /* 水平方向滚动 */
     white-space: nowrap; /* 防止按钮被压缩到一行 */
     scroll-snap-type: x mandatory; /* 横向滚动时，强制对齐到每个子元素的开始位置 */
+    z-index: 300;
 }
 
 .comment_box {

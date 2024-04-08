@@ -28,26 +28,37 @@
         }
 
         .boxBarTop {
-            width: 96%; /* 设置宽度，使其并排自适应，并留出一些间距 */
+            width: 100%; /* 设置宽度，使其并排自适应，并留出一些间距 */
             padding: 10px; /* 设置内边距 */
             background-color: rgba(240, 240, 240, 0.8); /* 背景颜色，最后一个参数为透明度，取值范围为0到1 */
             border-radius: 10px; /* 圆角 */
             margin: 0 10px; /* 左右间距 */
-            box-shadow: 0 0 1px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+            box-shadow: 0 0 1px rgba(89, 89, 89, 0.2);
         }
 
         .boxBarTop:hover,.boxBar0:hover {
             background-color: #e8e8e8;
-            width: 100%
+            box-shadow: 0 0 2px rgba(89, 89, 89, 0.2);
+            transform: scale(1.005);
+        }
+        .boxBarTop:active,.boxBar0:active {
+            transform: scale(.98);
         }
 
         .boxBar0 {
-             width: calc(47.5% - 20px); /* 设置宽度，使其并排自适应，并留出一些间距 */
+             width: calc(50% - 20px); /* 设置宽度，使其并排自适应，并留出一些间距 */
              padding: 10px; /* 设置内边距 */
              background-color: rgba(240, 240, 240, 0.8); /* 背景颜色，最后一个参数为透明度，取值范围为0到1 */
              border-radius: 10px; /* 圆角 */
              margin: 0 10px; /* 左右间距 */
              box-shadow: 0 0 1px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+        }
+
+        .childbox-box:hover {
+            transform: scale(1.005);
+        }
+        .childbox-box:active {
+             transform: scale(.98);
          }
 
         .friendUrl_list {
@@ -121,7 +132,9 @@
                         <div class="boxBarTitle">
                             简介
                         </div>
-                        <div class="content-text-box"></div>
+                        <div class="content-text-box">
+                            <p>OtoMAD Libraries 是音MAD的图书馆，一个帮助音MADer整理分享素材资源，技巧，补档视频以及娱乐的网站..</p>
+                        </div>
                     </div>
                     <div class="boxBar0">
                         <div class="boxBarTitle">
@@ -138,6 +151,8 @@
             </div>
         </div>
     </div>
+    <br>
+    <br>
 
     <!-- 底栏 -->
     <div class="bottom-bar">
@@ -153,7 +168,7 @@
     postToFetch("/api/searcher-container.html",".searcher-container");
     postToFetch("/api/sidebar.html",".sidebar-sub");
     postToFetch("/api/bottom_bar.html",".bottom-bar");
-    postToFetch("/read/cv0/text.html",".content-text-box");
+    //postToFetch("/read/cv0/text.html",".content-text-box");
     postToFetch("/api/friend_website.html", ".friendUrl_list");
     from_mediawiki(".new_event", "最新事件", "https://otomad.wiki/");
 </script>

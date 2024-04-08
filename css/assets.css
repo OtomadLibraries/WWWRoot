@@ -24,9 +24,9 @@
 }
 
 .item {
-    background-color: rgba(240, 240, 240, 0.8);
-    border-radius: 10px; /* 圆角 */
-    padding: 20px; /* 内边距 */
+    background-color: rgb(243 243 243 / 80%);
+    border-radius: 8px; /* 圆角 */
+    padding: 12px; /* 内边距 */
 
 }
 
