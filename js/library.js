@@ -329,7 +329,7 @@ async function postVideoJson() {
                 let userData = data.data;
                 let uploader = userData.uploader;
 
-                let apiQueryUserUrl = "https://api.otomads.top/user/queryUser.php?uid=" + uploader;
+                let apiQueryUserUrl = "https://api.otomads.top/user/queryUser.php?uid=" + encodeURIComponent(uploader);
                 fetch(apiQueryUserUrl)
                     .then(response => {
                     if (!response.ok) {
@@ -341,16 +341,18 @@ async function postVideoJson() {
                         let code = data.code;
                         let userData = data.data;
                         //console.log(userData);
-                        let username = userData.username;
-                        let useravatar = userData.useravatar;
-                        let uid = userData.uid;
-                        const div_avatar = '<img src="'+useravatar+'" alt="Avatar" href="/space/index.html?uid='+uid+'" style="border-radius: 50%; width: 30px; height: 30px;">';
-                        const div_upload = '<a href="/space/index.html?uid='+uid+'">'+username+'</a>';
-                        addPageContent('.uploader-info',div_avatar);
-                        addPageContent('.uploader-info',div_upload);
+                        if(code==200) {
+                            let username = userData.username;
+                            let useravatar = userData.useravatar;
+                            let uid = userData.uid;
+                            const div_avatar = '<img src="'+useravatar+'" alt="Avatar" href="/space/index.html?uid='+uid+'" style="border-radius: 50%; width: 30px; height: 30px;">';
+                            const div_upload = '<a href="/space/index.html?uid='+uid+'">'+username+'</a>';
+                            addPageContent('.uploader-info',div_avatar);
+                            addPageContent('.uploader-info',div_upload);
+                        }
                     })
                     .catch(error => {
-                    console.error('发生错误:', error.message);
+                        console.error('发生错误:', error.message);
                 });
 
                 let title = userData.title;

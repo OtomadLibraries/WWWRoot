@@ -21,7 +21,6 @@ async function removeComment(cid,_T_,divThis) {
         })
         .catch(error => {
             try {
-                alert();
             } catch (e) {
             }
         });
@@ -41,7 +40,6 @@ async function manageCommentButton() {
             let code = data.code;
             let message = data.message;
             if(code==404) {
-                alert(message);
             } else if(code==200) {
                 let dataArray = data.data;
                 let uid_server = dataArray.uid;
@@ -125,7 +123,6 @@ async function sendComment(pid) {
         })
         .catch(error => {
             try {
-                alert();
             } catch (e) {
             }
         });

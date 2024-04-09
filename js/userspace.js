@@ -11,7 +11,7 @@ function generateRandomString(length) {
 }
 
 
-function getUserUpload(uid) {
+async function getUserUpload(uid) {
     let apiUrl = "https://api.otomads.top/user/queryUserUpload.php?uid="+encodeURIComponent(uid);
     fetch(apiUrl)
         .then(response => {
@@ -20,10 +20,10 @@ function getUserUpload(uid) {
             }
             return response.json();
         })
-        .then(json => {
+        .then(async json => {
             //console.log(json);
             let code = json.code;
-            if(code==200) {
+            if (code == 200) {
                 let data = json.data;
                 let assetsArray = data.assets;
                 let gameArray = data.game;
@@ -31,19 +31,19 @@ function getUserUpload(uid) {
                 let readArray = data.read;
                 let softwareArray = data.software;
                 let projectArray = data.project;
-                arrayFor(assetsArray,"assets",".assetsContainer");
-                arrayFor(gameArray,"game",".gameContainer");
-                arrayFor(videoArray,"video",".videoContainer");
-                arrayFor(readArray,"read",".readContainer");
-                arrayFor(softwareArray,"software",".softwareContainer");
-                arrayFor(projectArray,"project",".projectContainer");
+                await arrayFor(assetsArray, "assets", ".assetsContainer");
+                await arrayFor(gameArray, "game", ".gameContainer");
+                await arrayFor(videoArray, "video", ".videoContainer");
+                await arrayFor(readArray, "read", ".readContainer");
+                await arrayFor(softwareArray, "software", ".softwareContainer");
+                await arrayFor(projectArray, "project", ".projectContainer");
             }
         })
         .catch(error => {
             console.error('发生错误:', error.message);
         });
 }
-function arrayFor(array,type,container) {
+async function arrayFor(array,type,container) {
     array.forEach(item => {
         let cid = item.cid;
         let title = item.title;
