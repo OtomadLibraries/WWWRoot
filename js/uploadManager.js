@@ -125,6 +125,7 @@ function arrayForViewer(array, type, container) {
         if (type == "video") link = "/video/index.html?cid=" + cid;
         if (type == "read") link = "/read/index.html?cid=" + cid;
         if (type == "software" || type == "project") link = item.src;
+        src = replaceBilibiliUrl(src);
 
         fetch("https://api.otomads.top/user/queryUser.php?uid=" + encodeURIComponent(uid))
             .then(response => {
@@ -145,10 +146,10 @@ function arrayForViewer(array, type, container) {
                     let content = `
                         <div class="media-card" onclick="viewerCheck('${keyHeader}',cardMap.get('${keyHeader}'))">
                             <a>
-                                <img src="${img}" alt="Cover" class="media-cover" ></a>
+                                <img referrer="no-referrer" src="${img}" alt="Cover" class="media-cover" ></a>
                                     <div class="media-info">
                                     <div class="uploader-info">
-                                    <a href="/space/index.html?uid=${uid}"><img src="${useravatar}" alt="avatar" class="uploader-avatar"></a>
+                                    <a href="/space/index.html?uid=${uid}"><img referrer="no-referrer" src="${useravatar}" alt="avatar" class="uploader-avatar"></a>
                                     <a href="/space/index.html?uid=${uid}"><span class="username_up">${username}</span></a>
                                 </div>
                                 <a><div class="media-title">${title}</div></a>

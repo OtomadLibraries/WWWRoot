@@ -61,7 +61,7 @@ class Common {
                             <span class="top-bar-header-avatar">
                                 <div class="top-bar-header-avatar-box">
                                     <a href="/space/index.html?uid=${UID}">
-                                        <img src="${HEADER_AVATAR}" alt="HEADER-AVATAR" class="HEADER-AVATAR-DIV" style="border-radius: 50%; margin-top: 0px">
+                                        <img referrer="no-referrer" src="${HEADER_AVATAR}" alt="HEADER-AVATAR" class="HEADER-AVATAR-DIV" style="border-radius: 50%; margin-top: 0px">
                                     </a>
                                     <div class="dropdown-menu">
                                         <a href="/space/modifyData.html">个人资料</a>
@@ -127,7 +127,7 @@ function searchButton() {
 
 function showImg(urlImg) {//图片处理&图片高度自适应
     let frameid = 'frameimg';  //定义frame的id
-    window.img = '<img class="media-cover" id="img" style="width:100%" src=\'' + urlImg + '\' /><script>window.onload = function() { parent.document.getElementById(\'' + frameid + '\').height = document.getElementById(\'img\').height+\'px\'; }<' + '/script>';
+    window.img = '<img referrer="no-referrer" class="media-cover" id="img" style="width:100%" src=\'' + urlImg + '\' /><script>window.onload = function() { parent.document.getElementById(\'' + frameid + '\').height = document.getElementById(\'img\').height+\'px\'; }<' + '/script>';
     document.write('<iframe class="media-cover" id="' + frameid + '" src="javascript:parent.img;" frameBorder="0" scrolling="no" width="100%"></iframe>'); //输出HTML代码
 }
 
@@ -194,6 +194,11 @@ function base64ToString(b64) {
         console.error("Could not convert Base64 to string.", e);
         return null;
     }
+}
+
+function replaceBilibiliUrl(inputString) {
+    // 使用正则表达式进行替换
+    return inputString.replace(/https:\/\/www\.bilibili\.com\/video\//g, "https://video_api.kms233.com/bili/");
 }
 
 function replaceXXSChars(XXS) {
@@ -303,7 +308,7 @@ async function postUserSpace() {
                 let description = data.description;
                 let uid = data.uid;
                 setPageContent(".username",username);
-                setPageContent(".useravatar",`<img src="${useravatar}" alt="">`);
+                setPageContent(".useravatar",`<img referrer="no-referrer" src="${useravatar}" alt="">`);
                 setPageContent(".userDescription",`${description}`);
             })
             .catch(error => {
@@ -345,7 +350,7 @@ async function postVideoJson() {
                             let username = userData.username;
                             let useravatar = userData.useravatar;
                             let uid = userData.uid;
-                            const div_avatar = '<img src="'+useravatar+'" alt="Avatar" href="/space/index.html?uid='+uid+'" style="border-radius: 50%; width: 30px; height: 30px;">';
+                            const div_avatar = '<img referrer="no-referrer" src="'+useravatar+'" alt="Avatar" href="/space/index.html?uid='+uid+'" style="border-radius: 50%; width: 30px; height: 30px;">';
                             const div_upload = '<a href="/space/index.html?uid='+uid+'">'+username+'</a>';
                             addPageContent('.uploader-info',div_avatar);
                             addPageContent('.uploader-info',div_upload);
@@ -440,7 +445,7 @@ async function postAssetsJson() {
                         .then(userData => {
                             let username = userData.data.username;
                             let useravatar = userData.data.useravatar;
-                            const div_avatar = '<img src="' + useravatar + '" alt="Avatar" style="border-radius: 50%; width: 30px; height: 30px;">';
+                            const div_avatar = '<img referrer="no-referrer" src="' + useravatar + '" alt="Avatar" style="border-radius: 50%; width: 30px; height: 30px;">';
                             const div_upload = '<a href="/space/index.html?uid=' + uid + '">' + username + '</a>';
 
                             addPageContent('.title',title);
@@ -525,7 +530,7 @@ async function postReadingJson() {
                         let userData = data.data;
                         let username = userData.username;
                         let useravatar = userData.useravatar;
-                        const div_avatar = '<img src="'+useravatar+'" alt="Avatar" href="" style="border-radius: 50%; width: 30px; height: 30px;">';
+                        const div_avatar = '<img referrer="no-referrer" src="'+useravatar+'" alt="Avatar" href="" style="border-radius: 50%; width: 30px; height: 30px;">';
                         const div_upload = '<a href="">'+username+'</a>';
                         addPageContent('.uploader-info',div_avatar);
                         addPageContent('.uploader-info',div_upload);
@@ -722,7 +727,7 @@ async function postCollaborationJson(div) {
                     let introduction = media.introduction;
                     let tag = media.tag;
                     const htmlContent = `
-                    <div style="width: 85%; align-items: center; margin-left: auto; margin-right: auto; border-radius: 6px; padding: 14px; box-shadow: 0 3px 6px rgb(0 0 0 / 4%), 0 3px 6px rgb(0 0 0 / 6%); border: 1px solid; border-color: rgba(0,0,0,0.05);border-left:15px solid #b3e6ff;overflow:hidden; background: hsl(0deg 0% 100% / 70%);clear: both;"><div style="position:relative;z-index:-1;margin:-14px -14px 0 -14px;height: 0; opacity: 60%; user-select: none;"><a href="${img}"class="image"><img alt="coop"src="${img}"decoding="async"loading="lazy"width="173"height="108"class="blur"data-file-width="173"data-file-height="108"></a></div><div style="margin:14px;"><p><a href="${img}"class="image"><img alt="${img}"src="${img}"decoding="async"loading="lazy"width="173"height="108"class="pic"data-file-width="173"data-file-height="108"></a></p></div><p><span class="adjusttext"><b>${title}</b></span></p><div class="adjustcontent"style="display:flex;"><div style="white-space: nowrap;"><b>主催</b>：</div><div><a target="_blank"rel="nofollow noreferrer noopener"class="external text">${host}</a></div></div><div class="adjustcontent"style="display:flex;"><div style="white-space: nowrap;"><b>简介</b>：</div><div>${introduction}</div></div><div class="adjustcontent"style="display:flex;"><div style="white-space: nowrap;"><b>加入方式</b>：</div><div><a target="_blank"rel="nofollow noreferrer noopener"class="external text"href="${join_url}">${join_url}</a></div></div><p><br></p><div style="white-space: nowrap;display:flex;align-items:baseline;"><div style="margin-right:10px;font-weight:600;">目前进度</div><div style="width:100%;height:10px;background-color: #b3e6ff;border-radius: 6px;margin-bottom:20px;"><div style="width:100%;height:10px;background-color: #b3e6ff;border-radius: 6px;"></div></div><div style="margin-left:10px;font-size:15px;">${progress}%</div></div><div class="adjustcontent"style="display:flex;"><div style="white-space: nowrap;"><b>合作地址</b>：</div><div><a target="_blank"rel="nofollow noreferrer noopener"class="external free"href="${video_url}">${video_url}</a></div></div></div><br>
+                    <div style="width: 85%; align-items: center; margin-left: auto; margin-right: auto; border-radius: 6px; padding: 14px; box-shadow: 0 3px 6px rgb(0 0 0 / 4%), 0 3px 6px rgb(0 0 0 / 6%); border: 1px solid; border-color: rgba(0,0,0,0.05);border-left:15px solid #b3e6ff;overflow:hidden; background: hsl(0deg 0% 100% / 70%);clear: both;"><div style="position:relative;z-index:-1;margin:-14px -14px 0 -14px;height: 0; opacity: 60%; user-select: none;"><a href="${img}"class="image"><img referrer="no-referrer" alt="coop"src="${img}"decoding="async"loading="lazy"width="173"height="108"class="blur"data-file-width="173"data-file-height="108"></a></div><div style="margin:14px;"><p><a href="${img}"class="image"><img referrer="no-referrer" alt="${img}"src="${img}"decoding="async"loading="lazy"width="173"height="108"class="pic"data-file-width="173"data-file-height="108"></a></p></div><p><span class="adjusttext"><b>${title}</b></span></p><div class="adjustcontent"style="display:flex;"><div style="white-space: nowrap;"><b>主催</b>：</div><div><a target="_blank"rel="nofollow noreferrer noopener"class="external text">${host}</a></div></div><div class="adjustcontent"style="display:flex;"><div style="white-space: nowrap;"><b>简介</b>：</div><div>${introduction}</div></div><div class="adjustcontent"style="display:flex;"><div style="white-space: nowrap;"><b>加入方式</b>：</div><div><a target="_blank"rel="nofollow noreferrer noopener"class="external text"href="${join_url}">${join_url}</a></div></div><p><br></p><div style="white-space: nowrap;display:flex;align-items:baseline;"><div style="margin-right:10px;font-weight:600;">目前进度</div><div style="width:100%;height:10px;background-color: #b3e6ff;border-radius: 6px;margin-bottom:20px;"><div style="width:100%;height:10px;background-color: #b3e6ff;border-radius: 6px;"></div></div><div style="margin-left:10px;font-size:15px;">${progress}%</div></div><div class="adjustcontent"style="display:flex;"><div style="white-space: nowrap;"><b>合作地址</b>：</div><div><a target="_blank"rel="nofollow noreferrer noopener"class="external free"href="${video_url}">${video_url}</a></div></div></div><br>
                     `;
                     const targetDiv = document.querySelector(div);
                     targetDiv.innerHTML += htmlContent;
