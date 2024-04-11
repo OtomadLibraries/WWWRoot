@@ -232,6 +232,7 @@ td {
     text-align: center;
     margin-right: 6em; /* 设置右边距等于左侧栏的宽度 */
     left: 0rem;
+    border-radius: 8px;
 }
 
 /* 横幅样式 */
