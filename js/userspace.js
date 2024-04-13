@@ -77,7 +77,7 @@ async function arrayFor(array,type,container) {
                         <img src="${img}" alt="Cover" class="media-cover" ></a>
                         <div class="media-info">
                             <div class="uploader-info">
-                                <a href="/space/index.html?uid=${uid}"><img src="${useravatar}" alt="avatar" class="uploader-avatar"></a>
+                                <a href="/space/index.html?uid=${uid}"><img referrer="no-referrer" src="${useravatar}" alt="avatar" class="uploader-avatar"></a>
                                 <a href="/space/index.html?uid=${uid}"><span class="username_up">${username}</span></a>
                             </div>
                             <a href="${link}"><div class="media-title">${title}</div></a>
