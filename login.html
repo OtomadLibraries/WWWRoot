@@ -103,17 +103,18 @@
                 <form action="">
                     <div class="input-group">
                         <label for="username">用户名:</label>
-                        <input type="text" id="username" name="username" required>
+                        <input type="text" id="username" name="username" required="">
                     </div>
                     <div class="input-group">
                         <label for="password">密码:</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="password" required="">
                     </div>
                     <div class="input-group">
                         <label for="captcha">验证码:</label>
-                        <input type="text" id="captcha" name="captcha" required>
+                        <input type="text" id="captcha" name="captcha" required="">
                         <img id="captchaImg" src="https://api.otomads.top/captcha.php" alt="captcha" style="justify-content: center; align-items: center; cursor: pointer;">
                     </div>
+                    <a href="forgotPassword.html">忘记密码</a>
                     <div class="btn-group">
                         <button type="button" class="subButton" onclick="window.location.href='/register.html'">注册</button>
                         <button type="button" class="subButton" onclick="login()">登录</button>
