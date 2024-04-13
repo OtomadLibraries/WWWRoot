@@ -125,7 +125,7 @@ function arrayForViewer(array, type, container) {
         if (type == "video") link = "/video/index.html?cid=" + cid;
         if (type == "read") link = "/read/index.html?cid=" + cid;
         if (type == "software" || type == "project") link = item.src;
-        src = replaceBilibiliUrl(src);
+        if(src) src = replaceBilibiliUrl(src);
 
         fetch("https://api.otomads.top/user/queryUser.php?uid=" + encodeURIComponent(uid))
             .then(response => {

@@ -197,13 +197,8 @@ function base64ToString(b64) {
 }
 
 function replaceBilibiliUrl(inputString) {
-    if (inputString) {
-        return inputString.replace(/https:\/\/www\.bilibili\.com\/video\//g, "https://video_api.kms233.com/bili/");
-    } else {
-        return inputString;
-    }
+    return inputString.replace(/https:\/\/www\.bilibili\.com\/video\//g, "https://video_api.kms233.com/bili/");
 }
-
 
 function replaceXXSChars(XXS) {
     // 使用正则表达式匹配包含 <script> 或 <noscript> 的内容

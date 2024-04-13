@@ -316,7 +316,7 @@
         let videoUrl = document.querySelector(".videoUrlValue").value;
         let progress = document.querySelector(".progressValue").value;
         let tag = document.querySelector(".tagValue").value;
-        src = replaceBilibiliUrl(src);
+        if(src) src = replaceBilibiliUrl(src);
 
         switch (this.mode) {
             case 11: { //video
