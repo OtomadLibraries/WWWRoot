@@ -67,12 +67,13 @@
 </div>
 <script src="/js/library.js"></script>
 <script src="/js/showdown.min.js"></script>
+<script src="/js/comment.js"></script>
 <script>
     const urlParams = new URLSearchParams(window.location.search);
     postToFetch("/api/searcher-container.html",".searcher-container");
-    postToFetch("/api/sidebar.html",".sidebar-sub")
-    postToFetch("/api/bottom_bar.html",".bottom-bar")
-    postToFetch("/api/comment_box.html",".comment_box")
+    postToFetch("/api/sidebar.html",".sidebar-sub");
+    postToFetch("/api/bottom_bar.html",".bottom-bar");
+    postToFetch("/api/comment_box.html",".comment_box");
     postAssetsJson()
     if(urlParams.has('cid')) {
         let cid = urlParams.get("cid");
