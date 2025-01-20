@@ -1,0 +1,10 @@
+:root {
+    --theme_color: white;
+    --c_shadow: rgba(0, 0, 0, 0.2) 0px 5px 12px 1px;
+}
+
+a {
+    --color-link: #008ac5;
+    --color-link--hover: #00aeec;
+    --color-link--active: #36c;
+}

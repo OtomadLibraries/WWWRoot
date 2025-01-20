@@ -1,7 +1,0 @@
-#comment_box {
-    display: block;
-    margin: 0 auto; /* 居中 */
-    width: 100%; /* 宽度自适应 */
-    height: 100vh; /* 高度填充整个视口 */
-    border: none;
-}

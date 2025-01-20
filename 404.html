@@ -1,76 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>404 Not Found</title>
-    <link rel="icon" type="image/png" href="/images/favicon.png">
-    <link rel="stylesheet" href="/css/styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta itemprop="description" name="description" content="音乐源于万物之声——OtoMADs Libraries，一个专注于音MAD知识库的网站。领域包括视频补档、资源分享、经验学习、素材/工程分享和游戏娱乐" class="description">
-    <style>
-        .col:hover {
-            color: #f2b140;
-        }
-    </style>
+    <meta http-equiv="refresh" content="0; url=./index.html">
+    <title></title>
 </head>
-<body class="pBody">
-<div id="page" class="page">
-    <!-- 左侧栏/通过js控制 -->
-    <div class="left-bar" style="transform: translateY(0px);">
-        <div class="sidebar-sub">
-        </div>
-    </div>
-
-    <!-- 顶栏 -->
-    <div class="top-bar">
-        <div class="logo">
-            <img class="web_title" src="/images/page_logo.png" alt="otomads" onclick="">
-        </div>
-        <div class="searcher-container">
-        </div>
-        <div class="user-container">
-        </div>
-    </div>
-
-    <!-- 横幅 -->
-    <div class="top-banner-img">
-    </div>
-
-    <!-- 页面内容 -->
-    <div class="content">
-        <div class="content-outside-box">
-            <div class="content-box">
-                <div id="mw-content-text" class="mw-body-content mw-content-ltr" lang="zh" dir="ltr"><div class="noarticletext mw-content-ltr" dir="ltr" lang="zh">
-                    <div style="font-size: 150px; color:#72d6fb; text-shadow: 0 3px 6px #72d6fb80; text-align: center; font-weight: 900">404</div>
-                    <div style="text-align: center">
-                        <p>此页面目前没有内容。您可以在其他页面中<a class="col" href="/searcher.html" title="">搜索本页标题</a>、<span class="plainlinks"></span>
-                        </p>
-                    </div>
-                </div></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 底栏 -->
-    <div class="bottom-bar">
-
-    </div>
-
-</div>
-<script src="/js/library.js"></script>
-<script>
-    mobileValue = localStorage.getItem("mValue");
-    if(mobileValue) {
-        if(mobileValue==1) {
-            setPageContent(".pBody","")
-            postToFetch("/mobile/404.html",".pBody")
-        }
-    }
-</script>
-<script>
-    postToFetch("/api/searcher-container.html",".searcher-container");
-    postToFetch("/api/sidebar.html",".sidebar-sub")
-    postToFetch("/api/bottom_bar.html",".bottom-bar")
-</script>
-</body>
 </html>

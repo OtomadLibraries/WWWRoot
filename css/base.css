@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f4f4f4;
+}
+
+a {
+    color: var(--color-link);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--color-link--hover);
+}
+
+a:active {
+    color: var(--color-link--active);
+}
+
+a::after {
+    display: inline-block;
+    background-image: none;
+    direction: ltr;
+    font-family: 'Material Icons';
+    font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: 1;
+    opacity: 1;
+    text-align: center;
+    text-indent: 0;
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    word-wrap: normal;
+    content: 'open_in_new';
+}
+
+a[href^="/"]::after,
+a[href*="www.otomads.top"]::after,
+.no_style_link::after {
+    content: none;
+}
+
+li a, .no_style_link {
+    color: black;
+}
+

@@ -1,8 +1,0 @@
-首页 /
-合作推广 /collaboration.html
-视频专区 /videos.html
-游戏专区 /game.html
-资源下载 /resources.html
-留言板 /forum.html
-专栏 /read.html
-关于 /about.html
