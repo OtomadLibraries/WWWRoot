@@ -76,17 +76,7 @@
         </div>
     </div>
 </body>
-<script src="/js/library.js"></script>
-<script src="/js/userspace.js"></script>
-<script src="/js/comment.js"></script>
-<script src="/js/mediawiki_api.js"></script>
-<script src="/js/otomadwiki_widget.js"></script>
-<script src="/js/from_otomadwiki.js"></script>
 <script>
-    postToFetch("/api/comment_box.html",".comment_box");
-    var _pidL = "_gPage_daisaku";
-    registerCommentsBox(_pidL);
-
     window.onload = function(){
         cx.resume();
         setTimeout(function(){ld();}, 2000);
